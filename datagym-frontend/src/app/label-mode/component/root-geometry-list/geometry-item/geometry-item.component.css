@@ -1,0 +1,20 @@
+.entry-value {
+  font-size: 14px;
+}
+
+.geo-item {
+  min-height: 35px;
+}
+
+.nested-geometry {
+  margin-left: 0.7em;
+}
+
+.divider {
+  margin: 0.5em 0 0;
+}
+
+.disabled {
+  color: gray;
+  cursor: not-allowed;
+}

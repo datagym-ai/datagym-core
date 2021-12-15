@@ -1,0 +1,8 @@
+
+@media (min-width: 1800px) {
+  .label-list {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+}

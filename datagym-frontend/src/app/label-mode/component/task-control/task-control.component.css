@@ -1,0 +1,40 @@
+
+.task-control {
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #C0C0C0;
+}
+.task-control .task-control-no-border:hover {
+  color: #666666;
+  background-color: #fbfbfb;
+}
+
+.task-control-no-border {
+  cursor: pointer;
+  outline: none;
+}
+
+.task-control-disabled {
+  opacity: 0.7;
+  outline: none;
+}
+.task-control-disabled {
+  cursor: not-allowed;
+}
+
+.review-comment-headline {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 0.25em;
+}
+.review-comment-headline i.fas{
+  margin-right: .25em;
+  color: #666666;
+  float: right;
+}
+.review-comment-headline:hover i.fas{
+  color: darkgray;
+}
+
+.review-comment {
+  /*padding-top: 0.25em;*/
+}

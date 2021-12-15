@@ -1,0 +1,41 @@
+<ngx-smart-modal #UploadModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()"
+                 [dismissable]="isCloseable" [escapable]="isCloseable" [closable]="isCloseable">
+
+    <div class="row" *ngIf="hasConfiguration" [ngSwitch]="uploadType">
+
+      <app-upload-media
+        *ngSwitchCase="MediaType.LOCAL"
+        class="col-12"
+        [options]="options"
+        [datasetId]="datasetId"
+        [description]="content"
+        (onUploadStarted)="isCloseable=false"
+        (onUploadCompleted)="onMediaUploaded($event)"
+        (loadingFinished)="clearData();isCloseable=true">
+      </app-upload-media>
+
+      <app-upload-public-links
+        *ngSwitchCase="MediaType.SHAREABLE_LINK"
+        class="col-12"
+        [removeData]="removeData"
+        [options]="options"
+        [datasetId]="datasetId"
+        [description]="content"
+        (setModalCloseable)="isCloseable=$event"
+        (onImagesCompleted)="refrehMediaList()">
+      </app-upload-public-links>
+
+      <app-sync-aws-s3
+        *ngSwitchCase="MediaType.AWS_S3"
+        class="col-12"
+        [onStart]="onStart"
+        [removeData]="removeData"
+        [datasetId]="datasetId"
+        [description]="content"
+        (setModalCloseable)="isCloseable=$event"
+        (onImagesCompleted)="refrehMediaList()">
+      </app-sync-aws-s3>
+
+  </div>
+
+</ngx-smart-modal>

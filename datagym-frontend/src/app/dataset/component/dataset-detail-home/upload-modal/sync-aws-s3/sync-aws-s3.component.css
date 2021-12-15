@@ -1,0 +1,13 @@
+
+
+
+textarea {
+  width: 100%;
+  padding: 1em;
+  white-space: pre;
+  border: 1px solid #ddd;
+}
+
+.app-button + textarea {
+  border-top: none;
+}

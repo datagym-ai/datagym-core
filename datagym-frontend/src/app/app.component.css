@@ -1,0 +1,37 @@
+.sidebar {
+  width: 200px;
+  position: fixed;
+  height: 100%;
+  transition: width 1s;
+  overflow-x: hidden;
+  background: transparent linear-gradient(180deg, #6300ED 0%, #946BCE 100%) 0 0 no-repeat padding-box;
+  color: #ffffff;
+  font-size: 1.05em;
+}
+
+.main-margins {
+  margin: 14px 35px 0 35px;
+}
+
+.sidebar-hidden {
+  width: 70px;
+  transition: width 1s;
+}
+
+.main {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+}
+
+.main-without-nav {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+.main-transition {
+  transition: all 1s;
+}
+/* "deeply" override style of notification-library because there are no options for style referring*/
+::ng-deep .simple-notification-wrapper {
+  width: 420px !important;
+}

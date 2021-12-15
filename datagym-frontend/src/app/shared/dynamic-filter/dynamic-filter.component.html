@@ -1,0 +1,17 @@
+<div class="container-fluid invert-row-margin">
+  <div class="row align-items-center">
+    <div *ngFor="let filterElement of filterConfiguration" [className]="'col-' + filterElement.colSize">
+      <app-dynamic-filter-element [filterElement]="filterElement"
+                                  [formGroup]="formGroup"
+                                  (filterElementChanged)="emitFilterChangedEvent()"
+                                  [disabled]="disabledFilterComponent">
+      </app-dynamic-filter-element>
+    </div>
+    <div class="col" *ngIf="dynamicFilterChanged && !disabledFilterComponent">
+      <app-button label="GLOBAL.RESET_FILTER"
+                  styling="default"
+                  [css]="{'height': '40px'}"
+                  (onClick)="resetForm()"></app-button>
+    </div>
+  </div>
+</div>

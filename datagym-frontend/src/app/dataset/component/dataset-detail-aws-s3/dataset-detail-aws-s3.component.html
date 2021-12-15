@@ -1,0 +1,144 @@
+
+<ng-container *ngIf="!!credentials" [ngTemplateOutlet]="AwsS3"></ng-container>
+<ng-container *ngIf="!credentials" [ngTemplateOutlet]="NotSupported"></ng-container>
+
+<ng-template #NotSupported>
+  <app-dg-not-supported></app-dg-not-supported>
+</ng-template>
+
+<ng-template #AwsS3>
+  <div class="row">
+  <div class="col-12">
+    <form class="p-3 edit-form" [formGroup]="editAwsS3Form" (ngSubmit)="onSubmit()">
+      <div class="row mt-3 pl-3 pr-3">
+        <div class="col-12 col-lg-6 order-lg-last">
+          <div class="d-none d-lg-block mt-5 pb-3"></div>
+          <div class="pl-lg-3">
+            <div class="mt-3" *ngIf="isDummy">{{ 'FEATURE.DATASET.DUMMY_SETTING' | translate }}</div>
+            <div class="mt-3" *ngIf="isLoading">
+              <div class="col-12 text-center my-4">
+                <i class="fas fa-spinner loading-spinner" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div *ngIf="!isLoading && !isDummy" class="mt-3">
+              <ng-container *ngIf="credentials" [ngTemplateOutlet]="credentialsView"></ng-container>
+              <ng-container *ngIf="synchronizeState" [ngTemplateOutlet]="synchronizeStateView"></ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+
+          <div *ngIf="formState != states.CREATE" class="row flex-nowrap overflow-hidden tabs mb-3">
+
+            <div class="col-auto">
+              <div class="tab-item"
+                   [ngClass]="{'tab-active': formState == states.BUCKET}"
+                   (click)="switchForm(states.BUCKET)"
+              ><h2>{{ 'FEATURE.DATASET.DETAILS.AWS_S3.TABS.BUCKET' | translate }}</h2></div>
+            </div>
+
+            <div class="col-auto">
+              <div class="tab-item"
+                   [ngClass]="{'tab-active': formState == states.CREDENTIALS}"
+                   (click)="switchForm(states.CREDENTIALS)"
+              ><h2>{{ 'FEATURE.DATASET.DETAILS.AWS_S3.TABS.CREDENTIALS' | translate }}</h2></div>
+            </div>
+
+          </div>
+
+          <div *ngIf="formState == states.CREATE || formState == states.BUCKET">
+            <app-textfield label="FEATURE.DATASET.DETAILS.AWS_S3.LABEL.NAME"
+                           [editable]="!isDummy" [title]="isDummy ? 'FEATURE.DATASET.DUMMY_SETTING': ''"
+                           hint="FEATURE.DATASET.DETAILS.AWS_S3.HINT.NAME" required="true" editable="true"
+                           formControlName="name"></app-textfield>
+
+            <app-textfield label="FEATURE.DATASET.DETAILS.AWS_S3.LABEL.BUCKET_NAME"
+                           [editable]="!isDummy" [title]="isDummy ? 'FEATURE.DATASET.DUMMY_SETTING': ''"
+                           hint="FEATURE.DATASET.DETAILS.AWS_S3.HINT.BUCKET_NAME" required="true" editable="true"
+                           formControlName="bucketName"></app-textfield>
+
+            <app-textfield label="FEATURE.DATASET.DETAILS.AWS_S3.LABEL.LOCATION_PATH"
+                           [editable]="!isDummy" [title]="isDummy ? 'FEATURE.DATASET.DUMMY_SETTING': ''"
+                           hint="FEATURE.DATASET.DETAILS.AWS_S3.HINT.LOCATION_PATH" editable="true"
+                           formControlName="locationPath"></app-textfield>
+
+            <h3>
+              <label class="text-label">
+                {{ 'FEATURE.DATASET.DETAILS.AWS_S3.LABEL.BUCKET_REGION' | translate}}
+                <span class="required-field">*</span>
+                <i class="fas fa-edit edit-icon" aria-hidden="true"></i>
+              </label>
+            </h3>
+            <ng-select [formControlName]="'bucketRegion'">
+              <ng-option *ngFor="let region of regions" [value]="region">
+                {{ ('FEATURE.DATASET.DETAILS.AWS_S3.REGIONS.' + region) | translate }}
+              </ng-option>
+            </ng-select>
+            <br>
+          </div>
+
+          <div *ngIf="formState == states.CREATE || formState == states.CREDENTIALS">
+
+            <app-textfield label="FEATURE.DATASET.DETAILS.AWS_S3.LABEL.ACCESS_KEY"
+                           [editable]="!isDummy" [title]="isDummy ? 'FEATURE.DATASET.DUMMY_SETTING': ''"
+                           hint="FEATURE.DATASET.DETAILS.AWS_S3.HINT.ACCESS_KEY" required="true" editable="true"
+                           formControlName="accessKey"></app-textfield>
+
+            <app-textfield label="FEATURE.DATASET.DETAILS.AWS_S3.LABEL.SECRET_KEY" type="password"
+                           [editable]="!isDummy" [title]="isDummy ? 'FEATURE.DATASET.DUMMY_SETTING': ''"
+                           hint="FEATURE.DATASET.DETAILS.AWS_S3.HINT.SECRET_KEY" required="true" editable="true"
+                           formControlName="secretKey"></app-textfield>
+
+          </div>
+
+          <div class="mt-3">
+            <app-button label="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.BUTTON.RESET" type="button"
+                        [title]="isDummy ? 'FEATURE.DATASET.DUMMY': ''"
+                        [disabled]="isDummy" (onClick)="onReset()"></app-button>
+            <app-button class="ml-3" label="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.BUTTON.SAVE" type="submit"
+                        styling="secondary" [title]="isDummy ? 'FEATURE.DATASET.DUMMY': ''"
+                        [disabled]="!editAwsS3Form.valid || editAwsS3Form.pristine || isLoading || isDummy"></app-button>
+          </div>
+          <div class="mt-3">
+            <p class="required-hint"><span class="required-field">*</span>{{'GEN.REQUIRED_FIELD' | translate}}</p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #credentialsView>
+
+  <div *ngIf="credentials.lastSynchronized">
+    <p>
+      <strong>{{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.SYNCHRONIZED' | translate }}:</strong>
+      {{ credentials.lastSynchronized|date:('FEATURE.DATASET.DETAILS.AWS_S3.DATE_FORMAT' | translate) }}
+    </p>
+  </div>
+  <hr *ngIf="credentials.lastSynchronized && credentials.lastErrorTimeStamp">
+  <div *ngIf="credentials.lastErrorTimeStamp">
+    <p>
+      <strong>{{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.ERROR' | translate }}:</strong>
+      {{ credentials.lastErrorTimeStamp|date:('FEATURE.DATASET.DETAILS.AWS_S3.DATE_FORMAT' | translate) }}
+    </p>
+    <p>{{ credentials.lastError }}</p>
+  </div>
+
+</ng-template>
+<ng-template #synchronizeStateView>
+
+  <p>{{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.ADDED_IMAGES'|translate:{counter:synchronizeState.addedS3Images.length} }}</p>
+  <p>{{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.DELETED_IMAGES'|translate:{counter:synchronizeState.deletedS3Images.length} }}</p>
+  <p>{{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.FAILED_IMAGES'|translate:{counter:synchronizeState.uploadFailedS3Images.length} }}</p>
+
+  <div *ngIf="synchronizeState.lastErrorTimeStamp && (synchronizeState.lastError || synchronizeState.syncError)">
+    <p>
+      <strong>{{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.ERROR' | translate }}:</strong>
+      {{ synchronizeState.lastErrorTimeStamp | date:('FEATURE.DATASET.DETAILS.AWS_S3.DATE_FORMAT' | translate) }}
+    </p>
+    <p>{{ synchronizeState.lastError || synchronizeState.syncError }}</p>
+  </div>
+
+</ng-template>
+</ng-template>

@@ -1,0 +1,6 @@
+<button class="app-button" [type]="buttonType" (click)="onClickButton($event)" [ngClass]="getNgClass()"
+        [title]="title | translate: args"
+        [disabled]="disabled" [ngStyle]="style">
+  <i *ngIf="icon !== undefined" class="mr-1 {{icon}}" aria-hidden="true"></i>
+  {{buttonLabel | translate: args}}
+</button>

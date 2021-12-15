@@ -1,0 +1,25 @@
+<div class="col-4">
+    <i [ngClass]="{'fa-file-image': project.mediaType === MediaType.IMAGE,
+      'fa-file-video': project.mediaType === MediaType.VIDEO
+    }" [title]="'GLOBAL.MEDIA_TYPE.MEDIA_TYPE_TITLE' | translate: {mediaType: project.mediaType}"
+       class="fas mr-3"></i>
+    {{project.name}}
+</div>
+<div class="col-3">
+  <app-dg-owner-label *ngIf="!isSuperadminMode" [organisation]="project.owner"></app-dg-owner-label>
+  <!--Access orgData if superadmin mode is enabled -->
+  <div *ngIf="isSuperadminMode">
+    <i [ngClass]="{
+      'fa-building': !project.orgData.personal,
+      'fa-user': project.orgData.personal
+    }" aria-hidden="true" class="fas" style="margin-right: 1em;"></i>
+    <span [title]="project.orgData.name">{{ project.orgData.name }}</span>
+  </div>
+</div>
+<div [ngClass]="{'col-3' : isSuperadminMode, 'col-4': !isSuperadminMode}">
+  <div>{{ project.shortDescription | lengthFilter: 50}}</div>
+</div>
+<div class="col-1">{{ mediaCounter }}</div>
+<div class="col-1" *ngIf="isSuperadminMode">
+  {{project.timestamp|date}}
+</div>

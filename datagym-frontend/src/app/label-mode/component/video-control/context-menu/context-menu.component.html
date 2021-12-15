@@ -1,0 +1,45 @@
+<div #cMenu *ngIf="visible" class="contextmenu container-fluid" [ngStyle]="{
+'left.px': position.x,
+'top.px': position.y - cMenu.offsetHeight
+}" (click)="handleClick($event)">
+
+  <div>
+    <div class="row" (click)="toggleVisibility()">
+      <div class="col- icon"><i class="fas" [ngClass]="isHidden ? 'fa-eye' : 'fa-eye-slash gray'"></i></div>
+      <div class="col">{{ (isHidden ? 'FEATURE.LABEL_MODE.HTML_TITLES.SHOW' : 'FEATURE.LABEL_MODE.HTML_TITLES.HIDE') | translate }}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- highlight -->
+    <div class="row" (click)="onHighlight()">
+      <div class="col- icon dg-primary-hover"><i class="fas fa-highlighter"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.HIGHLIGHT' | translate }}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- expand left -->
+    <div class="row" (click)="onExpandLeft()" [ngClass]="{'entry-disabled': !config || !config.expandLeftPossible}">
+      <div class="col- icon dg-primary-hover"><i class="fas fa-arrow-left"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.EXPAND_LEFT' | translate }}</div>
+    </div>
+
+    <!-- expand right -->
+    <div class="row" (click)="onExpandRight()" [ngClass]="{'entry-disabled': !config || !config.expandRightPossible}">
+      <div class="col- icon dg-primary-hover"><i class="fas fa-arrow-right"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.EXPAND_RIGHT' | translate }}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- delete line or delete keyFrame -->
+    <!-- note: i cannot display the entries dynamic, this would result in change after check error in the template -->
+    <div class="row" (click)="onDelete()">
+      <div class="col- icon dg-primary-hover"><i class="fas fa-trash"></i></div>
+      <div class="col">{{ (displayDeleteKeyFrameAction ? 'FEATURE.WORKSPACE.CONTEXT_MENU.DELETE_KEYFRAME' : 'GLOBAL.DELETE') | translate }}</div>
+    </div>
+
+  </div>
+
+</div>

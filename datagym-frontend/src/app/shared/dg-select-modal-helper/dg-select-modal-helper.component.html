@@ -1,0 +1,35 @@
+<div class="row mb-4">
+  <div class="col-12 font-weight-bold dg-primary-color">
+    {{ title | translate }}
+  </div>
+
+  <div class="col-12 mt-3">
+    {{ description | translate }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 mb-4">
+
+    <app-dg-select
+      [options]="options"
+      (onChange)="onChange.emit($event)"
+    ></app-dg-select>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <app-button label="GLOBAL.CANCEL" type="button" styling="full"
+                (onClick)="onCancel.emit()"></app-button>
+
+  </div>
+  <div class="col-6">
+    <app-button [label]="submitLabel"
+                type="submit" styling="secondary-full"
+                (onClick)="onSubmit.emit()"
+    ></app-button>
+
+  </div>
+</div>

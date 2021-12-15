@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-12 text-center">
+    <label class="font-weight-bold dg-primary-color">{{ description | translate }}</label>
+  </div>
+  <ng-container *ngIf="onUploading" class="col-12 d-block" [ngTemplateOutlet]="uploadView"></ng-container>
+  <ng-container *ngIf="!onUploading" class="col-12 d-block" [ngTemplateOutlet]="responseView"></ng-container>
+</div>
+
+<ng-template #uploadView>
+  <div class="col-12 text-center my-4">
+    <i class="fas fa-spinner loading-spinner" aria-hidden="true"></i>
+  </div>
+</ng-template>
+
+<ng-template #responseView>
+
+  <div class="col-12 mt-3" *ngIf="hasNoMedia">
+    <p *ngIf="syncStatus.lastErrorTimeStamp && (syncStatus.lastError || syncStatus.syncError)">
+      {{ syncStatus.lastErrorTimeStamp | date:('FEATURE.DATASET.DETAILS.AWS_S3.DATE_FORMAT' | translate) }}:
+      {{ syncStatus.lastError || syncStatus.syncError }}
+    </p>
+    <p *ngIf="syncStatus.lastSynchronized">
+      {{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.SYNCHRONIZED' | translate }}:
+      {{ syncStatus.lastSynchronized|date:('FEATURE.DATASET.DETAILS.AWS_S3.DATE_FORMAT' | translate) }}
+    </p>
+  </div>
+
+  <div class="col-12 mt-3" *ngIf="syncStatus.addedS3Images?.length > 0">
+    <app-button class="app-button"
+                [label]="'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.ADDED_IMAGES'"
+                [args]="{'counter': syncStatus.addedS3Images.length}"
+                [styling]="syncStatus.addedS3Images.length == 0 ? 'warn-full' : 'secondary-full'"
+                [css]="{cursor: 'default'}"
+                [disabled]="selectedToggle == Toggle.ADDED"
+                (click)="selectedToggle = Toggle.ADDED"
+    ></app-button>
+    <textarea *ngIf="selectedToggle == Toggle.ADDED" title="" rows="5">{{ listImagesFromResponse(syncStatus.addedS3Images) }}</textarea>
+  </div>
+
+  <div class="col-12 mt-3" *ngIf="syncStatus.deletedS3Images?.length > 0">
+    <app-button class="app-button"
+                [label]="'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.DELETED_IMAGES'"
+                [args]="{'counter': syncStatus.deletedS3Images.length}"
+                [styling]="'secondary-full'"
+                [css]="{cursor: 'default'}"
+                [disabled]="selectedToggle == Toggle.DELETED"
+                (click)="selectedToggle = Toggle.DELETED"
+    ></app-button>
+    <textarea *ngIf="selectedToggle == Toggle.DELETED" title="" rows="5">{{ listImagesFromResponse(syncStatus.deletedS3Images) }}</textarea>
+  </div>
+
+  <div class="col-12 mt-3" *ngIf="syncStatus.uploadFailedS3Images?.length > 0">
+    <app-button class="app-button"
+                [label]="'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.AWS_S3.FAILED_IMAGES'"
+                [args]="{'counter': syncStatus.uploadFailedS3Images.length}"
+                [styling]="'secondary-full'"
+                [css]="{cursor: 'default'}"
+                [disabled]="selectedToggle == Toggle.FAILED"
+                (click)="selectedToggle = Toggle.FAILED"
+    ></app-button>
+    <textarea *ngIf="selectedToggle == Toggle.FAILED" title="" rows="5">{{ listImagesFromResponse(syncStatus.uploadFailedS3Images) }}</textarea>
+  </div>
+
+</ng-template>

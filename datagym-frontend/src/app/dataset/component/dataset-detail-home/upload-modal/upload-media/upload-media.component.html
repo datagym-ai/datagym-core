@@ -1,0 +1,22 @@
+<div class="row mb-4">
+  <div class="col-12 font-weight-bold dg-primary-color" [ngClass]="{'text-center': center}">
+    {{ description | translate }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 text-center">
+    <app-file-upload
+      class="d-inline-block"
+      [multiple]="true"
+      [uploadUrl]="uploadUrl"
+      [acceptedTypes]="acceptedTypes"
+      [confirmPreSignedUrlFunction]="confirmPreSignedUrlUpload.bind(this)"
+      [customUploadUrlFunction]="createAwsPreSignedUploadURI.bind(this)"
+      [invalidFileTypesMessage]="options.errorI18n"
+
+      (onUploadStarted)="onUploadStarted.emit()"
+      (onFileCompleted)="onUploadCompleted.emit($event)"
+      (onUploadCompleted)="loadingFinished.emit()"
+    ></app-file-upload>
+  </div>
+</div>

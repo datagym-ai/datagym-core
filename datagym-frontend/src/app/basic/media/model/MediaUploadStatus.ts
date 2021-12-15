@@ -1,0 +1,7 @@
+
+export enum MediaUploadStatus {
+  FAILED = 'FAILED',
+  SUCCESS = 'SUCCESS',
+  DUPLICATE = 'DUPLICATE',
+  UNSUPPORTED_MIME_TYPE = 'UNSUPPORTED_MIME_TYPE'
+}

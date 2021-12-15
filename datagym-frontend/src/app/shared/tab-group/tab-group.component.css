@@ -1,0 +1,8 @@
+.tabs {
+  height: 5vh;
+  min-height: 3em;
+}
+.tabs-content {
+  padding-top: 4vh;
+  height: 79.9vh;
+}

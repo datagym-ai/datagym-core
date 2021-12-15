@@ -1,0 +1,76 @@
+<div class="row pb-3" *ngIf="datasetDesc">
+  <div class="col-12">
+    <label for="fullDesc"
+           class="dg-primary-color font-weight-bold">{{'FEATURE.DATASET.DETAILS.SHORT_DESC' | translate}}</label>
+    <div id="fullDesc" class="word-break">{{ datasetDesc }}</div>
+    <hr>
+  </div>
+</div>
+<!-- Actions are only allowed for admins -->
+<div *ngIf="isProjectAdmin" class="row pb-3">
+  <div class="col-12">
+    <!-- button to upload media -->
+    <span *ngIf="isDummy" class="mr-3 not-allowed dg-lightgray"
+          [title]="'FEATURE.DATASET.DUMMY' | translate">
+          {{ 'FEATURE.DATASET.DETAILS.UPLOAD_MEDIA' | translate }}
+    </span>
+    <span *ngIf="!isDummy" class="mr-3"
+          (click)="onInitUploadMedia()"
+          [ngClass]="{
+            'dg-primary-hover pointer': !whileUploading,
+            'not-allowed dg-lightgray': whileUploading
+          }">
+      {{ 'FEATURE.DATASET.DETAILS.UPLOAD_MEDIA' | translate }}
+    </span>
+    <!-- No url upload for datasets of video type -->
+    <span *ngIf="dataset.mediaType === MediaType.IMAGE">
+      <!-- button to upload public links -->
+      <span *ngIf="isDummy" class="mr-3 not-allowed dg-lightgray"
+            [title]="'FEATURE.DATASET.DUMMY' | translate">
+        {{ 'FEATURE.DATASET.DETAILS.ADD_PUBLIC_LINKS' | translate }}
+      </span>
+      <span *ngIf="!isDummy && !allowPublicUrls" class="mr-3 not-allowed dg-lightgray"
+            [title]="'FEATURE.DATASET.NOT_SUPPORTED' | translate">
+        {{ 'FEATURE.DATASET.DETAILS.ADD_PUBLIC_LINKS' | translate }}
+      </span>
+      <span *ngIf="!isDummy && allowPublicUrls" class="mr-3"
+            (click)="onInitUploadPublicLinks()"
+            [ngClass]="{
+              'dg-primary-hover pointer': !whileUploading,
+              'not-allowed dg-lightgray': whileUploading
+            }">
+        {{ 'FEATURE.DATASET.DETAILS.ADD_PUBLIC_LINKS' | translate }}
+      </span>
+    </span>
+
+    <!-- No url upload for datasets of video type -->
+    <span *ngIf="dataset.mediaType === MediaType.IMAGE">
+      <!-- button to upload aws s3 images -->
+      <span *ngIf="isDummy" class="mr-3 not-allowed dg-lightgray"
+            [title]="'FEATURE.DATASET.DUMMY' | translate">
+        {{ 'FEATURE.DATASET.DETAILS.SYNC_AWS_S3' | translate }}
+      </span>
+      <span *ngIf="!isDummy && !this.allowPublicUrls" class="mr-3 not-allowed dg-lightgray"
+            [title]="'FEATURE.DATASET.NOT_SUPPORTED' | translate">
+        {{ 'FEATURE.DATASET.DETAILS.SYNC_AWS_S3' | translate }}
+      </span>
+
+      <span *ngIf="!isDummy && this.allowPublicUrls" class="mr-3 dg-primary-hover pointer"
+            (click)="onInitSyncAwsS3()"
+            [ngClass]="{
+              'dg-primary-hover pointer': !whileUploading,
+              'not-allowed dg-lightgray': whileUploading
+            }">
+        {{ 'FEATURE.DATASET.DETAILS.SYNC_AWS_S3' | translate }}
+      </span>
+    </span>
+  </div>
+</div>
+<app-media-list
+  [datasetId]="datasetId"
+  [isVideo]="isVideo"
+  [dummy]="isDummy"
+  [connectedProjects]="projectCount" [isAdmin]="isProjectAdmin"
+></app-media-list>
+<app-upload-modal (onFinished)="whileUploading = !$event;"
+                  (refreshList)="refreshMediaComponentList()"></app-upload-modal>

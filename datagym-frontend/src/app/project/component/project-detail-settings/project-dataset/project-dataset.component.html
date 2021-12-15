@@ -1,0 +1,49 @@
+
+<div class="row mt-5 mb-3">
+  <div class="col">
+    <div class="d-inline title">
+      {{'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.TITLE' | translate}}
+    </div>
+  </div>
+</div>
+<div class="pl-3">
+  <div class="row dg-table-header">
+    <div class="col-5 col-lg-4 col-xl-3">{{'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.TABLE_HEADER.NAME' | translate}}</div>
+    <div class="col-2 text-center">{{'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.TABLE_HEADER.IMAGES' | translate}}</div>
+    <div class="col"><!-- some whitespace --></div>
+    <div class="col-2 text-center">{{'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.TABLE_HEADER.ACTIONS' | translate}}</div>
+  </div>
+  <app-list-item *ngFor="let dataset of datasets"
+                 class="row dg-table-entry"
+                 [isDummy]="isDummy"
+                 [routerLink]="['/datasets/details', dataset.id]"
+                 (onDeleteEvent)="onDelete($event)"
+                 [dataset]="dataset"></app-list-item>
+  <div *ngIf="datasets.length === 0" class="row dg-table-entry dg-table-entry-unclickable align-content-center">
+    <div class="col-12 text-center">{{ 'GLOBAL.EMPTY_TABLE' | translate }}</div>
+  </div>
+  <div class="row dg-table-entry dg-table-empty-result dg-table-entry-unclickable align-content-center">
+    <div class="col-12 text-center">{{ 'GLOBAL.NO_SEARCH_RESULTS' | translate }}</div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-12">
+
+    <!-- connect dataset button -->
+    <small *ngIf="isDummy" class="not-allowed dg-lightgray">
+      {{ ( 'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.' + (hasDatasets ? 'CONNECT_NEW_DATASET' : 'CONNECT_FIRST_DATASET') ) | translate | uppercase }}
+      <i class="ml-2 fas fa-link" aria-hidden="true"></i>
+    </small>
+    <small *ngIf="!isDummy" class="dg-primary-hover pointer"
+           (click)="onInitDatasetAdding()">
+      {{ ( 'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.' + (hasDatasets ? 'CONNECT_NEW_DATASET' : 'CONNECT_FIRST_DATASET') ) | translate | uppercase }}
+      <i class="ml-2 fas fa-link" aria-hidden="true"></i>
+    </small>
+  </div>
+</div>
+<app-dg-select-modal
+  [title]="'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.LIST_MODAL.TITLE'"
+  [label]="'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.LIST_MODAL.CONTENT'"
+  [right.btn.label]="'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.LIST_MODAL.CONNECT'"
+  (right.btn.click)="connectDataset($event)"
+></app-dg-select-modal>

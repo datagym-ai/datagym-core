@@ -1,0 +1,21 @@
+
+/* invert the grid margin on the first tab title */
+.tabs > .col-auto:first-child {
+  margin-left: -15px;
+}
+
+.section-title {
+  border-bottom: 2px solid #ddd;
+  box-sizing: border-box;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1em;
+  font-weight: bold;
+  margin-left: 15px;
+  padding-left: 0;
+}
+
+/* the .col-2 cols contain the icons */
+.content .col-2 {
+  text-align: center;
+}

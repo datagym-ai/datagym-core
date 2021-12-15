@@ -1,0 +1,13 @@
+.browser-support {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.9;
+  margin: 0 !important;
+  text-align: center;
+}
+
+.browser-support.span {
+  margin-right:10px
+}

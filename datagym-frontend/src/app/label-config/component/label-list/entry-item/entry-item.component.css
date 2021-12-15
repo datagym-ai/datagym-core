@@ -1,0 +1,38 @@
+.entry-item {
+  min-height: 54px;
+  padding: 10px 10px;
+  border: 1px solid #C0C0C0;
+  border-radius: 2px;
+  display: flex;
+  margin-top: -1px;
+  cursor: pointer;
+}
+
+.entry-item:hover {
+  background-color: #C0C0C0;
+}
+
+.entry-item i {
+  font-size: 20px;
+  color: #6300ED;
+}
+.action-icon:hover {
+  opacity: 0.6;
+}
+
+.entry-item.disabled {
+  cursor: not-allowed;
+}
+.entry-item.disabled i {
+  cursor: not-allowed;
+  color: lightgray;
+}
+
+.entry-item.disabled:hover {
+  background-color: inherit;
+}
+
+.fixed-actions-size {
+  flex: 0 0 300px;
+  display: flex;
+}

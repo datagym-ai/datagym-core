@@ -1,0 +1,35 @@
+<div class="task-container">
+  <div class="single-task">
+    <div class="body">
+      <h2 class=" wrap-words"
+          [ngClass]="{'dg-primary-hover pointer': isAdmin, 'dg-primary-color': !isAdmin}"
+          (click)="openProject()"
+          title="{{ task.projectName }}">
+        {{ task.projectName | lengthFilter: 30 }}
+      </h2>
+      <p>
+        <app-dg-owner-label class="d-block wrap-words" [organisation]="task.owner"></app-dg-owner-label>
+      </p>
+      <p>
+        <i class="fas fa-clipboard-check"></i>
+        {{ task.countWaitingTasks }} {{ 'FEATURE.TASK_OVERVIEW.ITEM.OPEN_TASKS' | translate }}
+      </p>
+    </div>
+    <div class="row" *ngIf="hasAnyReviewTasks">
+      <div *ngIf="task.countTasksToReview > 0; else noReviewTasks" class="col-sm">
+        <app-button label="FEATURE.TASK_OVERVIEW.ITEM.BUTTON.START_REVIEWING"
+                    styling="button-full" (onClick)="startReviewing()"></app-button>
+      </div>
+      <ng-template #noReviewTasks>
+        <div class="col-sm empty-button">
+        </div>
+      </ng-template>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <app-button [disabled]="task.countWaitingTasks === 0" label="FEATURE.TASK_OVERVIEW.ITEM.BUTTON.START_LABELING"
+                    styling="secondary-full" (onClick)="startLabeling()"></app-button>
+      </div>
+    </div>
+  </div>
+</div>

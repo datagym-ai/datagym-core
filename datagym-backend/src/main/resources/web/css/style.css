@@ -1,0 +1,126 @@
+/* ============= */
+/* === Fonts === */
+/* ============= */
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'),
+    url('../fonts/roboto-v20-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/roboto-v20-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Bold'), local('Roboto-Bold'),
+    url('../fonts/roboto-v20-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/roboto-v20-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* ==================== */
+/* === Basic Layout === */
+/* ==================== */
+
+body {
+    font-family: Roboto, 'Bitstream Vera', sans-serif;
+    background: #ffffff;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 0.3rem;
+    width: 30rem;
+    box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.3);
+}
+
+.card .datagym-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.card .datagym-logo > a {
+    text-align: center;
+}
+
+.card .datagym-logo img {
+    width: 55%;
+    height: auto;
+    margin: auto;
+}
+
+.card .content {
+    padding: 0 2rem 2rem;
+    overflow: hidden;
+}
+
+.card .content h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 0.4rem 0;
+}
+
+.card .content a.button {
+    display: block;
+    background: #090;
+    color: #FFF;
+    border-radius: 0.2rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    float: right;
+}
+
+.mail-footer {
+    background-color: #7D3ADC;
+    color: #fff;
+    padding: 0.5rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-title {
+    margin: auto;
+    padding: 0.5rem 0;
+    background-color: #7D3ADC;
+    color: #fff;
+}
+
+.social-wrapper {
+    margin: auto;
+    padding: 0.5rem 0;
+    background-color: #7D3ADC;
+}
+
+a.social-logo {
+    text-decoration: none;
+    padding: 0.5rem;
+}
+
+a.social-logo img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.content-text {
+    font-size: 0.9rem;
+}
+
+.content-text-bold {
+    font-weight: bold;
+}
+
+

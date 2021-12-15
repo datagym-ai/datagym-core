@@ -1,0 +1,112 @@
+<div #cMenu class="contextmenu container-fluid" [ngStyle]="{'left.px': xPosition, 'top.px': yPosition}" (click)="handleClick($event)">
+
+  <div *ngIf="this.contextMenu.originalMenuVisible">
+    <div class="row menu-entry-header">
+      <div class="col dg-primary-color">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.SELECTED' | translate }}</div>
+      <div class="col- icon close-menu" (click)="onCloseIcon()"><i class="fas fa-times"></i></div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <!-- start here the menu entries -->
+
+    <div *ngIf="!hasComment && singleGeometrySelected" class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}" (click)="onAddComment()">
+      <div class="col- icon gray"><i class="fas fa-comment"></i></div>
+      <div class="col">{{'FEATURE.WORKSPACE.CONTEXT_MENU.ADD_COMMENT' | translate }}</div>
+    </div>
+
+    <div *ngIf="hasComment && singleGeometrySelected" class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}" (click)="onAddComment()">
+      <div class="col- icon dg-primary-color"><i class="fas fa-comment"></i></div>
+      <div class="col">{{'FEATURE.WORKSPACE.CONTEXT_MENU.EDIT_COMMENT' | translate }}</div>
+    </div>
+
+    <div *ngIf="hasComment && singleGeometrySelected" (click)="onAddComment()" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}"
+         class="col dg-primary-color flex-wrap text-break">{{comment}}</div>
+
+    <div class="divider"></div>
+
+    <div class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}" (click)="onHide()">
+    <div class="col- icon gray"><i class="fas fa-eye"></i></div>
+    <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.HIDE' | translate }}</div>
+  </div>
+
+    <div class="divider"></div>
+
+    <div *ngIf="singleGeometrySelected" class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}" (click)="onDuplicate()">
+      <div class="col- icon gray"><i class="fas fa-copy"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.DUPLICATE' | translate }}<span class="float-right"><kbd>CTRL</kbd>+<kbd>V</kbd></span></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- refine aiseg prediction -->
+    <div class="row" *ngIf="aisegPolygon" [ngClass]="{'entry-disabled': !canUseAISeg}" (click)="onRefineAISegPrediction(aisegPolygon)">
+      <div class="col- icon"><i class="fas fa-brain" [style.color]="aisegPolygon.geometryProperties.fillColor"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.REFINE_PREDICTION' | translate }}</div>
+    </div>
+    <div class="divider" *ngIf="aisegPolygon"></div>
+
+    <!-- transform to header -->
+    <div class="row section">
+      <div class="col- icon"><i class="fas fa-exchange-alt"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.TRANSFORM_TO' | translate }}</div>
+    </div>
+
+    <!-- transform to list -->
+    <div class="row" *ngFor="let geometry of contextGeometries" (click)="transformGeometry(geometry)">
+      <div class="col- icon"><i [ngClass]="geometry.icon" [style.color]="geometry.color"></i></div>
+      <div class="col wrap-words">{{ geometry.name }}</div>
+    </div>
+
+    <!-- transform to nothing / should not be possible -->
+    <div class="row entry-disabled dg-warn-color" *ngIf="contextGeometries.length === 0">
+      <div class="col- icon"></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.NOTHING_TO_CHANGE' | translate }}</div>
+    </div>
+
+
+
+    <div class="divider"></div>
+
+    <!-- delete -->
+    <div class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}" (click)="onDelete()">
+      <div class="col- icon dg-primary-hover"><i class="fas fa-trash"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.DELETE' | translate }}</div>
+    </div>
+
+  </div>
+  <div *ngIf="!this.contextMenu.originalMenuVisible">
+    <div class="row">
+      <div class="col- icon"><i class="dg-primary-color fas fa-comment-alt"></i></div>
+      <div class="col menu-entry-header dg-primary-color">{{'FEATURE.WORKSPACE.CONTEXT_MENU.COMMENT' | translate }}</div>
+      <div class="col- icon close-menu" (click)="onCloseIcon()"><i class="fas fa-times"></i></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div *ngIf="!hasComment" class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}">
+      <div class="col- icon"><i class="dg-warn-color fas fa-exclamation-triangle"></i></div>
+      <input type="text" (keydown)="onInputChange($event)" maxlength="128" class="col" [(ngModel)]="comment" placeholder="{{'FEATURE.WORKSPACE.CONTEXT_MENU.COMMENT_PLACEHOLDER' | translate }}">
+    </div>
+
+    <div *ngIf="hasComment" class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}">
+      <div class="col- icon"><i class="dg-warn-color fas fa-exclamation-triangle"></i></div>
+      <input type="text" (keydown)="onInputChange($event)" maxlength="128" class="col" [(ngModel)]="comment">
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}" (click)="onSaveComment()">
+      <div class="col- icon gray"><i class="fas fa-comment-dots"></i></div>
+      <div class="col">{{'FEATURE.WORKSPACE.CONTEXT_MENU.SAVE' | translate }}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row" [ngClass]="{'entry-disabled': numberOfSelectedGeometries === 0}" (click)="onDeleteComment()">
+      <div class="col- icon dg-primary-hover"><i class="fas fa-trash"></i></div>
+      <div class="col">{{ 'FEATURE.WORKSPACE.CONTEXT_MENU.DELETE' | translate }}</div>
+    </div>
+  </div>
+</div>

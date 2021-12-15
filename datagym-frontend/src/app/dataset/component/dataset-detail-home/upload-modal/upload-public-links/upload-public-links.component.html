@@ -1,0 +1,117 @@
+<form [formGroup]="urlsForm">
+  <div *ngIf="!uploadFailed || onUploading else errorView">
+    <div class="row">
+      <div class="col-12">
+        <label for="urls" class="font-weight-bold dg-primary-color">{{ description | translate }}</label>
+      </div>
+      <div class="col-12" *ngIf="!onUploading else uploadView">
+      <textarea
+        id="urls"
+        rows="9"
+        formControlName="urls"
+        (input)="$event.stopPropagation();//thx edge"
+        placeholder="https://example.com/image1.jpg
+https://example.com/image2.png
+..."
+      ></textarea>
+        <app-dg-input-errors
+          class="mt-2 d-block"
+          [show]="urlsForm.controls['urls'].dirty"
+          [errors]="urlsForm.controls['urls'].errors"
+        ></app-dg-input-errors>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <app-button class="app-button"
+          label="GLOBAL.RESET"
+          [disabled]="!urlsForm.dirty || !urlsForm.valid"
+          (onClick)="onReset()"
+          styling="full"></app-button>
+      </div>
+      <div class="col-6">
+        <app-button class="app-button"
+          label="GLOBAL.UPLOAD"
+          [disabled]="!urlsForm.dirty || !urlsForm.valid"
+          (onClick)="onUpload()"
+          styling="secondary-full"></app-button>
+      </div>
+    </div>
+  </div>
+</form>
+<ng-template #errorView>
+  <div class="row mb-4">
+    <div class="col-12">
+      <p class="font-weight-bold dg-primary-color">{{ 'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.SHAREABLE_LINK.ERROR_HEADLINE' | translate }}:</p>
+    </div>
+
+    <div class="col-12">
+      <app-button class="app-button"
+                  [label]="'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.SHAREABLE_LINK.SUCCESS'"
+                  [args]="{'counter': successUpload.length}"
+                  [styling]="successUpload.length == 0 ? 'warn-full' : 'secondary-full'"
+                  [css]="{cursor: 'default'}"
+                  (click)="selectedErrorField = MediaUploadStatus.SUCCESS"
+                  [disabled]="selectedErrorField == MediaUploadStatus.SUCCESS"
+      ></app-button>
+      <textarea *ngIf="selectedErrorField == MediaUploadStatus.SUCCESS" rows="5"
+                title="">{{ listUrlsFromResponse(successUpload) }}</textarea>
+    </div>
+
+    <div class="col-12 mt-3" *ngIf="unsupportedMimeTypeUpload.length > 0">
+      <app-button class="app-button"
+                  [label]="'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.SHAREABLE_LINK.UNSUPPORTED_FORMAT'"
+                  [args]="{'counter': unsupportedMimeTypeUpload.length}"
+                  [styling]="'secondary-full'"
+                  [css]="{cursor: 'default'}"
+                  (click)="selectedErrorField = MediaUploadStatus.UNSUPPORTED_MIME_TYPE"
+                  [disabled]="selectedErrorField == MediaUploadStatus.UNSUPPORTED_MIME_TYPE"
+      ></app-button>
+      <textarea *ngIf="selectedErrorField == MediaUploadStatus.UNSUPPORTED_MIME_TYPE" rows="5"
+                title="">{{ listUrlsFromResponse(unsupportedMimeTypeUpload) }}</textarea>
+    </div>
+
+    <div class="col-12 mt-3" *ngIf="duplicateUpload.length > 0">
+      <app-button class="app-button"
+                  [label]="'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.SHAREABLE_LINK.DUPLICATE_IMAGES'"
+                  [args]="{'counter': duplicateUpload.length}"
+                  [styling]="'secondary-full'"
+                  [css]="{cursor: 'default'}"
+                  (click)="selectedErrorField = MediaUploadStatus.DUPLICATE"
+                  [disabled]="selectedErrorField == MediaUploadStatus.DUPLICATE"
+      ></app-button>
+      <textarea *ngIf="selectedErrorField == MediaUploadStatus.DUPLICATE" rows="5"
+                title="">{{ listUrlsFromResponse(duplicateUpload) }}</textarea>
+    </div>
+
+    <div class="col-12 mt-3" *ngIf="failedUpload.length > 0">
+      <app-button class="app-button"
+                  [label]="'FEATURE.DATASET.MEDIA_LIST.UPLOAD_DIALOGUE.SHAREABLE_LINK.UNEXPECTED'"
+                  [args]="{'counter': failedUpload.length}"
+                  [styling]="'secondary-full'"
+                  [css]="{cursor: 'default'}"
+                  (click)="selectedErrorField = MediaUploadStatus.FAILED"
+                  [disabled]="selectedErrorField == MediaUploadStatus.FAILED"
+      ></app-button>
+      <textarea *ngIf="selectedErrorField == MediaUploadStatus.FAILED" rows="5"
+                title="">{{ listUrlsFromResponse(failedUpload) }}</textarea>
+    </div>
+
+    <!-- 2x col-6 stays also beside -->
+    <div class="col-6 mt-3">
+      <app-button class="app-button"
+        label="GLOBAL.RESET"
+        (onClick)="onReset()"
+        styling="full"></app-button>
+    </div>
+    <div class="col-6 mt-3">
+      <!-- nothing to show here -->
+    </div>
+
+  </div>
+</ng-template>
+<ng-template #uploadView>
+  <div class="col-12 text-center my-4">
+    <i class="fas fa-spinner loading-spinner" aria-hidden="true"></i>
+  </div>
+</ng-template>

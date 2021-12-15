@@ -1,0 +1,17 @@
+<pan-zoom [config]="panZoomConfig" (click)="onClick.emit($event)">
+
+  <video #video class="position-absolute" crossorigin="anonymous" disablePictureInPicture
+         [height]="workspace.currentMediaHeight" [style.filter]="workspace.mediaStyleFilter.getFilter()"
+         [width]="workspace.currentMediaWidth"
+         [playbackRate]="videoService.playbackRate">
+
+    <!-- we support only mp4 videos -->
+    <source #source [src]="videoService.src" type="video/mp4">
+
+    <p>{{ 'FEATURE.LABEL_MODE.ERROR.VIDEO_NOT_SUPPORTED' | translate }}</p>
+  </video>
+
+  <div id="svg-layer" class="position-absolute" style="z-index: 1">
+  </div>
+</pan-zoom>
+<app-context-menu [mediaHeight]="video.clientHeight" [mediaWidth]="video.clientWidth"></app-context-menu>

@@ -1,0 +1,6 @@
+
+.task-list-content {
+  height: calc(100vh - 24em);
+  max-height: calc(100vh - 24em);
+  overflow-y: auto;
+}

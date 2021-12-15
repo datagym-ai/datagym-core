@@ -1,0 +1,8 @@
+.select-type-option {
+  padding: 15px 15px;
+  border: 1px solid lightgrey;
+}
+
+.select-type-option:hover  {
+  background-color: lightgrey;
+}

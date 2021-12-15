@@ -1,0 +1,126 @@
+<form class="p-3 w-100 edit-form" [formGroup]="editProjectForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <app-dg-select-owner controlName="projectOwner" label="FEATURE.PROJECT.CREATE.LABEL.OWNER"
+                             hint="FEATURE.PROJECT.CREATE.HINT.OWNER" [readOnly]="true"></app-dg-select-owner>
+      </div>
+      <div class="col-12 col-lg-6">
+        <label class="text-label">
+          <h3>{{'FEATURE.PROJECT.CREATE.LABEL.MEDIA_TYPE' | translate}}
+            <span class="required-field">*</span>
+          </h3>
+        </label>
+        <div>
+          <input [value]="MediaType.IMAGE" formControlName="mediaType" id="mediaTypeImage"
+                 style="margin: .4rem;"
+                 type="radio">
+          <label for="mediaTypeImage">{{'GLOBAL.MEDIA_TYPE.IMAGE'|translate}}</label>
+        </div>
+        <div>
+          <input [value]="MediaType.VIDEO" formControlName="mediaType" id="mediaTypeVideo"
+                 style="margin: .4rem;"
+                 type="radio">
+          <label for="mediaTypeVideo">{{'GLOBAL.MEDIA_TYPE.VIDEO'|translate}}</label>
+        </div>
+      </div>
+    </div><!-- row -->
+
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <app-textfield label="FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.LABEL.NAME"
+                       [editable]="!isDummy" [title]="isDummy ? 'FEATURE.PROJECT.DUMMY_SETTING': ''"
+                       hint="FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.HINT.NAME" required="true" editable="true"
+                       formControlName="projectName"></app-textfield>
+        <app-textfield label="FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.LABEL.SHORT_DESC"
+                       [editable]="!isDummy" [title]="isDummy ? 'FEATURE.PROJECT.DUMMY_SETTING': ''"
+                       hint="FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.HINT.SHORT_DESC" editable="true"
+                       formControlName="projectShortDescription"></app-textfield>
+      </div>
+      <div class="col-12 col-lg-6">
+        <label for="fullDesc" class="text-label">{{'FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.LABEL.FULL_DESC' | translate}}
+          <i *ngIf="!isDummy" class="fas fa-edit edit-icon" aria-hidden="true"></i></label><br>
+        <textarea id="fullDesc" class="full-desc" formControlName="projectDescription" rows="4"
+                  [title]="(isDummy ? 'FEATURE.PROJECT.DUMMY_SETTING': '') | translate"
+                  (input)="$event.stopPropagation();//thx edge"
+                  [ngClass]="{'not-allowed':isDummy}"></textarea>
+        <div class="d-xl-none">
+          <app-dg-input-errors class="mt-2 d-block"
+                               [errors]="editProjectForm.controls['projectDescription'].errors"></app-dg-input-errors>
+          <p class="hint">{{'FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.HINT.FULL_DESC' | translate}}</p>
+        </div>
+        <div class="row settings-row d-none d-xl-flex">
+          <div class="col-12 col-xl">
+            <app-dg-input-errors class="mt-2 d-block"
+                                 [errors]="editProjectForm.controls['projectShortDescription'].errors"></app-dg-input-errors>
+            <p class="hint">{{'FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.HINT.SHORT_DESC' | translate}}</p>
+          </div>
+          <div class="col-12 col-xl">
+            <app-dg-input-errors class="mt-2 d-block"
+                                 [errors]="editProjectForm.controls['projectDescription'].errors"></app-dg-input-errors>
+            <p class="hint">{{'FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.HINT.FULL_DESC' | translate}}</p>
+          </div>
+        </div>
+      </div>
+    </div><!-- row -->
+</form>
+<div class="row mt-3">
+  <div class="col-12">
+    <app-project-dataset></app-project-dataset>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-12">
+    <app-project-reviewer></app-project-reviewer>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-12">
+    <!-- some whitespace -->
+  </div>
+</div>
+
+
+<div class="row mt-5">
+  <div class="col-auto pt-1">
+    <small *ngIf="isDummy" class="not-allowed dg-lightgray">
+      {{'FEATURE.PROJECT.DETAIL.SETTINGS.DANGER_ZONE.BUTTON.DELETE' | translate | uppercase}}
+    </small>
+
+    <small *ngIf="!isDummy" class="dg-primary-hover pointer" (click)="onDelete()">
+      {{'FEATURE.PROJECT.DETAIL.SETTINGS.DANGER_ZONE.BUTTON.DELETE' | translate | uppercase}}
+    </small>
+  </div>
+
+  <div class="col-auto">
+
+    <app-button *ngIf="isDummy"
+                label="GLOBAL.CANCEL" type="button"
+                [title]="'FEATURE.PROJECT.DUMMY'"
+                [disabled]="true"></app-button>
+
+    <app-button *ngIf="!isDummy"
+                label="GLOBAL.CANCEL" type="button"
+                [disabled]="false"
+                (onClick)="onReset()"></app-button>
+  </div>
+  <div class="col-auto">
+    <app-button *ngIf="!editProjectForm.valid || !editProjectForm.dirty || editProjectForm.pristine"
+                label="FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.BUTTON.SAVE" type="submit"
+                [title]="isDummy ? 'FEATURE.PROJECT.DUMMY': ''"
+                styling="secondary"
+                [disabled]="true"></app-button>
+
+    <app-button *ngIf="!(!editProjectForm.valid || !editProjectForm.dirty || editProjectForm.pristine)"
+                label="FEATURE.PROJECT.DETAIL.SETTINGS.EDIT.BUTTON.SAVE" type="submit"
+                [title]="isDummy ? 'FEATURE.PROJECT.DUMMY': ''"
+                styling="secondary"
+                (onClick)="onSubmit()"
+                [disabled]="false"></app-button>
+  </div>
+</div>
+<div class="row mb-4">
+  <div class="col-12">
+    <p class="required-hint"><span class="required-field">*</span>{{'GEN.REQUIRED_FIELD' | translate}}</p>
+  </div>
+</div>

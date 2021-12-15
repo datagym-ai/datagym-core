@@ -1,0 +1,1 @@
+create table bin_data (id varchar(255) not null, data longblob, primary key (id));

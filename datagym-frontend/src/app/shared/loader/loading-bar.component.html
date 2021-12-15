@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-12 p-0">
+    <div class="spacer" *ngIf="!isLoading"></div>
+    <div class="progress" *ngIf="isLoading">
+      <div class="progress-bar progress-bar-striped progress-bar-animated"
+           role="progressbar">{{loadingText | translate}}</div>
+    </div>
+  </div>
+</div>

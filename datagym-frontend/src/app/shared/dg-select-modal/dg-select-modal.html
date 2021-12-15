@@ -1,0 +1,46 @@
+<ngx-smart-modal #DgSelectModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()">
+
+  <form [formGroup]="formGroup" *ngIf="hasOptions">
+
+    <div class="row">
+      <div class="col-12" *ngIf="title">
+        <h2>{{ title | translate }}</h2>
+      </div>
+
+      <div class="col-12">
+
+        <label for="option2Select">{{ label | translate }}</label>
+
+        <ng-select id="option2Select" formControlName="options">
+          <ng-option *ngFor="let option of options"
+                     [value]="option.id"
+                     [title]="option.label">
+            {{ option.label | translate }}
+          </ng-option>
+        </ng-select>
+
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-6">
+        <app-button
+          [label]="leftButtonLabel"
+          [styling]="leftButtonStyle"
+          [disabled]="!hasValue"
+          (onClick)="onLeftClick()"
+        ></app-button>
+      </div>
+      <div class="col-6">
+        <app-button
+          [label]="rightButtonLabel"
+          [styling]="rightButtonStyle"
+          [disabled]="!hasValue"
+          (onClick)="onRightClick()"
+        ></app-button>
+      </div>
+    </div>
+
+  </form>
+
+</ngx-smart-modal>

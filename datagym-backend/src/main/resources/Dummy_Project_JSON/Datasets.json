@@ -1,0 +1,84 @@
+[
+  {
+    "id": "b04d1f75-b949-429f-af3b-b00c02deecf2",
+    "name": "Dummy_Dataset_One",
+    "shortDescription": null,
+    "timestamp": 1583249846073,
+    "deleted": false,
+    "deleteTime": null,
+    "owner": "1801d7a4-cdb8-4667-bbda-6af6f86b29d6",
+    "projectCount": 1,
+    "media": [
+      {
+        "id": "a5d62541-6cdb-49f4-8715-45322f2ac12c",
+        "timestamp": 1583249847286,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_01_52_17.Standbild004.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_01_52_17.Standbild004.jpg"
+      },
+      {
+        "id": "6ca114b5-7b16-48e0-aa8f-1b8355640c50",
+        "timestamp": 1583249847073,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_01_32_11.Standbild005.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_01_32_11.Standbild005.jpg"
+      },
+      {
+        "id": "c4365af3-464a-481f-9b72-70e967d25010",
+        "timestamp": 1583249846960,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_01_29_29.Standbild010.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_01_29_29.Standbild010.jpg"
+      },
+      {
+        "id": "ac61ad40-4b69-416c-8915-a78abd97290c",
+        "timestamp": 1583249846495,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_00_40_29.Standbild003.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_00_40_29.Standbild003.jpg"
+      },
+      {
+        "id": "ace99322-b5b7-4866-b237-a5f2eb9a33b2",
+        "timestamp": 1583249846242,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_00_14_12.Standbild002.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_00_14_12.Standbild002.jpg"
+      },
+      {
+        "id": "fd79ca30-4ce9-46bc-b0cd-9b5fc8f645d6",
+        "timestamp": 1583249847189,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_00_27_05.Standbild008.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_00_27_05.Standbild008.jpg"
+      },
+      {
+        "id": "2dad5c64-626c-4a5f-8161-c7329ddfef3e",
+        "timestamp": 1583249846716,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_03_31_12.Standbild001.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_03_31_12.Standbild001.jpg"
+      },
+      {
+        "id": "8a77ac64-f114-4e4f-bc41-114ec26a78b6",
+        "timestamp": 1583249846390,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_00_51_16.Standbild007.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_00_51_16.Standbild007.jpg"
+      },
+      {
+        "id": "82b10e5f-d9f9-45ca-a5dd-27a708bd1c8e",
+        "timestamp": 1583249846609,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_02_01_18.Standbild009.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_02_01_18.Standbild009.jpg"
+      },
+      {
+        "id": "68fcd693-2f8c-4738-a361-ebc335d23a0c",
+        "timestamp": 1583249846850,
+        "mediaSourceType": "SHAREABLE_LINK",
+        "mediaName": "Sequenz%2001.00_01_09_18.Standbild006.jpg",
+        "url": "https://media.datagym.ai/prod/dummyproject/Sequenz%2001.00_01_09_18.Standbild006.jpg"
+      }
+    ]
+  }
+]

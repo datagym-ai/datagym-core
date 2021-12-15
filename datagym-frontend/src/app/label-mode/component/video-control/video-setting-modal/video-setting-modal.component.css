@@ -1,0 +1,6 @@
+
+.hover-spin:hover {
+  /* fa-spin is defined by font awesome */
+  -webkit-animation: fa-spin 10s infinite linear;
+  animation: fa-spin 10s infinite linear;
+}

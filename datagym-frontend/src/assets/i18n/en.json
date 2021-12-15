@@ -1,0 +1,1162 @@
+{
+  "GEN_INFO": "=== Generics used everywhere in the application ===",
+  "GEN": {
+    "REQUIRED_FIELD": "required field"
+  },
+  "NAVBAR": {
+    "COLLAPSE": "Collapse",
+    "EXPAND": "Expand",
+    "PROJECTS": "Projects",
+    "DATASETS": "Datasets",
+    "DOCUMENTATION": "Documentation",
+    "TASKS": "Tasks",
+    "API_TOKENS": "API-Tokens",
+    "NAV_GROUP": {
+      "ADMINISTRATION": "Administration",
+      "SUPER_ADMIN": "Superadmin",
+      "HOME": "Home",
+      "USER": "User"
+    },
+    "USER": "User details",
+    "LOGOUT": "Logout"
+  },
+  "NOT_FOUND": {
+    "HEADLINE": "404",
+    "MESSAGE": "Sorry not found."
+  },
+  "LOADING_BAR": {
+    "LOADER_TEXT": "Loading..."
+  },
+  "FEATURE": {
+    "AI_ASSISTANT": {
+      "TAB_TITLE": "AI Assistant",
+      "INVALID_SUB": "Your current pricing plan doesn't support the automated labeling of images. This feature allows you to automatically annotate image labels with the help of DATAGYM's AI models. Upgrade your subscription to 'Team Pro' and\n      reduce your labeling work to just a few clicks!\n Visit our documentation to find out more about pre-labeling and how to upgrade your subscription.",
+      "DESCRIPTION": "The pre-labeling assistant will automatically add labels to your images. To define a mapping for your desired Label Classes, you need to add at least one bounding box or polygon to your label configuration. Got to the Label Configuration tab to define your labels. Also, you have to move your Tasks to WAITING in order to pre-label the images. At the moment there are {{tasks}} Tasks ready for the pre-labeling process. Got to the Tasks tab to move the Tasks.",
+      "MISSING_LABEL_CONFIG": "Please add a Label configuration to your Project! You have to define at least one Bounding Box or Polygon to configure a class mapping and start the pre-labeling process." ,
+      "AI_ASSISTANCE_LIMIT_WARNING" : "You reached your AI-assistance limit for this month, upgrade your pricing plan to get more.",
+      "DELETE_DIALOG_MESSAGE" : "This will delete the label. Are you sure?",
+      "MAPPING": {
+        "CLASS_COL": "Label Class",
+        "ENTRY_COL": "Label Configuration Entry",
+        "TYPE_COL": "Type",
+        "ACTIONS_COL": "Actions",
+        "INVALID_INPUT": "Invalid input: Please check and correct all marked fields",
+        "ADD": "Add label mapping",
+        "SAVE": "Save "
+      },
+      "PRE_LABELING": {
+        "TITLE": "Image pre-labeling",
+        "SHORT_DESC": "Annotate your images automatically",
+        "CONTROLS": {
+          "START":"Start",
+          "STOP": "Stop"
+        },
+        "PROGRESS": {
+          "TITLE": "Progress",
+          "IMAGES": "{{finished}} / {{total}} images finished",
+          "PROCESSING": "Labeling images ...",
+          "COMPLETED": "Finished: {{finished}} | Waiting: {{total}}",
+          "COMPLETED_WITH_ERRORS": "Finished: {{finished}} | Waiting: {{total}} | Failed: {{failed}}"
+        }
+      }
+    },
+    "API_TOKEN": {
+      "LIST": {
+        "TITLE": "API Tokens",
+        "BUTTON_CREATE": "New API Token",
+        "DATE_FORMAT": "dd-MM-yyyy",
+        "COPY_TITLE": "Copy",
+        "COPY_SUCCESS": "Token copied",
+        "FILTER": {
+          "PLACEHOLDER": "Search",
+          "HINT": "Filter token by name"
+        },
+        "TABLE_HEADER": {
+          "NAME": "Name",
+          "TOKEN": "Token",
+          "CREATED_AT": "Created",
+          "LAST_USED": "Last used"
+        },
+        "DELETE_DIALOGUE": {
+          "TITLE": "Delete token",
+          "CONTENT": "Are you sure you want to delete this API token?",
+          "LABEL": "Delete",
+          "CANCEL": "Cancel"
+        }
+      },
+      "CREATE": {
+        "TITLE": "Create an API token",
+        "LABEL": {
+          "OWNER": "Token owner",
+          "NAME": "Token name"
+        },
+        "HINT": {
+          "OWNER": "Select the owner of the token",
+          "NAME": "Token name"
+        },
+        "BUTTON": {
+          "CREATE": "Create token",
+          "CANCEL": "Cancel"
+        }
+      }
+    },
+    "PROJECT": {
+      "DUMMY": "This action is not allowed for dummy projects.",
+      "DUMMY_SETTING": "This setting cannot be changed for dummy projects.",
+      "LIST": {
+        "TITLE": "Projects",
+        "BUTTON_CREATE": "New project",
+        "FILTER": {
+          "PLACEHOLDER": "Search",
+          "HINT": "Filter projects by name"
+        },
+        "TABLE_HEADER": {
+          "NAME": "Name",
+          "SHORT_DESC": "Short Description",
+          "IMAGES": "Media",
+          "LATEST_ACTIVITY": "Latest activity"
+        }
+      },
+      "GUIDE": {
+        "CONFIG": "Add Labels to your Configuration",
+        "DATASETS": "Create and add a Dataset",
+        "TASKS": "Release the Tasks",
+        "COLLABORATION": {
+          "AVAILABLE": "Add Collaborators",
+          "UNAVAILABLE": "Add Collaborators (not supported in your plan)"
+        }
+      },
+      "DASHBOARD": {
+        "CHARTS": {
+          "DATASETS": {
+            "TITLE": "Datasets",
+            "INFO": "Total: {{count}}",
+            "LABEL_IMAGE": "Images in Project",
+            "LABEL_VIDEO": "Videos in Project"
+          },
+          "TASKS": {
+            "TITLE": "Tasks",
+            "INFO": "Total: {{count}}",
+            "LABEL": "Tasks in Project"
+          },
+          "REVIEWS": {
+            "TITLE": "Reviewed Labels",
+            "INFO": "Total: {{count}}",
+            "APPROVED": "APPROVED"
+          },
+          "MEDIA": {
+            "TITLE_IMAGES": "Images",
+            "TITLE_VIDEOS": "Videos",
+            "INFO": "Total: {{count}}",
+            "LOCAL": "LOCAL",
+            "AWS_S3": "AWS S3",
+            "SHARABLE_LINK": "URL"
+          },
+          "GEO_COUNT": {
+            "TITLE": "Geometries",
+            "INFO": "Total: {{count}}",
+            "LABEL": "Labeled Geometries"
+          },
+          "LABEL_COUNT_BY_DAY": {
+            "TITLE": "Labels",
+            "TIME_FRAME": "last 30 days",
+            "INFO": "Total: {{count}}",
+            "X_AXIS": "Date",
+            "Y_AXIS": "Number of Labels"
+          },
+          "IMAGE_ERRORS": {
+            "TITLE": "Image Errors",
+            "PLACEHOLDER": "click on the pie chart to show error details",
+            "INFO": "Total: {{count}}",
+            "LABEL": "Invalid Images",
+            "LOCAL": "LOCAL",
+            "AWS_S3": "AWS S3",
+            "SHARABLE_LINK": "URL",
+            "SELECTION": {
+              "TITLE": "Invalid images in {{selection}}"
+            }
+          },
+          "BENCHMARK": {
+            "TITLE": "Benchmark",
+            "INFO": "Coming soon ..."
+          }
+        }
+      },
+      "DETAIL": {
+        "TITLE": "Project: ",
+        "BACK": "Projects",
+        "TABS": {
+          "HOME": "Home",
+          "TASKS": "Dataset/Tasks",
+          "LABEL_CONFIG": "Label configuration",
+          "SETTINGS": "Settings",
+          "AI": "AI Assistant"
+        },
+        "HOME": {
+          "LABEL": {
+            "SHORT_DESC": "Summary",
+            "FULL_DESC": "Full description"
+          },
+          "EXPORT": "Export labels",
+          "IMPORT": "Import labels",
+          "IMPORT_TITLE": "Upload your predictions",
+          "NOT_EXPORTABLE": "No labeled data found.",
+          "NOT_IMPORTABLE": "No label configuration found."
+        },
+        "SETTINGS": {
+          "EDIT": {
+            "LABEL": {
+              "NAME": "Project name",
+              "SHORT_DESC": "Short description",
+              "FULL_DESC": "Full description",
+              "BUTTON": {
+                "DATASET": "Attached Datasets",
+                "EDITOR": "Label Editor",
+                "DELETE": "Delete Project"
+              }
+            },
+            "HINT": {
+              "NAME": "Names must be unique",
+              "SHORT_DESC": "Summarize the project",
+              "FULL_DESC": "Describe the project in detail",
+              "DATASET": "All data that has been attached",
+              "EDITOR": "Edit available labels"
+            },
+            "BUTTON": {
+              "EDITOR": "Label Editor",
+              "DATASET": "Edit Datasets",
+              "DELETE": "Delete Project",
+              "SAVE": "Save edits",
+              "RESET": "Reset form"
+            }
+          },
+          "CONNECTED_DATASETS": {
+            "TITLE": "Connected datasets",
+            "CONNECT_FIRST_DATASET": "Connect the first dataset",
+            "CONNECT_NEW_DATASET": "Connect dataset",
+            "TABLE_HEADER": {
+              "NAME": "Name",
+              "IMAGES": "Images",
+              "ACTIONS": "Actions"
+            },
+            "LIST_MODAL": {
+              "TITLE": "Select a dataset",
+              "CONTENT": "Choose a dataset to connect",
+              "CONNECT": "Connect"
+            },
+            "MODAL": {
+              "DELETE_CONNECTION_TO_DATASET_TITLE": "Delete the connection?",
+              "DELETE_CONNECTION_TO_DATASET_CONTENT": "Do you really want to remove this connection?"
+            },
+            "NOTIFICATION": {
+              "CONNECTED_WITH_DATASET": "Dataset successfully connected",
+              "REMOVED_DATASET_CONNECTION": "Dataset successfully removed",
+              "NO_SUPPORTED_DATASET_FOUND": "No eligible datasets found"
+            }
+          },
+          "REVIEW": {
+            "REVIEW": "Review",
+            "TOGGLE": "Enable reviews",
+            "TITLE": "Connected reviewers",
+            "CONNECT_FIRST_REVIEWER": "Connect the first reviewer",
+            "CONNECT_NEW_REVIEWER": "Connect reviewer",
+            "TABLE_HEADER": {
+              "NAME": "Name",
+              "ACTIONS": "Actions"
+            },
+            "LIST_MODAL": {
+              "TITLE": "Select a reviewer",
+              "CONTENT": "Choose a reviewer to connect",
+              "CONNECT": "Connect"
+            },
+            "MODAL": {
+              "DELETE_REVIEWER_TITLE": "Delete the connection?",
+              "DELETE_REVIEWER_CONTENT": "Do you really want to remove this reviewer?"
+            },
+            "NOTIFICATION": {
+              "REVIEWER_ADDED": "Reviewer successfully added",
+              "REMOVED_REVIEWER": "Reviewer successfully removed",
+              "NO_SUPPORTED_REVIEWER_FOUND": "No eligible reviewer found"
+            }
+          },
+          "DANGER_ZONE": {
+            "BUTTON": {
+              "DELETE": "Delete project"
+            },
+            "MODAL": {
+              "TITLE": "Delete the project?",
+              "CONTENT": "Do you really want to delete this project?"
+            }
+          }
+        }
+      },
+      "CREATE": {
+        "TITLE": "Create a new project",
+        "LABEL": {
+          "OWNER": "Project owner",
+          "NAME": "Project name",
+          "SHORT_DESC": "Short description",
+          "FULL_DESC": "Full description (optional)",
+          "MEDIA_TYPE": "Media Type"
+        },
+        "CREATION": {
+          "CREATE_ORG": "Create new Organization"
+        },
+        "HINT": {
+          "OWNER": "Select the owner of the project",
+          "NO_ORGANIZATION": "No organization found. Click + to create.",
+          "NAME": "Names must be unique",
+          "SHORT_DESC": "Summarize the project (max 128 character)",
+          "FULL_DESC": "Write a full description of the project"
+        },
+        "BUTTON": {
+          "CREATE": "Create project",
+          "CANCEL": "Cancel"
+        }
+      }
+    },
+    "DATASET": {
+      "DUMMY": "This action is not allowed for dummy datasets.",
+      "DUMMY_SETTING": "This setting cannot be changed for dummy datasets.",
+      "NOT_SUPPORTED": "This action is not supported in your pricing plan.",
+      "LIST": {
+        "TITLE": "Datasets",
+        "BUTTON_CREATE": "New dataset",
+        "FILTER": "Search dataset",
+        "TABLE_HEADER": {
+          "OWNER": "Owner",
+          "NAME": "Name",
+          "MEDIA_COUNT": "Media",
+          "CONNECTED_PROJECTS": "Attached projects",
+          "LAST_UPDATED": "Last updated"
+        }
+      },
+      "CREATE": {
+        "TITLE": "Create a new dataset",
+        "LABEL": {
+          "OWNER": "Dataset owner",
+          "NAME": "Dataset name",
+          "SHORT_DESC": "Short description (optional)"
+        },
+        "HINT": {
+          "OWNER": "Select the owner of the dataset",
+          "NAME": "Names must be unique",
+          "SHORT_DESC": "Summarize the datasets purpose (max 128 characters)"
+        },
+        "BUTTON": {
+          "CREATE": "Create Dataset",
+          "CANCEL": "Cancel"
+        }
+      },
+      "DETAILS": {
+        "TITLE": "Dataset: ",
+        "BACK": "Datasets",
+        "SHORT_DESC": "Summary",
+        "ADD_TO_PROJECT": "Add to project",
+        "UPLOAD_MEDIA": "Upload to DataGym",
+        "ADD_PUBLIC_LINKS": "Add public links",
+        "SYNC_AWS_S3": "Synchronize AWS S3",
+        "IMAGES": {
+          "EX_IMAGE_TYPE": "File type is not supported. Only images of types .jpeg or .png are supported.",
+          "EX_VIDEO_TYPE": "File type is not supported. Only videos of type .mp4 is supported.",
+          "EX_JSON_TYPE": "File type is not supported. Only files of type .json is supported."
+        },
+        "TABS": {
+          "HOME": "Home",
+          "AWS_S3": "AWS S3",
+          "SETTINGS": "Settings"
+        },
+        "AWS_S3": {
+          "TABS": {
+            "BUCKET": "Bucket",
+            "CREDENTIALS": "Credentials"
+          },
+          "DATE": "Date",
+          "DATE_FORMAT": "dd-MM-yyyy H:mm",
+          "LABEL": {
+            "NAME": "Name",
+            "BUCKET_NAME": "Bucket name",
+            "LOCATION_PATH": "Location path",
+            "ACCESS_KEY": "Access Key",
+            "SECRET_KEY": "Private Key",
+            "BUCKET_REGION": "Region"
+          },
+          "HINT": {
+            "NAME": "A name to identify the connection.",
+            "BUCKET_NAME": "The bucket name",
+            "LOCATION_PATH": "Optional path within the storage",
+            "ACCESS_KEY": "Your API access key",
+            "SECRET_KEY": "The secret to access the API"
+          },
+          "REGIONS": {
+            "US_EAST_1": "US East (N. Virginia)",
+            "US_EAST_2": "US East (Ohio)",
+            "US_WEST_1": "US West (N. California)",
+            "US_WEST_2": "US West (Oregon)",
+            "AF_SOUTH_1": "Africa (Cape Town)",
+            "AP_EAST_1": "Asia Pacific (Hong Kong)",
+            "AP_SOUTH_1": "Asia Pacific (Mumbai)",
+            "AP_NORTHEAST_1": "Asia Pacific (Tokyo)",
+            "AP_NORTHEAST_2": "Asia Pacific (Seoul)",
+            "AP_NORTHEAST_3": "Asia Pacific (Osaka_Local)",
+            "AP_SOUTHEAST_1": "Asia Pacific (Singapore)",
+            "AP_SOUTHEAST_2": "Asia Pacific (Sydney)",
+            "CA_CENTRAL_1": "Canada (Central)",
+            "CN_NORTH_1": "China (Beijing)",
+            "CN_NORTHWEST_1": "China (Ningxia)",
+            "EU_CENTRAL_1": "Europe (Frankfurt)",
+            "EU_WEST_1": "Europe (Ireland)",
+            "EU_WEST_2": "Europe (London)",
+            "EU_WEST_3": "Europe (Paris)",
+            "EU_SOUTH_1": "Europe (Milan)",
+            "EU_NORTH_1": "Europe (Stockholm)",
+            "ME_SOUTH_1": "Middle East (Bahrain)",
+            "SA_EAST_1": "South America (São Paulo)"
+          }
+        },
+        "SETTINGS": {
+          "EDIT": {
+            "LABEL": {
+              "NAME": "Dataset name",
+              "SHORT_DESC": "Dataset description"
+            },
+            "HINT": {
+              "NAME": "Names must be unique",
+              "SHORT_DESC": "Summarize the dataset"
+            },
+            "BUTTON": {
+              "SAVE": "Save edits",
+              "RESET": "Reset form"
+            }
+          },
+          "DANGER_ZONE": {
+            "TITLE": "Danger zone",
+            "BE_CAREFUL": "Be careful here!",
+            "BUTTON": {
+              "DELETE": "Delete dataset"
+            },
+            "MODAL": {
+              "TITLE": "Delete the dataset?",
+              "CONTENT": "Do you really want to delete this dataset?",
+              "CONTENT_WITH_CONNECTIONS": "This dataset is connected with some projects. Deleting this dataset would also delete all labeled data. This cannot be undone. Do you really want to delete this dataset?"
+            }
+          }
+        },
+        "MODAL": {
+          "SELECT_PROJECT_TO_CONNECT": "Select one project:",
+          "CONNECTED_WITH_PROJECT": "Project successfully connected",
+          "NO_SUPPORTED_PROJECT_FOUND": "No eligible projects found",
+          "CONNECT": "Connect"
+        }
+      },
+      "MEDIA_LIST": {
+        "EDIT": {
+          "SINGLE_ITEM": "{{p0}} item selected",
+          "MULTIPLE_ITEMS": "{{p0}} items selected"
+        },
+        "BUTTONS": {
+          "DELETE": "Delete",
+          "CANCEL": "Cancel"
+        },
+        "TYPE": "Storage type",
+        "NAME": "Name",
+        "WIDTH": "Width",
+        "HEIGHT": "Height",
+        "ACTIONS": "Actions",
+        "DATE": "Date",
+        "DURATION": "Duration",
+        "DATE_FORMAT": "dd-MM-yyyy",
+        "ATTACHED_PROJECT": "Attached projects",
+        "NOTHING_TO_SHOW": "No media found",
+        "TITLE": {
+          "OPEN_IMAGE": "Open media in new tab",
+          "DELETE_IMAGE": "Delete media"
+        },
+        "DELETE_DIALOGUE": {
+          "TITLE": "Delete media",
+          "CONTENT": "Are you sure you want to delete this media?",
+          "CONTENT_WITH_CONNECTIONS": "This media is connected with some projects. Deleting the media also deletes all labeled data related to it. This cannot be undone. Do you really want to delete this media?",
+          "LABEL": "Delete",
+          "CANCEL": "Cancel"
+        },
+        "DELETE_DIALOGUE_MULTI": {
+          "TITLE": "Delete media",
+          "CONTENT": "Are you sure you want to delete the selected media?",
+          "CONTENT_WITH_CONNECTIONS": "The selected media are connected to some projects. Deleting the media also deletes all labeled data related to the it. This cannot be undone. Do you really want to delete the selected media?",
+          "LABEL": "Delete",
+          "CANCEL": "Cancel"
+        },
+        "UPLOAD_DIALOGUE": {
+          "LOCAL": {
+            "CONTENT": "Select the file to upload:",
+            "ERROR_MESSAGE": "Some errors occurred: Could not upload the image."
+          },
+          "SHAREABLE_LINK": {
+            "CONTENT": "List here the public links:",
+            "ERROR_HEADLINE": "Some errors occurred",
+            "REPORT_BUTTON": "Download error report",
+            "DUPLICATE_IMAGES": "Duplicate images: {{counter}}",
+            "UNSUPPORTED_FORMAT": "Unsupported image format: {{counter}}",
+            "UNEXPECTED": "Something unexpected: {{counter}}",
+            "SUCCESS": "Successful uploads: {{counter}}"
+          },
+          "AWS_S3": {
+            "CONTENT": "Synchronize AWS S3",
+            "SYNCHRONIZED": "Synchronized",
+            "ERROR": "Error",
+            "ADDED_IMAGES": "Added images: {{counter}}",
+            "DELETED_IMAGES": "Deleted images: {{counter}}",
+            "FAILED_IMAGES": "Failed images: {{counter}}"
+          }
+        }
+      }
+    },
+    "LABEL_CONFIG": {
+      "LIST": {
+        "TITLE": {
+          "GEO": "Label geometries",
+          "CLASS": "Global classifications",
+          "CONFIGURATION": "Configuration",
+          "CONFIGURATION_ACTIONS": "Configuration actions"
+        },
+        "BUTTON": {
+          "CREATE": "Create entry",
+          "SAVE": "Save config",
+          "EXPORT": "Export",
+          "IMPORT": "Import",
+          "DELETE_CONFIG": "Delete config",
+          "ADD_GEOMETRY": "Add geometry",
+          "ADD_CLASSIFICATION": "Add classification"
+        },
+        "LABEL": {
+          "EXPORT": "To export the current configuration please save your edits first.",
+          "IMPORT": "To import a configuration please clear the current configuration first."
+        },
+        "NO_ENTRY": "There is no item to display.",
+        "AFFECT_TASKS": "Changing the label configuration would affect up to {{number}} tasks."
+      },
+      "EDIT": {
+        "GEOMETRY": "Geometry",
+        "CLASSIFICATION": "Classification",
+        "NAME": "Name",
+        "TYPE": "Type",
+        "BUTTON": {
+          "DELETE": "Delete geometry",
+          "DELETE_GEOMETRY": "Delete geometry",
+          "DELETE_CLASSIFICATION": "Delete classification",
+          "CANCEL": "Cancel",
+          "SAVE": "Save edits"
+        },
+        "LABEL": {
+          "GEO": "Tag",
+          "CLASS": "Question",
+          "EXPORT": "Export key"
+        },
+        "META": {
+          "SHORTCUT": "Shortcut",
+          "REMOVE_SHORTCUT": "Remove shortcut",
+          "REQUIRED": "Required",
+          "COLOR": "Color",
+          "MAX_LENGTH": "Maximum length"
+        },
+        "OPTIONS": {
+          "LABEL": "Option {{number}} text",
+          "EXPORT": "Export {{number}} value",
+          "ADD": "Add option"
+        }
+      },
+      "CREATE": {
+        "TITLE": {
+          "PARENT": "Create a new label",
+          "CHILD": "Create a new nested label"
+        },
+        "CONTENT": {
+          "TYPE": "Please choose a type",
+          "SPECIFY": "Please specify the type"
+        },
+        "BUTTON": {
+          "ADD_NEW_GEOMETRY": "Geometry",
+          "ADD_NEW_CLASSIFICATION": "Classification",
+          "ADD_NEW_IMAGE_SEGMENTATION": "Image segmentation"
+        }
+      },
+      "UNTITLED": "Untitled",
+      "TITLES": {
+        "DELETE": "Delete",
+        "ADD": "Add nested element",
+        "DUPLICATE": "Duplicate",
+        "EDIT": "Edit",
+        "SHORTCUT": "Shortcut",
+        "REMOVE_SHORTCUT": "Remove shortcut",
+        "RESET_COLOR": "Reset color"
+      },
+      "DIALOGUE": {
+        "IMPORT": "Select the config to upload:",
+        "DELETE_ENTRY": "This will delete the entry with all children. Are you sure?",
+        "DELETE_CONFIG": "This will delete the current label configuration with all its entries. Deleting the label configuration will also delete all labels from the {{tasks}} tasks in your project. The respective Tasks will be moved to WAITING_CHANGED. Are you sure?",
+        "DUPLICATE_ENTRY": "This will duplicate the entry with all children. Are you sure?",
+        "MOVE2WAITING_CHANGED": {
+          "TITLE": "Move Completed/Reviewed tasks?",
+          "CONTENT": "This will move {{number}} Completed/Reviewed task(s) to WAITING_CHANGED, so that they need to be Completed/Reviewed again.",
+          "MOVE": "Move",
+          "MOVE_NOT": "Don't move"
+        }
+      }
+    },
+    "LABEL_MODE": {
+      "NO_VALUES_TO_SHOW": "No values found.",
+      "NO_GEOMETRIES_TO_SHOW": "No geometry found.",
+      "IMAGE_CLASSIFICATIONS": "Image Classifications",
+      "NO_GLOBAL_CLASSIFICATIONS_TO_SHOW": "No image classifications defined.",
+      "CONFIGURATION_CHANGED": "The configuration was changed. Please review your labels.",
+      "PLEASE_RELOAD": "The configuration was changed. Please reload the current task.",
+      "SHOW_GLOBAL_CLASSIFICATIONS": "Show image classifications",
+      "CHAR_COUNTER": "{{length}} / {{maxLength}} characters",
+      "NAVIGATION": "Navigation",
+      "PROJECT": "Project",
+      "NAVIGATE_SELECTED_VALUE": "Navigate through the values.",
+      "NAVIGATION_DESCRIPTION": "Use CTRL + arrow-left / arrow-right for navigation.",
+      "MODE": {
+        "BENCHMARK": {
+          "BUTTON_TITLE": "Activate benchmark mode",
+          "DIALOGUE": {
+            "TITLE": "Benchmark Mode Activated",
+            "CONTENT": "This mode allows you to measure the labeling performance of your team. Therefore, follow the steps below: <br> <br> 1. Label the image of this task in the way you want it to be labeled: This will be the annotated <strong>'ground truth'</strong> of this task. <br> 2. All of your team members will then also label this images. Their accuracy will afterwards be calculated with our benchmark algorithm. <br> <br> <strong> This functionality is still under development and will soon be fully available. </strong>",
+            "CONFIRM": "Set ground truth",
+            "CANCEL": "Close"
+          }
+        }
+      },
+      "ACTIVE_CONTROL": {
+        "CANCEL_DRAWING": "Cancel Drawing",
+        "CANCEL_AI": "Cancel AI Tool",
+        "NO_ACTION": "No Tool selected"
+      },
+      "TASK_CONTROLS": {
+        "BUTTONS": {
+          "SKIP": "SKIP",
+          "SUBMIT": "SUBMIT"
+        }
+      },
+      "INFO_BOX": {
+        "TAB_TITLE": {
+          "SYMBOL": "Symbols",
+          "SHORTCUT": "Shortcuts",
+          "MEDIA": "Media Information"
+        },
+        "DATASET": "Dataset",
+        "TITLE_ICON": "Show media information",
+        "TITLE": "Media information",
+        "NAME": "Media name",
+        "TYPE": "Media type",
+        "DATE": "Media upload date",
+        "FPS": "fps",
+        "RESOLUTION": "original resolution",
+        "DURATION": "Video duration",
+        "CODEC_NAME": "Codec",
+        "TOTAL_FRAMES": "Total frames"
+      },
+      "HTML_TITLES": {
+        "SHORTCUT": "Shortcut",
+        "HIDE": "Hide",
+        "SHOW": "Show",
+        "COUNT": "Counter",
+        "COLLAPSE": "Collapse group",
+        "EXPAND": "Expand group",
+        "LEAVE_PREVIEW": "Leave preview",
+        "SUBMIT_EXIT": "Submit labels and exit",
+        "SUBMIT_NEXT": "Submit labels and go to next task",
+        "SKIP": "Skip this task",
+        "DELETE_VALUE": "Delete this value",
+        "SKIPPED_REVIEW_BOX": "Info: This task was skipped!",
+        "COMMENT_REVIEW": "Leave your comment",
+        "REVIEW_DENY": "Deny",
+        "REVIEW_STOP": "Stop",
+        "REVIEW_ACCEPT": "Accept",
+        "REVIEW_COMMENT": "Review comment",
+        "IN_ADMIN_MODE": "In this mode all changes are local only and cannot be saved."
+      },
+      "GUIDE": {
+        "1": {
+          "TITLE": "Choose a geometry",
+          "DESCRIPTION": "Choose a geometry from the panel on the left."
+        },
+        "2": {
+          "TITLE": "Draw the geometry",
+          "DESCRIPTION": "Draw the geometry around the area of interest."
+        },
+        "3": {
+          "TITLE": "Answer some questions",
+          "DESCRIPTION": "Fill out the classifications"
+        }
+      },
+      "DIALOGUE": {
+        "TITLE": {
+          "SKIP_TASK": "Do you really want to skip this task?",
+          "DELETE_LABEL": "Do you really want to delete this label?",
+          "DELETE_LABEL_LIST": "Do you really want to delete {{labelCount}} labels?"
+        },
+        "CONTENT": {
+          "SKIP_TASK": "This step can only be undone by the admin. Are you sure?",
+          "DELETE_LABEL": "This will delete the label with all children. Are you sure?",
+          "DELETE_LABEL_LIST": "This will delete the labels with all their children. Are you sure?"
+        }
+      },
+      "IMAGE_FILTER": {
+        "RESET": "Reset the media filter",
+        "CONTRAST": "Adjust the contrast",
+        "CONTRAST_LABEL": "Contrast: {{value}}%",
+        "BRIGHTNESS": "Adjust the brightness",
+        "BRIGHTNESS_LABEL": "Brightness: {{value}}%",
+        "SATURATION": "Adjust the saturation",
+        "SATURATION_LABEL": "Saturation: {{value}}%"
+      },
+      "LEGEND": {
+        "OPEN": "Open the legend",
+        "TASK_CONTROL": {
+          "TITLE": "Task control",
+          "SUBMIT_EXIT": "Submit and exit",
+          "SUBMIT_NEXT": "Submit and go to next task",
+          "SKIP": "Skip this task"
+        },
+        "REVIEW_CONTROL": {
+          "TITLE": "Review control",
+          "REVIEW_DENY": "Deny the task",
+          "REVIEW_STOP": "Stop reviewing",
+          "REVIEW_ACCEPT": "Accept the task"
+        },
+        "LABEL": {
+          "TITLE": "Label actions & states",
+          "DELETE_VALUE": "Delete this value",
+          "HIDE": "Hide this geometries",
+          "SHOW": "Show this geometries",
+          "INVALID": "This value is not valid"
+        },
+        "AISEG": {
+          "TITLE": "AI-assisted labeling",
+          "MAGIC": "Start AI-assisted labeling",
+          "RECTANGLE": "Draw a bounding box around the object",
+          "BRUSH": "Fill out the object",
+          "POINT": "Use the one-click-tool",
+          "POINTS": "Mark some points arround the object"
+        },
+        "SHORTCUTS": {
+          "TITLE": "Shortcuts",
+          "WORKSPACE": {
+            "TITLE": "Workspace",
+            "ARROWS": "Pan in workspace",
+            "SELECT_GEOMETRY": "Select a single geometry",
+            "SELECT_GEOMETRIES": "Select multiple geometries",
+            "UNSELECT_GEOMETRY": "Unselect geometry",
+            "CANCEL_DRAWING": "Cancel drawing",
+            "DELETE": "Delete selected geometries",
+            "MOVE": "Move selected geometries",
+            "FINISH": "Finish polygon",
+            "DELETE_POINTS": "Delete a point from polygon",
+            "VALUE_NAVIGATION": "Navigate in value list"
+          },
+          "VIDEO": {
+            "TITLE": "Video control",
+            "K": "Play / Pause",
+            "COMMA": "Jump to previous frame",
+            "DOT": "Jump to next frame",
+            "J": "Jump 10 frames backward",
+            "L": "Jump 10 frames forward",
+            "GT": "Speed up the video",
+            "LT": "Slow down the video"
+          }
+        }
+      },
+      "VIDEO_CONTROL": {
+        "VIDEO_LABELING": "Videolabeling"
+      },
+      "RESOLUTION": {
+        "INTRO_TEXT": "We hope you enjoyed working with <strong>DATA</strong>GYM so far.",
+        "ADVISE": "You can close this message by increasing the size of your browser window. Only use devices with a sufficient screen resolution (notebook, computer, etc.).",
+        "SCREEN_INFO": "Unfortunately our label area needs a browser window resolution of at least <strong>{{limitWidth}}px</strong> x <strong>{{limitHeight}}px</strong> to guarantee an enjoyable user experience. Currently, there is only <strong>{{width}}px</strong> x <strong>{{height}}px</strong> available for DATAGYM's workspace."
+      },
+      "ERROR": {
+        "VIDEO_NOT_SUPPORTED": "Your browser doesn't support HTML5 video. We recommend to use chrome.",
+        "MAX_LENGTH": "The limit of {{maxLength}} characters is reached.",
+        "POLYGON_POINT_COUNT": "Drawing canceled! A polygon requires at least 3 points to complete.",
+        "LINE_POINT_COUNT": "Drawing canceled! A line requires at least 2 points to complete.",
+        "OUT_OF_BOUNDS": "A Geometry was generated outside the image area! Make sure to draw only on the image."
+      }
+    },
+    "TASK_CONFIG": {
+      "TABLE_HEADER": {
+        "IMAGE": "Image",
+        "LABELER": "Assigned labeler",
+        "ITERATION": "Iteration",
+        "STATE": "State",
+        "ACTIONS": "Actions",
+        "BADGES": "Badges"
+      },
+      "TITLE": {
+        "OPEN_LABEL_MODE": "Open in label mode",
+        "EXPORT_VIDEO_JSON": "Export as JSON",
+        "OPEN_IMAGE": "Open image in new tab",
+        "MOVE_TO_WAITING": "Move to waiting",
+        "MOVE_TO_BACKLOG": "Move to backlog",
+        "MOVE_TO_WC": "Move to waiting",
+        "RESET_LABELER": "Reset labeler",
+        "PRE_LABELED": "This image has been pre-labeled",
+        "PRE_LABELING_FAILED": "There was an error during pre-labeling",
+        "HAS_JSON_UPLOAD": "Labels were imported for this image"
+      },
+      "BUTTON": {
+        "MOVE_ALL": "Move all tasks",
+        "ATTACH_DATASET": "Attach dataset",
+        "CREATE_NEW_DATASET": "Create new dataset"
+      },
+      "MOVE_TASKS": {
+        "ALL": "All",
+        "TO_BACKLOG": {
+          "BUTTON": "To Backlog",
+          "TITLE": "Move to Backlog",
+          "DESCRIPTION": "Move the tasks to 'Backlog'.",
+          "ACTION": "To Backlog"
+        },
+        "TO_WAITING": {
+          "BUTTON": "Release tasks",
+          "TITLE": "Release tasks",
+          "DESCRIPTION": "To release all tasks you have to move them to 'Waiting'.",
+          "ACTION": "Release"
+        }
+      },
+      "NO_TASKS_TO_SHOW": "There are no tasks to show.",
+      "FILTER": {
+        "STATE": "State",
+        "LIMIT": "Limit",
+        "ALL": "All",
+        "SEARCH_DESCRIPTION": "Image name",
+        "SEARCH_LABELER": "Labeler name"
+      },
+      "LEGEND": {
+        "OPEN": "Open the legend",
+        "TITLE": "Legend of Symbols",
+        "DESCRIPTION": "States and Actions are defined by the following:",
+        "STATES": {
+          "TITLE": "States",
+          "BACKLOG": "Backlog",
+          "WAITING": "Waiting",
+          "WAITING_CHANGED": "Waiting changed",
+          "IN_PROGRESS": "In progress",
+          "SKIPPED": "Skipped",
+          "COMPLETED": "Completed",
+          "REVIEWED": "Reviewed",
+          "REVIEWED_SKIP": "Reviewed skip"
+        },
+        "ACTIONS": {
+          "TITLE": "Task actions",
+          "OPEN_IMAGE": "Open the image",
+          "OPEN_TASK": "Open the label mode",
+          "TO_BACKLOG": "Move to backlog",
+          "TO_WAITING": "Move to waiting",
+          "TO_WAITING_CHANGED": "Move to waiting changed"
+        },
+        "TASK_BADGES": {
+          "PRE_LABEL_SUCCESS": "Pre-label successful",
+          "PRE_LABEL_FAILED": "Pre-label failed",
+          "JSON_IMPORT": "Imported Labels"
+        }
+      }
+    },
+    "TASK_OVERVIEW": {
+      "TITLE": "Labeltasks",
+      "TITLE_OVERVIEW": "Overview",
+      "NOTHING_TO_SHOW": "No projects found.",
+      "GET_STARTED": {
+        "TITLE": "Here is a short summary to get you started quickly:",
+        "0": "Create your first project",
+        "1": "Add a label configuration",
+        "2": "Create a new dataset",
+        "3": "Upload some images",
+        "4": "Connect the dataset and the project",
+        "5": "Release the tasks"
+      },
+      "GET2KNOW": {
+        "TITLE": "Get to know DataGym",
+        "CREATE_DUMMY": "To get to know all the features datagym.ai offers you, you can also create some dummy data on the account settings page."
+      },
+      "FETCHING": "Fetching tasks",
+      "ITEM": {
+        "BUTTON": {
+          "START_LABELING": "Start labeling",
+          "START_REVIEWING": "Start reviewing"
+        },
+        "OPEN_TASKS": "open tasks"
+      }
+    },
+    "ACCOUNT_SETTINGS": {
+      "ACCOUNT_SETTINGS": "Account settings",
+      "ORGANISATIONS": "Organisations",
+      "PERSONAL_DATA": "Personal data",
+      "ACCOUNT_MANAGEMENT": "Account-Management",
+      "MANAGE_ORGANISATION": "Organisation-Management",
+      "CREATE_DUMMY": "Create dummy data",
+      "DUMMY_CREATED": "Dummy data created",
+      "DUMMY_FAILED": "Could not create the dummy data.",
+      "LIMIT_LEGEND": {
+        "OPEN": "Display the limits",
+        "TITLE": "The limits of your plan:",
+        "DESCRIPTION": "To raise your limits you can upgrade your plan at any time. The limits are reset every month.",
+        "LIMIT": {
+          "TITLE": "Limits:",
+          "LIMIT": "{{used}} / {{limit}}",
+          "PROJECT": "Project:",
+          "LABELS": "Labels:",
+          "IMAGES": "Images:",
+          "STORAGE": "Storage:",
+          "AISEG": "AI assistance:",
+          "STORAGE_LIMIT": "{{used}} / {{limit}} MB"
+        },
+        "RESTRICTION": {
+          "TITLE": "Restrictions:",
+          "API": "API calls:",
+          "EXTERNAL_STORAGE": "External storage:"
+        }
+      }
+    },
+    "WORKSPACE": {
+      "DELETE_REQUEST_ERROR": "There are no geometries selected to delete",
+      "CANCEL_AI_SEG": "Canceled AI call",
+      "ERROR": {
+        "COPY": {
+          "NONE": "No geometries selected to copy.",
+          "TOO_MANY": "Too many geometries selected for copying, you can only select one.",
+          "PASTE_NONE": "No copied geometries to paste."
+        }
+      },
+      "CONTEXT_MENU": {
+        "HIDE": "Hide",
+        "SELECTED": "Selected",
+        "NOTHING_TO_CHANGE": "Nothing to change",
+        "REFINE_PREDICTION": "Refine prediction",
+        "TRANSFORM_TO": "Transform to:",
+        "DELETE": "Delete",
+        "COMMENT_PLACEHOLDER": "Type your comment here",
+        "EDIT_COMMENT": "Edit Comment",
+        "ADD_COMMENT" : "Add Comment",
+        "SAVE": "Save",
+        "COMMENT": "Comment",
+        "DUPLICATE": "Duplicate",
+        "HIGHLIGHT": "Highlight",
+        "EXPAND_LEFT": "Expand left",
+        "EXPAND_RIGHT": "Expand right",
+        "DELETE_KEYFRAME": "Delete keyframe"
+      },
+      "VIDEO_SETTINGS": {
+        "MODAL": {
+          "TITLE": "Settings",
+          "PLAYBACK_RATE": "Please choose a desired playback speed for the video.",
+          "INTERPOLATION_TYPE": "Please choose the interpolation type.",
+          "APPLY": "Apply to video file",
+          "NORMAL_SPEED": "Normal"
+        }
+      }
+    },
+    "SYSTEM": {
+      "TITLE": "System info",
+      "APP": "Application",
+      "SERVER": "Server",
+      "TIME_DATE": "Time & date"
+    }
+  },
+  "OIDC_USER_INFO": {
+    "OWNER": "Owner",
+    "NAME": "Name",
+    "EMAIL": "E-Mail",
+    "ROLE": "Role"
+  },
+  "GLOBAL": {
+    "CONTACT": {
+      "BUTTON": {
+        "LABEL": "Contact DataGym"
+      },
+      "SUPPORT": "Please contact us if there are any open questions."
+    },
+    "BACKGROUND": "Background",
+    "IMAGES": "Images",
+    "IMAGE_COUNT": "No. of images",
+    "INVALID_MEDIA": {
+      "INVALID_MIME_TYPE": "Validation error: The format of the image is not supported.",
+      "INVALID_URL": "Validation error: The URL of the image not valid.",
+      "AWS_VIDEO_PARSE_FAIL": "Could not parse video informations! "
+    },
+    "EMPTY_TABLE": "This table is empty",
+    "NO_SEARCH_RESULTS": "No entry matches your criteria.",
+    "RESET_FILTER": "Reset filters",
+    "NAME": "Name",
+    "SAVE": "Save",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm",
+    "UNTITLED": "Untitled",
+    "UNDEFINED": "Undefined",
+    "GO_BACK": "Go back",
+    "OWNER": "Owner",
+    "RESET": "Reset",
+    "UPLOAD": "Upload",
+    "READ_THE_DOCS": "Read the documentation.",
+    "BROWSER_SUPPORT": "You are currently using <strong>{{browser}}</strong> as your Browser. Pan and zoom is not supported by this browser. Please switch to another Browser to use <strong>DATA</strong>GYM's full functionality.",
+    "DIALOGUE": {
+      "TITLE": {
+        "CONFIRM_DELETE": "Confirm delete action",
+        "CONFIRM_DUPLICATE": "Confirm duplicate action",
+        "CONFIRM_UNSAVED_FORM": "There are some unsaved settings"
+      },
+      "BODY": {
+        "CONFIRM_UNSAVED_FORM": "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?"
+      }
+    },
+    "GEOMETRY_TYPES": {
+      "POINT": "Point",
+      "RECTANGLE": "Bounding Box",
+      "POLYGON": "Polygon",
+      "LINE": "Line",
+      "IMAGE_SEGMENTATION": "Image segmentation"
+    },
+    "CLASSIFICATION_TYPES": {
+      "CHECKLIST": "Checklist",
+      "FREE_TEXT": "Text",
+      "OPTION": "Option"
+    },
+    "MEDIA_TYPE": {
+      "IMAGE": "Image",
+      "VIDEO": "Video",
+      "MEDIA_TYPE_TITLE": "Media Type: {{mediaType}}"
+    },
+    "OWNER_TYPE": {
+      "PRIVATE": "Private",
+      "ORGANISATION": "Organisation"
+    },
+    "ERROR_FLAGS": {
+      "MAX": "The maximum is {{max}}.",
+      "MIN": "The minimum is {{min}}.",
+      "REQUIRED": "This field is required.",
+      "DUPLICATE_KEYS": "Export keys must be unique.",
+      "DUPLICATE_VALUES": "Export values must be unique.",
+      "DUPLICATE_SHORTCUTS": "Shortcuts must be unique.",
+      "DUPLICATE_INPUT": "You cannot use this input twice.",
+      "FORBIDDEN_KEYWORD": "The keyword '{{keyword}}' is reserved.",
+      "INVALID_PATTERN": "The input contains invalid chars. The pattern is: {{requiredPattern}}.",
+      "MAX_LENGTH": "Max. {{requiredLength}} characters are allowed but {{actualLength}} are used.",
+      "FORBIDDEN_CHAR": "The character [{{forbidden}}] is not allowed here.",
+      "FORBIDDEN_CHARS": "The characters [{{forbidden}}] are not allowed here."
+    }
+  },
+  "AISEG": {
+    "LABEL": "Use the ai-assisted labelling.",
+    "SELECT": {
+      "POINT": "Click",
+      "POINTS": "Points",
+      "BRUSH": "Paint fill",
+      "RECTANGLE": "Bounding Box"
+    },
+    "SELECT_MODE": "Please select the mode.",
+    "PREVIEW": "Ai-assisted labelling is in the preview not available",
+    "LIMIT_REACHED": "The limit for AI assistance is reached.",
+    "FAILED_TO_PREPARE_IMAGE": "Ai-assisted labelling is currently not available",
+    "ERROR_LOAD_WORKSPACE_IMAGE": "Error loading image",
+    "IS_ACTIVE": "Please select the area for ai-assisted labelling.",
+    "LOADING_HEADLINE": "Please wait... our GPU-Cluster is calculating",
+    "LOADING_IMAGE_ALT": "Loading...",
+    "ERROR_WRONG_TYPE": "You can only use the ai-assisted labelling for a polygon",
+    "ERROR_USAGE": "You need to select a polygon to use the ai-assisted labelling functionality",
+    "ERROR_CALCULATING": "Error by using the ai-assisted labelling functionality. Please try again"
+  },
+  "OPEN_CORE": {
+    "FEATURE_NOT_AVAILABLE": "This feature is not available in the open-core variant of this application."
+  },
+  "Invalid image url": "Invalid image url: {{p0}}",
+  "ex_system": "Something went terribly wrong. Please contact the system administrator.",
+  "ex_notfound": "{{p0}} with {{p1}} {{p2}} not found",
+  "ex_alreadyexists": "{{p0}} with {{p1}} {{p2}} already exists.",
+  "ex_already_contains": "The current {{p0}} already contains the {{p1}}",
+  "ex_forbidden": "Forbidden. Insufficient permissions.",
+  "ex_unauthorized": "Unauthorized. None or invalid credentials.",
+  "ex_validation": "Validation error!",
+  "ex_val_empty": "{{p0}} cant be empty.",
+  "ex_val_zero": "{{p0}} cant be null",
+  "ex_val_invalid": "{{p0}} is invalid. Possible values: {{p1}}.",
+  "ex_connection": "Connection error. Code {{p0}}. {{p1}}.",
+  "ex_notempty": "{{p0}} cant be empty.",
+  "ex_size": "{{p0}} must be between {{p2}} and {{p1}} characters.",
+  "ex_notnull": "{{p0}} cant be null.",
+  "ex_uniqueprojectname": "{{p0}} already exists.",
+  "ex_uniquedatasetname": "{{p0}} already exists.",
+  "ex_uniqueapitokenname": "{{p0}} already exists.",
+  "ex_min": "{{p0}} must be at least {{p1}}",
+  "ex_max": "{{p0}} must be maximum {{p1}}",
+  "ex_length": "{{p0}} must be maximum {{p1}} characters long.",
+  "ex_pattern": "{{p0}} must match {{p2}} pattern",
+  "ex_gen_contains": "The current {{p0}} already contains this {{p1}}.",
+  "ex_gen_already_contains": "The current {{p0}} already contains this {{p1}}.",
+  "ex_gen_does_not_contain": "The current {{p0}} doesn't contain this {{p1}}.",
+  "ex_notblank": "{{p0}} can't be blank or null.",
+  "entry_type_not_found": "This {{p0}} doesn't exist.",
+  "ex_gen_error_messages": "{{p0}}",
+  "ex_gen_wrong_entry_id": "The key {{p0}}, does not match any entry in your label configuration",
+  "ex_gen_config_depth": "The depth of the nested geometry/classification levels must be maximum 3 levels.",
+  "ex_gen_entry_definition_incorrect": "The definition of the geometry/classification with id {{p0}} is incorrect.",
+  "ex_gen_entry_geometry_incorrect": "The definition of the geometry of type {{p0}} is incorrect.",
+  "ex_gen_entry_classification_incorrect": "The definition of the classification of type {{p0}} is incorrect.",
+  "ex_gen_geometry_definition_incorrect": "The definition of the {{p0}} geometry is incorrect.",
+  "ex_gen_entry_value_validation": "The {{p0}} values in the JSON file are not correctly defined, see the documentation for help.",
+  "ex_gen_entry_value_delete": "Entry value with id {{p0}} can't be deleted.",
+  "ex_gen_entry_value_create": "Creation of Entry value of type {{p0}} failed.",
+  "ex_gen_wrong_label_task_state": "Update from Label task state failed. Wrong task state!",
+  "ex_gen_not_found_task": "Label task was not found.",
+  "ex_gen_no_tasks_for_user": "There aren't any tasks assigned to you.",
+  "ex_gen_no_tasks_for_user_from_current_project": "There aren't any tasks for you from the current Project.",
+  "ex_gen_aiseg_commonication_error": "Error by establishing a connection to AiSeg.",
+  "ex_gen_file_export": "Something went wrong during the file download.",
+  "ex_gen_image_upload": "Something went wrong during the image upload.",
+  "ex_gen_image_delete": "Something went wrong during the image deleting.",
+  "ex_gen_file_stream": "Something went wrong during the file streaming.",
+  "ex_gen_wrong_media_type": "The Image has wrong MIME type.",
+  "ex_gen_dummy_project_creation": "Something went wrong during the Dummy Project creation.",
+  "ex_gen_forbidden_keyword": "\"{{p0}}\" is a forbidden keyword.",
+  "ex_gen_aiseg_gpu_busy": "All GPU's are busy. Please try again in a moment.",
+  "ex_gen_aiseg_communication_error": "The connection to AiSeg failed.",
+  "ex_gen_limit_for_organisation_not_found": "You need a Pricing Plan for the current organisation. Please contact the system administrator.",
+  "ex_limit": "You reached your {{p0}} limit for this month ({{p1}}/{{p2}}), upgrade your Pricing Plan to get more.",
+  "ex_gen_dummy_project_limit": "This action is not allowed for the Dummy_Project.",
+  "ex_gen_dummy_dataset_limit": "This action is not allowed for a Dummy_Dataset.",
+  "ex_gen_no_labels_to_export": "There aren't any labels in the current Project.",
+  "ex_gen_apiToken_creation_not_allowed": "Your Pricing Plan doesn't support the usage of our API. Please upgrade your Pricing Plan or contact a system administrator.",
+  "ex_gen_public_urls_upload_not_allowed": "Your Pricing Plan doesn't support the upload of images via public links. Please upgrade your Pricing Plan or contact a system administrator.",
+  "ex_json_parse": "JSON parse error: Location - lineNr: {{p0}}, columnNr: {{p1}}. {{p2}}",
+  "ex_gen_json_upload_predicted_values": "Something went wrong during the upload of the predicted Values.",
+  "ex_gen_json_upload_not_found_task": "The internal_image_ID you entered does not correspond to an image in your tasks",
+  "ex_gen_json_upload_not_found_property": "{{p0}} is missing in your JSON",
+  "ex_gen_json_upload_illegal_value": "The JSON property value can't be '{{p0}}' for '{{p1}}'",
+  "ex_gen_user_is_already_reviewer": "This User is already reviewer for the current Project ({{p0}})",
+  "ex_gen_no_tasks_to_review": "There aren't any tasks to review.",
+  "ex_gen_no_tasks_to_review_from_current_project": "There aren't any tasks to review from the current Project.",
+  "ex_gen_rating_alreadyexists": "Labeler Rating for Project with id {{p0}} and Labeler with id {{p1}} already exists.",
+  "ex_gen_limit_warning": "Something went wrong during sending of a limit warning email.",
+  "ex_gen_user_info": "Something went wrong during getting info about the current user",
+  "ex_gen_entry_not_geometry": "The Entry with id {{p0}} isn't a geometry",
+  "ex_gen_entry_types_not_the_same": "The old and new Entry must have the same Type",
+  "ex_gen_entry_types_are_the_same": "The old and new Entry are the same",
+  "ex_no_content": "No more content for {{p0}} with {{p1}} '{{p2}}'",
+  "ex_gen_unsuported_mime_type": "No more content for {{p0}} with {{p1}} '{{p2}}'",
+  "ex_val_bin_mime": "Invalid Image Format. <br><br> Detected Content-Type: <br> '{{p0}}' <br><br> Supported Content-Types: <br> '{{p1}}' <br><br> Tasks including this image have been skipped. ",
+  "ex_gen_config_not_cleared": "The Label Configuration with id {{p0}} needs to be cleared first, before you can upload a new Label Configuration",
+  "ex_gen_clear_config": "Something went wrong during the clearing of the Label Configuration with id {{p0}}.",
+  "ex_gen_upload_config": "Something went wrong during the uploading of the Label Configuration with id {{p0}}.",
+  "ex_val_invalid_imageId_in_list": "There are invalid entries in the list of imageId's.",
+  "ex_gen_aws_upload_not_allowed": "Your Pricing Plan doesn't support the upload of images via AWS. Please upgrade your Pricing Plan to 'Team Pro' or contact a system administrator.",
+  "ex_gen_video_not_allowed": "Your Pricing Plan doesn't support the video labelling functionality. Please upgrade your Pricing Plan to 'Team Pro' or contact a system administrator.",
+  "ex_gen_aws_upload_unsupported_mediatype": "Your dataset media-type doesn't support aws s3 synchronisation.",
+  "ex_gen_not_found_aws_credentials": "Aws Credentials for Dataset with id {{p0}} weren't found.",
+  "ex_gen_network_classes_loading": "Something went wrong during loading of the available network classes.",
+  "ex_gen_prelabeling_not_allowed": "Your Pricing Plan doesn't support the usage of this feature. Please upgrade your Pricing Plan to 'Team Pro' or contact a system administrator.",
+  "ex_gen_not_found_pre_label_config": "PreLabel Configuration for Project with id {{p0}} weren't found.",
+  "ex_gen_mediatype_missmatch": "Project and Dataset must be from the same media type!",
+  "ex_gen_url_not_allowed_mediatype": "You cant use sharable links in a dataset with media type: 'VIDEO' ",
+  "ex_feature_not_for_open_core": "This feature is not available in the open-core variant of this application.",
+  "ex_service_unavailable": "The {{p0}} service is currently unavailable."
+}

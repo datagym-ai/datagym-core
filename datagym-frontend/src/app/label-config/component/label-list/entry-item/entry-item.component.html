@@ -1,0 +1,46 @@
+<div class="row no-gutters entry-item align-content-center" [ngStyle]="{'margin-left.px': 19 * nestingLevel}"
+     [ngClass]="{'disabled': inEditMode}" (click)="onEditEntry()">
+  <div class="col-1" title="{{'FEATURE.LABEL_CONFIG.TITLES.SHORTCUT' | translate}}">
+    <span *ngIf="hasShortcut" class="shortcut-selector m-0">{{ shortcut }}</span>
+  </div>
+  <div class="col mr-2">
+    <div class="word-break">{{ entry.entryValue || 'FEATURE.LABEL_CONFIG.UNTITLED' | translate }}</div>
+  </div>
+  <div class="col fixed-actions-size">
+    <div class="row justify-content-end fixed-actions-size">
+      <div class="col-xs d-flex">
+        <i class="text-center my-auto" [title]="entry.type" [ngClass]="LcEntryType.getIcon(entry.type)"
+           [ngStyle]="{'color': color}" aria-hidden="true"></i>
+      </div>
+      <div [ngClass]="{'col-5': entry.type != LcEntryType.IMAGE_SEGMENTATION, 'col-6': entry.type == LcEntryType.IMAGE_SEGMENTATION}">
+        <span class="small">{{ LcEntryType.toString(entry.type) | translate | uppercase }}</span>
+      </div>
+      <div class="col-1 justify-content-center d-flex action-icon"
+           title="{{'FEATURE.LABEL_CONFIG.TITLES.DUPLICATE' | translate}}"
+           *ngIf="nestingLevel < 1" (click)="onCopyEntry(); $event.stopPropagation()">
+        <i class="fas fa-copy" aria-hidden="true"></i>
+      </div>
+      <div class="col-1 justify-content-center d-flex action-icon">
+        <div *ngIf="nestingLevel < 3 && entry.type != LcEntryType.IMAGE_SEGMENTATION" title="{{'FEATURE.LABEL_CONFIG.TITLES.ADD' | translate}}" (click)="onCreateChildOfEntry(); $event.stopPropagation()">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="col-1 justify-content-center d-flex action-icon"
+           title="{{'FEATURE.LABEL_CONFIG.TITLES.DELETE' | translate}}" (click)="onDeleteEntry(); $event.stopPropagation()">
+        <i class="fas fa-trash" aria-hidden="true"></i>
+      </div>
+      <div class="col-1" title="{{'FEATURE.LABEL_CONFIG.TITLES.EDIT' | translate}}">
+        <i class="fas fa-angle-right pointer action-icon" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="entry.children.length > 0">
+  <app-entry-item
+    *ngFor="let child of entry.children | sortLabelConfig;let i = index;"
+    class="app-entry-item"
+    [ngClass]="{'withChildren': child.children.length > 0}"
+    [nestingLevel]="nestingLevel+1"
+    [entry]="child"
+  ></app-entry-item>
+</div>

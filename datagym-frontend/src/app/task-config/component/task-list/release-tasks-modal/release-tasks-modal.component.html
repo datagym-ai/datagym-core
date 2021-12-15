@@ -1,0 +1,26 @@
+
+<app-button label="{{ 'FEATURE.TASK_CONFIG.MOVE_TASKS.TO_WAITING.BUTTON' | translate | uppercase }}"
+            class="mr-3"
+            [disabled]="disabled"
+            (onClick)="actions.open()"
+            styling="secondary"></app-button>
+
+<ngx-smart-modal #ReleaseTasksModal [identifier]="modalId" (onAnyCloseEventFinished)="actions.close()"
+                 [dismissable]="true" [escapable]="true" [closable]="true">
+
+  <div class="row">
+
+    <app-dg-select-modal-helper
+      class="col-12"
+      [title]="'FEATURE.TASK_CONFIG.MOVE_TASKS.TO_WAITING.TITLE'"
+      [description]="'FEATURE.TASK_CONFIG.MOVE_TASKS.TO_WAITING.DESCRIPTION'"
+      [submitLabel]="'FEATURE.TASK_CONFIG.MOVE_TASKS.TO_WAITING.ACTION'"
+      [options]="actions.options"
+      (onChange)="actions.selectedDatasetId=$event"
+      (onCancel)="actions.close()"
+      (onSubmit)="actions.submit()"
+    ></app-dg-select-modal-helper>
+
+  </div>
+
+</ngx-smart-modal>

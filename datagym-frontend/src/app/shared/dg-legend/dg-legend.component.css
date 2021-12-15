@@ -1,0 +1,29 @@
+
+.section-title {
+  border-bottom: 2px solid #ddd;
+  box-sizing: border-box;
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/**
+ * When placed within a dg-table row, the .wrap-words class
+ * takes affect on all nested divs. Also the nested LegendComponent
+ * and it's content is affected. To reset that unwanted behaviour here
+ * the properties of .wrap-words must be set to their default values.
+ */
+.reset-wrap-words,
+.reset-wrap-words div{
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+
+.section-row {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.section-row:hover {
+  background-color: #ddd;
+}

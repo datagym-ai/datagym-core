@@ -1,0 +1,15 @@
+
+.edit-menu {
+  border: 1px solid #6300ED;
+  color:#6300ED;
+  opacity: 0.8;
+  height: 2.2em;
+}
+
+.edit-menu-placeholder {
+  height: 2.2em;
+}
+
+.checkbox-column {
+  width:50px;
+}

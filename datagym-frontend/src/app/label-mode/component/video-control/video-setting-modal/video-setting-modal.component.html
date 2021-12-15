@@ -1,0 +1,69 @@
+<i class="ml-2 dg-primary-hover pointer fas fa-cog hover-spin" (click)="onOpenMenu()"></i>
+
+
+<ngx-smart-modal #VideoSettingModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()"
+                 [dismissable]="true" [escapable]="true" [closable]="true">
+
+  <form class="text-left" [formGroup]="formGroup">
+
+    <div class="row">
+      <div class="col-12">
+        <h2 class="dg-primary-color">
+          {{ 'FEATURE.WORKSPACE.VIDEO_SETTINGS.MODAL.TITLE' | translate }}
+        </h2>
+      </div>
+
+      <div class="col-12">
+
+        <label for="playbackRates">
+          {{ 'FEATURE.WORKSPACE.VIDEO_SETTINGS.MODAL.PLAYBACK_RATE' | translate }}
+        </label>
+
+        <ng-select id="playbackRates" formControlName="playbackRate">
+          <ng-option *ngFor="let option of playbackRates"
+                     [value]="option.id"
+                     [title]="option.label">
+            {{ option.label | translate }}
+          </ng-option>
+        </ng-select>
+
+      </div>
+
+      <div class="col-12 mt-3">
+
+        <label for="interpolationTypes">
+          {{ 'FEATURE.WORKSPACE.VIDEO_SETTINGS.MODAL.INTERPOLATION_TYPE' | translate }}
+        </label>
+
+        <ng-select id="interpolationTypes" formControlName="interpolationType">
+          <ng-option *ngFor="let option of interpolationTypes"
+                     [value]="option"
+                     [title]="option">
+            {{ option | translate }}
+          </ng-option>
+        </ng-select>
+
+      </div>
+
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-6">
+        <app-button
+          [label]="'GLOBAL.CANCEL'"
+          [styling]="'warn-full'"
+          (onClick)="onCancel()"
+        ></app-button>
+      </div>
+      <div class="col-6">
+        <app-button
+          [label]="'GLOBAL.SAVE'"
+          [styling]="'secondary-full'"
+          (onClick)="onSave()"
+        ></app-button>
+      </div>
+    </div>
+
+  </form>
+
+</ngx-smart-modal>

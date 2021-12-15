@@ -1,0 +1,9 @@
+<div class="row flex-nowrap pl-3 pr-3 pt-1 pb-1 no-gutters" [routerLink]="navItem.link"
+     routerLinkActive="nav-item-active" [routerLinkActiveOptions]="{exact: false}" title="{{navItem.name | translate}}">
+  <div class="text-nowrap p-0" [ngClass]="isFolded ? 'col-12' : 'col-2'">
+    <i class="nav-icon" [ngClass]="navItem.classIcon" aria-hidden="true"></i>
+  </div>
+  <div class="col-8 p-1" *ngIf="!isFolded">
+    <span class="vertical-align-top">{{navItem.name | translate}}</span>
+  </div>
+</div>

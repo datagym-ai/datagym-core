@@ -1,0 +1,19 @@
+
+.aiseg-selection {
+  padding-top: 0.55em;
+}
+
+.tool-icon {
+  font-size: 1.3em;
+  padding-top: 0.55em;
+}
+.filter-slider {
+  display: inline-block;
+  max-width: 200px;
+  width: 32%;
+  padding-top: 0.5em;
+}
+.aiseg-icon {
+  font-size: 1.3em;
+  padding-top: 0.5em;
+}

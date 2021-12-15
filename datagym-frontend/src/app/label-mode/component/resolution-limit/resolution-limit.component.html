@@ -1,0 +1,40 @@
+<div *ngIf="!withinLimits" class="resolution-overlay">
+  <div class="container h-100 justify-content-center align-self-center">
+    <div class="row h-100 justify-content-center">
+      <div class="col my-auto" style="max-width: 550px">
+        <div class="text-center">
+          <img alt="DATAGYM Logo" class="img-fluid" id="datagym-logo" src="../assets/image/logo.svg">
+        </div>
+
+        <br />
+
+        <div>
+          <h3 class="text-white" [innerHTML]="'FEATURE.LABEL_MODE.RESOLUTION.INTRO_TEXT' | translate">
+          </h3>
+          <span class="text-white"
+                [innerHTML]="'FEATURE.LABEL_MODE.RESOLUTION.SCREEN_INFO' | translate: {limitWidth: limitWidth,
+                                                                                              limitHeight: limitHeight,
+                                                                                              width: width,
+                                                                                              height: height}">
+          </span>
+
+          <br /> <br />
+
+          <h2 style="color: rgb(148, 107, 206)"
+              [innerHTML]="'FEATURE.LABEL_MODE.RESOLUTION.ADVISE' | translate"></h2>
+
+          <br />
+
+          <span class="text-white">
+            {{'GLOBAL.CONTACT.SUPPORT' | translate}}
+          </span>
+
+          <br /> <br />
+          <a href="mailto:support@datagym.ai">
+            <app-button styling="secondary"    label="Contact DataGym" >{{'GLOBAL.CONTACT.BUTTON.LABEL' | translate}}></app-button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

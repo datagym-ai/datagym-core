@@ -1,0 +1,71 @@
+.upload-container {
+  width: 214px;
+  height: 214px;
+}
+
+.error-Messages-Box {
+  position: absolute;
+  left:-4em;
+  max-width: 100em;
+  width: 35em;
+  height: 40em;
+  border: 1px solid #C70F46;
+  color: #C70F46
+}
+
+.drop-zone {
+  cursor: pointer;
+  border: 3px dashed rgba(0, 0, 0, 0.4);
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.opacity3 {
+  opacity: 0.3;
+}
+
+.loading-spinner {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.drop-zone i {
+  font-size: 100px;
+}
+
+.original {
+  visibility: hidden;
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

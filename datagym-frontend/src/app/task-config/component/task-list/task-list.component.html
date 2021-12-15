@@ -1,0 +1,65 @@
+<app-dynamic-filter class="row ml-0"
+                    [filterConfiguration]="filterConfiguration"
+                    (dynamicFilterChangeEvent)="dynamicFilterChanged($event)"></app-dynamic-filter>
+<div class="pl-3 pr-3 task-list-content">
+  <div class="row mt-4 justify-content-around dg-table-header">
+    <div class="col-3">{{ 'FEATURE.TASK_CONFIG.TABLE_HEADER.LABELER' | translate }}</div>
+    <div class="col">{{ 'FEATURE.TASK_CONFIG.TABLE_HEADER.IMAGE' | translate }}</div>
+    <div class="col-2">{{ 'FEATURE.TASK_CONFIG.TABLE_HEADER.STATE' | translate }}</div>
+    <div class="col col-11em">{{ 'FEATURE.TASK_CONFIG.TABLE_HEADER.ACTIONS' | translate }}</div>
+    <div class="col col-7em">{{ 'FEATURE.TASK_CONFIG.TABLE_HEADER.BADGES' | translate }}</div>
+  </div>
+  <app-task-item *ngFor="let labelTask of labelTasks; let i = index"
+                 class="row d-flex dg-table-entry dg-table-entry-unclickable"
+                 [index]="i" [task]="labelTask"></app-task-item>
+  <div *ngIf="labelTasks.length === 0"
+       class="row justify-content-around dg-table-entry dg-table-entry-unclickable">
+    {{ 'FEATURE.TASK_CONFIG.NO_TASKS_TO_SHOW' | translate }}
+  </div>
+</div>
+
+
+<div class="row pt-3 pb-3 mx-0 top-border">
+  <div class="col-12">
+
+    <span class="mr-3 dg-primary-hover pointer"
+          (click)="onCreateNewDataset()">
+      <small>
+        {{ 'FEATURE.TASK_CONFIG.BUTTON.CREATE_NEW_DATASET' | translate | uppercase }}
+        <i class="fas fa-plus"></i>
+      </small>
+    </span>
+
+    <span class="mr-3">
+      <small *ngIf="isDummy" class="not-allowed dg-lightgray" [title]="'FEATURE.PROJECT.DUMMY' | translate">
+        {{ 'FEATURE.TASK_CONFIG.BUTTON.ATTACH_DATASET' | translate | uppercase }}
+        <i class="fas fa-link"></i>
+      </small>
+
+      <small *ngIf="!isDummy" class="dg-primary-hover pointer" (click)="onAttachDataset()">
+        {{ 'FEATURE.TASK_CONFIG.BUTTON.ATTACH_DATASET' | translate | uppercase }}
+        <i class="fas fa-link"></i>
+      </small>
+    </span>
+
+    <app-release-tasks-modal
+      [disabled]="labelTasks.length === 0"
+      [datasets]="datasets"
+      (onSelected)="toWaiting($event)"
+    ></app-release-tasks-modal>
+
+    <app-to-backlog-modal
+      [disabled]="labelTasks.length === 0"
+      [datasets]="datasets"
+      (onSelected)="toBacklog($event)"
+    ></app-to-backlog-modal>
+
+  </div>
+</div>
+
+<app-dg-select-modal
+  [title]="'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.LIST_MODAL.TITLE'"
+  [label]="'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.LIST_MODAL.CONTENT'"
+  [right.btn.label]="'FEATURE.PROJECT.DETAIL.SETTINGS.CONNECTED_DATASETS.LIST_MODAL.CONNECT'"
+  (right.btn.click)="connectDataset($event)"
+></app-dg-select-modal>

@@ -1,0 +1,2 @@
+create table labeler_rating (id varchar(255) not null, labeler_id varchar(255) not null, negative integer, positive integer, project_id varchar(255) not null, primary key (id));
+alter table labeler_rating add constraint fk_labeler_rating_project foreign key (project_id) references project (id);

@@ -1,0 +1,12 @@
+.ai-assistant-control-btn {
+  width: 110px;
+}
+
+.dg-progress-bar {
+  background-color: #6300ED;
+}
+
+.disabled-element {
+  opacity: 0.5;
+  pointer-events: none;
+}

@@ -1,0 +1,50 @@
+<div class="row pb-3">
+  <div class="col-12 col-md-7 col-lg-8 col-xl-9">
+    <label for="shortDesc" class="dg-primary-color font-weight-bold">{{'FEATURE.PROJECT.DETAIL.HOME.LABEL.SHORT_DESC' | translate}}</label>
+    <div id="shortDesc" class="word-break">{{ shortDesc }}</div>
+  </div>
+  <div class="col-12 d-md-none"><hr></div>
+  <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+    <div class="row no-gutters">
+      <div class="col-6 col-md-12 text-md-right">
+        <app-button
+          styling="secondary"
+          label="FEATURE.PROJECT.DETAIL.HOME.EXPORT"
+          [disabled]="!isExportable"
+          [title]="(isExportable ? '' : 'FEATURE.PROJECT.DETAIL.HOME.NOT_EXPORTABLE') | translate"
+          (onClick)="onExport()">
+        </app-button>
+        <app-help class="ml-3" link="project/export-data"></app-help>
+      </div>
+      <div class="col-6 col-md-12 text-md-right" *ngIf="!disableImport">
+        <div class="d-none d-md-block mb-2"></div>
+        <app-button
+          styling="secondary"
+          label="FEATURE.PROJECT.DETAIL.HOME.IMPORT"
+          [disabled]="!hasLabelConfiguration"
+          [title]="(hasLabelConfiguration ? '' : 'FEATURE.PROJECT.DETAIL.HOME.NOT_IMPORTABLE') | translate"
+          (onClick)="onImport()">
+        </app-button>
+        <app-help class="ml-3" link="project/import-label"></app-help>
+      </div>
+    </div>
+  </div>
+  <div class="col-12"><hr></div>
+</div>
+<div class="row pb-3" *ngIf="fullDesc">
+  <div class="col-12">
+    <label for="fullDesc" class="dg-primary-color font-weight-bold">{{'FEATURE.PROJECT.DETAIL.HOME.LABEL.FULL_DESC' | translate}}</label>
+    <div id="fullDesc" class="word-break">{{ fullDesc }}</div>
+  </div>
+  <div class="col-12"><hr></div>
+</div>
+
+<div class="row pb-3">
+  <div class="col-12">
+    <app-project-guide *ngIf="!!projectDashboard" id="guide" [projectDashboard]="projectDashboard"></app-project-guide>
+  </div>
+</div>
+
+<app-project-dashboard *ngIf="!!projectDashboard && (isProjectAdmin || isSuperAdmin)"
+                       [projectDashboard]="projectDashboard"></app-project-dashboard>
+<app-import-prediction></app-import-prediction>

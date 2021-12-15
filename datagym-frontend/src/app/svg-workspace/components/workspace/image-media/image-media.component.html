@@ -1,0 +1,13 @@
+<pan-zoom [config]="panZoomConfig" (click)="onClick.emit($event)">
+  <img #currentImage class="position-absolute"
+       alt="{{ 'AISEG.ERROR_LOAD_WORKSPACE_IMAGE' | translate }}"
+       [src]="workspace.currentImageUrl"
+       (error)="onImageLoadError.emit($event)"
+       [height]="workspace.currentMediaHeight"
+       [style.filter]="workspace.mediaStyleFilter.getFilter()" [width]="workspace.currentMediaWidth"
+       (load)="afterImageLoaded.emit($event)">
+
+  <div id="svg-layer" class="position-absolute" style="z-index: 1">
+  </div>
+</pan-zoom>
+<app-context-menu [mediaHeight]="currentImage.clientHeight" [mediaWidth]="currentImage.clientWidth"></app-context-menu>

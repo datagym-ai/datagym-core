@@ -1,0 +1,8 @@
+<div class="col-10">
+  {{ reviewer.userInfo.name }}
+</div>
+<div class="col-2 text-center">
+  <i class="mr-3 fas fa-trash pointer dg-primary-hover button-padding-easier-click"
+     title="{{'FEATURE.LABEL_CONFIG.TITLES.DELETE' | translate}}"
+     aria-hidden="true" (click)="onDeleteEvent.emit(reviewer.reviewerId); $event.stopPropagation()"></i>
+</div>

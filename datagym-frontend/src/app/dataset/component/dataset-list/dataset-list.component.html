@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col">
+    <h1>{{'FEATURE.DATASET.LIST.TITLE' | translate}}</h1>
+  </div>
+</div>
+<div class="row flex-nowrap action-row my-4">
+  <div class="col-8 flex-nowrap">
+    <app-button routerLink="create" label="FEATURE.DATASET.LIST.BUTTON_CREATE"
+                styling="secondary"></app-button>
+  </div>
+  <div class="col-4 text-right">
+    <app-search-field
+      [placeholder]="'FEATURE.DATASET.LIST.FILTER'"
+      [(ngModel)]="filterText"></app-search-field>
+  </div>
+</div>
+<div class="row dg-table-header">
+  <div class="col-4"><strong>{{'FEATURE.DATASET.LIST.TABLE_HEADER.NAME' | translate}}</strong></div>
+  <div class="col-3"><strong>{{'FEATURE.DATASET.LIST.TABLE_HEADER.OWNER' | translate}}</strong></div>
+  <div class="col-2"><strong>{{'FEATURE.DATASET.LIST.TABLE_HEADER.MEDIA_COUNT' | translate}}</strong></div>
+  <div class="col-2"><strong>{{'FEATURE.DATASET.LIST.TABLE_HEADER.CONNECTED_PROJECTS' | translate}}</strong></div>
+</div>
+<div *ngFor="let dataset of datasets | datasetNameFilter: filterText"
+     class="row dg-table-entry"
+     [routerLink]="['details', dataset.id]">
+  <div [title]="dataset.name" class="col-4">
+    <i [ngClass]="{'fa-file-image': dataset.mediaType === MediaType.IMAGE,
+      'fa-file-video': dataset.mediaType === MediaType.VIDEO
+    }" [title]="'GLOBAL.MEDIA_TYPE.MEDIA_TYPE_TITLE' | translate: {mediaType: dataset.mediaType}"
+       class="fas mr-3"></i>
+    {{ dataset.name | lengthFilter: 50 }}
+  </div>
+  <div class="col-3">
+    <app-dg-owner-label *ngIf="!isSuperadminMode" [organisation]="dataset.owner"></app-dg-owner-label>
+    <!--Access orgData if superadmin mode is enabled -->
+    <div *ngIf="isSuperadminMode">
+      <i class="fas" style="margin-right: 1em;" [ngClass]="{
+      'fa-building': !dataset.orgData.personal,
+      'fa-user': dataset.orgData.personal
+    }" aria-hidden="true"></i>
+
+      <span [title]="dataset.orgData.name">{{ dataset.orgData.name }}</span>
+    </div>
+  </div>
+  <div class="col-2">{{ dataset.mediaCount || 0 }}</div>
+  <div class="col-2">{{ dataset.projectCount ? dataset.projectCount : 0 }}</div>
+</div>
+<div *ngIf="datasets.length === 0" class="row dg-table-entry dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'GLOBAL.EMPTY_TABLE' | translate }}</div>
+</div>
+<div class="row dg-table-entry dg-table-empty-result dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'GLOBAL.NO_SEARCH_RESULTS' | translate }}</div>
+</div>

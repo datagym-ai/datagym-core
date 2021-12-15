@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col">
+    <h1>{{'FEATURE.PROJECT.LIST.TITLE' | translate}}</h1>
+  </div>
+</div>
+<div class="row flex-nowrap action-row my-4">
+  <div class="col-8 flex-nowrap">
+    <app-button routerLink="create" label="FEATURE.PROJECT.LIST.BUTTON_CREATE"
+                styling="secondary"></app-button>
+  </div>
+  <div class="col-4 text-right">
+    <app-search-field
+      [placeholder]="'FEATURE.PROJECT.LIST.FILTER.PLACEHOLDER'"
+      [(ngModel)]="filterText"></app-search-field>
+  </div>
+</div>
+<div class="row dg-table-header">
+  <div class="col-4"><strong>{{'FEATURE.PROJECT.LIST.TABLE_HEADER.NAME' | translate}}</strong></div>
+  <div class="col-3"><strong>{{'GLOBAL.OWNER' | translate}}</strong></div>
+  <div [ngClass]="{'col-3' : isSuperadminMode, 'col-4': !isSuperadminMode}">
+    <strong>{{'FEATURE.PROJECT.LIST.TABLE_HEADER.SHORT_DESC' | translate}}</strong></div>
+  <div class="col-1"><strong>{{'FEATURE.PROJECT.LIST.TABLE_HEADER.IMAGES' | translate}}</strong></div>
+  <div *ngIf="isSuperadminMode" class="col-1">
+    <strong>{{'FEATURE.DATASET.LIST.TABLE_HEADER.LAST_UPDATED' | translate}}</strong></div>
+</div>
+<app-project-list-item
+  *ngFor="let project of (projects | projectNameFilter: filterText)"
+  [project]="project"
+  [routerLink]="['details', project.id]"
+  class="row dg-table-entry" [isSuperadminMode]="isSuperadminMode"></app-project-list-item>
+<div *ngIf="projects.length === 0" class="row dg-table-entry dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'GLOBAL.EMPTY_TABLE' | translate }}</div>
+</div>
+<div class="row dg-table-entry dg-table-empty-result dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'GLOBAL.NO_SEARCH_RESULTS' | translate }}</div>
+</div>

@@ -1,0 +1,27 @@
+
+<div class="row no-gutters">
+
+  <div [ngClass]="hasResetButton ? 'col-10' : 'col-12'">
+    <input type="range"
+           class="slider"
+           title="{{ label | translate: {value: rounded} }}"
+           #slider
+           [value]="value"
+           (input)="setValue = slider.value"
+           [min]="min"
+           [max]="max"
+           [step]="step"
+           [title]="title | translate"
+           id="slider">
+
+    <label for="slider" *ngIf="label">
+      <small>{{ label | translate: {value: rounded} }}</small>
+    </label>
+  </div>
+
+  <div class="col-2" *ngIf="hasResetButton">
+    <i class="ml-2 tool-icon fas fa-undo dg-primary-hover pointer" aria-hidden="true"
+       [title]="'FEATURE.LABEL_MODE.IMAGE_FILTER.RESET' | translate"
+       (click)="setValue = defaultValue"></i>
+  </div>
+</div>

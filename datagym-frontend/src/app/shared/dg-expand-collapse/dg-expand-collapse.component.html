@@ -1,0 +1,7 @@
+<i class="fas pointer dg-primary-hover" aria-hidden="true" *ngIf="show"
+   title="{{ !open ?
+               ('FEATURE.LABEL_MODE.HTML_TITLES.EXPAND' | translate) :
+               ('FEATURE.LABEL_MODE.HTML_TITLES.COLLAPSE' | translate)}}"
+   [ngClass]="!open ? 'fa-angle-down' : 'fa-angle-up'"
+   (click)="open = !open"
+></i>

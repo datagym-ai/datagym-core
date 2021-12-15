@@ -1,0 +1,5 @@
+<div class="mx-2">
+  <div class="col-12"
+       *ngIf="!values || values.length === 0">{{ 'FEATURE.LABEL_MODE.NO_VALUES_TO_SHOW' | translate }}</div>
+  <app-entry-value-item *ngFor="let value of values | groupSegmentations" [value]="value.item" [children]="value.children"></app-entry-value-item>
+</div>

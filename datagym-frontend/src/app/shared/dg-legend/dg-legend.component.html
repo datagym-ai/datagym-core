@@ -1,0 +1,35 @@
+<ngx-smart-modal #LegendModal [identifier]="modalId" [customClass]="customClass" (onAnyCloseEventFinished)="onClose()">
+
+  <div *ngIf="initialised" class="row py-4 reset-wrap-words">
+    <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12">
+      <div class="row">
+        <div class="col-10">
+          <h2 class="dg-primary-color">{{ conf.title | translate }}</h2>
+        </div>
+        <div class="col-1">
+          <i class="fas fa-info-circle dg-primary-color"></i>
+        </div>
+        <div class="col-12" *ngIf="conf.description">
+          {{ conf.description | translate }}
+        </div>
+      </div>
+      <div class="mt-4" *ngFor="let section of conf.sections">
+        <div class="row">
+          <div class="col-12 section-title">
+            <span class="dg-primary-color">{{ section.title | translate }}</span>
+          </div>
+        </div>
+        <div class="row section-row" *ngFor="let row of section.rows">
+          <div [ngClass]="section.rowLeftCol">
+            {{ row.left | translate: row.arg }}
+          </div>
+          <div [ngClass]="section.rowRightCol">
+            <i *ngIf="section.icon" class="{{ row.right }}"></i>
+            <span *ngIf="!section.icon">{{ row.right | translate: row.arg }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ngx-smart-modal>

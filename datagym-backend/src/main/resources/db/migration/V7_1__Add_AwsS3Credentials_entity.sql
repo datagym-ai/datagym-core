@@ -1,0 +1,2 @@
+create table aws_S3_credentials (id varchar(255) not null, access_key varchar(255) not null, bucket_name varchar(255) not null, bucket_region varchar(255) not null, last_error varchar(255), last_error_timestamp bigint, last_synchronized bigint, location_path varchar(255) not null, name varchar(255) not null, secret_key varchar(255) not null, dataset_id varchar(255) not null, primary key (id));
+alter table aws_S3_credentials add constraint fk_aws_credentials_dataset foreign key (dataset_id) references dataset (id);

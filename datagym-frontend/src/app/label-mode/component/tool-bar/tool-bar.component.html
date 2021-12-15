@@ -1,0 +1,58 @@
+<div class="col-12">
+  <div class="row no-gutters">
+    <div [ngClass]="isClassificationBarOpen ? 'col-6' : 'col-3'" class="aiseg-selection-container" [formGroup]="AISegTypeForm">
+      <div class="row no-gutters aiseg-selection">
+        <div class="col-1">
+          <!-- some whitespace -->
+        </div>
+        <div class="col-2">
+          <i class="aiseg-icon fas fa-brain fa-2x" aria-hidden="true"
+             (click)="onStartAiSeg()"
+             [title]="aiSegTitle | translate"
+             [ngClass]="allowAiSeg ? 'pointer' : 'not-allowed dg-lightgray'"></i>
+        </div>
+        <div class="col-8">
+          <ng-select formControlName="AiSegOption" [clearable]="false">
+            <ng-option *ngFor="let type of AisegTypes" [value]="type">
+              <i *ngIf="AiSegType.toIcon(type)" class="aiseg-icon" [ngClass]="AiSegType.toIcon(type)"></i>
+              {{ ('AISEG.SELECT.' + type) | translate }}
+            </ng-option>
+          </ng-select>
+        </div>
+      </div>
+    </div>
+    <div class="col-5" *ngIf="isClassificationBarOpen">
+      <!-- some whitespace -->
+    </div>
+    <div class="col-8" *ngIf="!isClassificationBarOpen">
+      <app-dg-slider
+        class="filter-slider"
+        [max]="2"
+        [(value)]="mediaStyleFilter.contrast"
+        [title]="'FEATURE.LABEL_MODE.IMAGE_FILTER.CONTRAST'"
+        [label]="'FEATURE.LABEL_MODE.IMAGE_FILTER.CONTRAST_LABEL'"
+      ></app-dg-slider>
+      <app-dg-slider
+        class="filter-slider"
+        [max]="2"
+        [(value)]="mediaStyleFilter.brightness"
+        [title]="'FEATURE.LABEL_MODE.IMAGE_FILTER.BRIGHTNESS'"
+        [label]="'FEATURE.LABEL_MODE.IMAGE_FILTER.BRIGHTNESS_LABEL'"
+      ></app-dg-slider>
+      <app-dg-slider
+        class="filter-slider"
+        [max]="2"
+        [(value)]="mediaStyleFilter.saturation"
+        [title]="'FEATURE.LABEL_MODE.IMAGE_FILTER.SATURATION'"
+        [label]="'FEATURE.LABEL_MODE.IMAGE_FILTER.SATURATION_LABEL'"
+      ></app-dg-slider>
+    </div>
+    <div class="col-1 toolbar-icons">
+      <div class="mt-3">
+        <app-info-modal class="d-inline-block" (click)="$event.stopPropagation()"></app-info-modal>
+
+        <app-help class="ml-3" link="/label-mode/what-is-the-label-mode" (click)="$event.stopPropagation()"></app-help>
+      </div>
+    </div>
+  </div>
+</div>

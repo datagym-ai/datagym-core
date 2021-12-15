@@ -1,0 +1,32 @@
+<small (click)="onOpenDialog()" [ngClass]="{
+  'dg-gray not-allowed': !configId || !isEmpty || isDirty,
+  'dg-primary-hover pointer': configId && isEmpty && !isDirty
+}" [title]="title">
+  {{'FEATURE.LABEL_CONFIG.LIST.BUTTON.IMPORT' | translate | uppercase }}
+  <i class="ml-2 fas fa-upload" aria-hidden="true"></i>
+</small>
+
+<ngx-smart-modal #ImportLabelConfigurationModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()"
+                 [dismissable]="true" [escapable]="true" [closable]="true">
+
+  <div class="row mt-4 mb-4 text-center">
+    <div class="col-12 font-weight-bold dg-primary-color">
+      {{ 'FEATURE.LABEL_CONFIG.DIALOGUE.IMPORT' | translate }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 text-center">
+      <app-file-upload
+        class="d-inline-block"
+        [multiple]="false"
+        [uploadUrl]="uploadUrl"
+        [acceptedTypes]="['application/json']"
+        [invalidFileTypesMessage]="'FEATURE.DATASET.DETAILS.IMAGES.EX_JSON_TYPE'"
+        (onUploadCompleted)="onUploadCompleted()"
+        (onFileCompleted)="onFileCompleted($event)"
+      ></app-file-upload>
+
+    </div>
+  </div>
+
+</ngx-smart-modal>

@@ -1,0 +1,34 @@
+<ngx-smart-modal #InfoModal [identifier]="modalId" [customClass]="customClass" (onAnyCloseEventFinished)="onClose()">
+
+  <div *ngIf="initialised" class="row py-4 reset-wrap-words">
+    <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-12">
+      <div class="row">
+        <div class="col-10">
+          <h2>{{ conf.title | translate }}</h2>
+        </div>
+        <div class="col-12" *ngIf="conf.description">
+          {{ conf.description | translate }}
+        </div>
+      </div>
+      <div class="mt-4" *ngFor="let section of conf.sections">
+        <div class="row">
+          <div class="col-12 section-title">
+            <span class="dg-primary-color">{{ section.title | translate }}</span>
+          </div>
+        </div>
+        <div class="row section-row" *ngFor="let row of section.rows">
+          <div [ngClass]="section.rowLeftCol" style="font-weight: bold">
+            {{ row.left | translate }}
+          </div>
+          <div [ngClass]="section.rowRightCol">
+            <div *ngIf="row.arg.toString().length>0">
+              <span><i style="font-size: small" class="{{row.arg}}"></i>{{ row.right }}</span>
+            </div>
+            <span *ngIf="row.arg.toString().length===0" class="flex-wrap text-break" >{{ row.right }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ngx-smart-modal>

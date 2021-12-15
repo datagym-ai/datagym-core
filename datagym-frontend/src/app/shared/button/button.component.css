@@ -1,0 +1,51 @@
+.app-button {
+  height: 36px;
+  font-size: 16px;
+  border: 1px solid #6300ED;
+  color: #6300ED;
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  padding: 10px 25px;
+  line-height: 1;
+}
+.app-button-full{
+  width: 100%;
+}
+.app-button:disabled {
+  border: 1px solid #C0C0C0;
+  color: #C0C0C0;
+  cursor: not-allowed;
+}
+
+.app-button-filled {
+  border: 1px solid #6300ED;
+  color: white;
+  background-color: #6300ED;
+}
+
+.app-button-filled:disabled {
+  border: 1px solid #C0C0C0;
+  color: #C0C0C0;
+  cursor: not-allowed;
+  background-color: white;
+}
+
+.app-button-warn {
+  border: 1px solid #C70F46;
+  color: white;
+  background-color: #C70F46;
+}
+
+.app-button-success {
+  border: 1px solid #6300ED;
+  color: white;
+  background-color: #6300ED;
+}
+
+.app-button:hover:not(:disabled), .app-button-filled:hover:not(:disabled) {
+  color: white;
+  background-color: #BB86FC;
+  border: 1px solid #BB86FC;
+}

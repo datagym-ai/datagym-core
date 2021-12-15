@@ -1,0 +1,25 @@
+<div [formGroup]="formGroup" >
+  <div [ngSwitch]="filterElement.controlType">
+
+    <input *ngSwitchCase="'textbox'" class="search-filter" [formControlName]="filterElement.key" [id]="filterElement.key"
+           autocomplete="{{ filterElementWithAutocomplete.autocomplete ? 'on' : 'off' }}"
+           [placeholder]="filterElement.placeholder || ''" (change)="elementChanged($event)" (keyup)="elementChanged($event)">
+
+    <div *ngSwitchCase="'dropdown'" class="select ba-search">
+      <select [id]="filterElement.key" [formControlName]="filterElement.key" (change)="elementChanged($event)">
+        <option *ngIf="filterElement.placeholder" value="" selected>{{filterElement.placeholder}}</option>
+        <option *ngFor="let opt of filterElementWithOptions.options" [value]="opt.key">{{opt.value}}</option>
+      </select>
+      <div class="select__arrow"></div>
+    </div>
+
+    <label *ngSwitchCase="'checkbox'" class="ba-search control control--checkbox text-nowrap">{{filterElement.placeholder || ''}}
+      <input type="checkbox" value="filterElement.value" (change)="elementChanged($event)"
+             [formControlName]="filterElement.key" [id]="filterElement.key" />
+      <div class="control__indicator "></div>
+    </label>
+
+    <input *ngSwitchCase="'blank'" value="filterElement.value" class="invisible" [formControlName]="filterElement.key" [id]="filterElement.key"><!-- emtpy -->
+
+  </div>
+</div>

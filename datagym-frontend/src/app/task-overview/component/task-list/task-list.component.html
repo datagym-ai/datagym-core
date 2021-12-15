@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col">
+    <h1>{{'FEATURE.TASK_OVERVIEW.TITLE' | translate}} <span>{{'FEATURE.TASK_OVERVIEW.TITLE_OVERVIEW' | translate}}</span></h1>
+  </div>
+</div>
+<div class="row whitespace-row"><!-- place of the action row --></div>
+<div class="row" *ngIf="tasks.length > 0 else requestsPending? fetchingTasks : noTasks">
+  <app-task-list-item *ngFor="let task of tasks" [task]="task" [hasAnyReviewTasks]="hasAnyReviewTasks" class="col- d-inline-block"></app-task-list-item>
+</div>
+<ng-template #noTasks>
+  <h2>{{ 'FEATURE.TASK_OVERVIEW.NOTHING_TO_SHOW' | translate }}</h2>
+  <hr>
+  <p>
+    <strong>{{ 'FEATURE.TASK_OVERVIEW.GET_STARTED.TITLE' | translate }}</strong>
+  </p>
+  <ol>
+    <li><app-help [link]="'project/create-a-new-project'"></app-help> {{ 'FEATURE.TASK_OVERVIEW.GET_STARTED.0' | translate }}</li>
+    <li><app-help [link]="'label-configuration/what-is-a-label-configuration'"></app-help> {{ 'FEATURE.TASK_OVERVIEW.GET_STARTED.1' | translate }}</li>
+    <li><app-help [link]="'dataset/create-a-new-dataset'"></app-help> {{ 'FEATURE.TASK_OVERVIEW.GET_STARTED.2' | translate }}</li>
+    <li><app-help [link]="'dataset/manage-images'"></app-help> {{ 'FEATURE.TASK_OVERVIEW.GET_STARTED.3' | translate }}</li>
+    <li><app-help [link]="'dataset/connect-to-a-project'"></app-help> {{ 'FEATURE.TASK_OVERVIEW.GET_STARTED.4' | translate }}</li>
+    <li><app-help [link]="'tasks/manage-tasks'"></app-help> {{ 'FEATURE.TASK_OVERVIEW.GET_STARTED.5' | translate }}</li>
+  </ol>
+  <hr>
+  <p>
+    <strong>{{ 'FEATURE.TASK_OVERVIEW.GET2KNOW.TITLE' | translate }}</strong>
+  </p>
+  <p>
+    {{ 'FEATURE.TASK_OVERVIEW.GET2KNOW.CREATE_DUMMY' | translate }}
+  </p>
+  <hr>
+  <p>
+    <app-button styling="primary" label="GLOBAL.READ_THE_DOCS" (onClick)="openDocumentation()"></app-button>
+  </p>
+</ng-template>
+<ng-template #fetchingTasks>
+  <h2>{{ 'FEATURE.TASK_OVERVIEW.FETCHING' | translate }}</h2>
+</ng-template>

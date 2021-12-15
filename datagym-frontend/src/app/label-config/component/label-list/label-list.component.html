@@ -1,0 +1,134 @@
+<div class="row fixed-buttons">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12 font-weight-bold mb-2">
+        {{'FEATURE.LABEL_CONFIG.LIST.TITLE.CONFIGURATION' | translate}}
+      </div>
+
+      <div class="col-12">
+        <app-button label="FEATURE.LABEL_CONFIG.LIST.BUTTON.DELETE_CONFIG"
+                    [css]="{'padding-left': '10px', 'padding-right': '10px'}"
+                    [disabled]="lcEntries.length === 0 || editModeGuardService.editMode"
+                    (onClick)="onDeleteConfig()"></app-button>
+
+        <app-button label="FEATURE.LABEL_CONFIG.LIST.BUTTON.SAVE"
+                    [css]="{'padding-left': '10px', 'padding-right': '10px'}"
+                    class="ml-2"
+                    styling="secondary"
+                    [disabled]="editModeGuardService.editMode || !labelConfigService.dirty"
+                    (onClick)="onSaveConfig()"></app-button>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-12 dg-light font-weight-lighter" *ngIf="mediaCounter > 0">
+        {{ 'FEATURE.LABEL_CONFIG.LIST.AFFECT_TASKS' | translate: {number: mediaCounter} }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row overflow-auto">
+  <div class="col">
+
+    <!-- geometry header -->
+    <div class="row">
+      <div class="col-12 font-weight-bold mb-2 mt-4">
+        {{'FEATURE.LABEL_CONFIG.LIST.TITLE.GEO' | translate}}
+      </div>
+      <div class="col-12 font-weight-lighter">
+        <small [ngClass]="{
+                 'dg-primary-hover pointer': !editModeGuardService.editMode,
+                 'not-allowed dg-lightgray': editModeGuardService.editMode
+               }"
+               (click)="createRootGeometry()">
+          {{'FEATURE.LABEL_CONFIG.LIST.BUTTON.ADD_GEOMETRY' | translate | uppercase }}
+          <i class="ml-2 fas fa-plus" aria-hidden="true"></i>
+        </small>
+      </div>
+    </div>
+
+    <!-- geometry items -->
+    <div class="row pt-4">
+      <div class="col-12">
+        <app-entry-item
+          *ngFor="let entry of lcEntries | sortLabelConfig | labelTypeFilter: LabelType.GEO;let i = index;"
+          class="app-entry-item"
+          [ngClass]="{'isFirst': i === 0,'withChildren': entry.children.length > 0}"
+          [entry]="entry" [nestingLevel]="0" [lcEntries]="lcEntries"
+          [mediaType]="mediaType"
+        ></app-entry-item>
+        <div class="no-app-entry-items dg-light">
+          <p>{{ 'FEATURE.LABEL_CONFIG.LIST.NO_ENTRY' | translate }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- classification header -->
+    <div class="row pt-5" *ngIf="!disableGlobalClassifications">
+      <div class="col-12 font-weight-bold mb-2">
+        {{'FEATURE.LABEL_CONFIG.LIST.TITLE.CLASS' | translate}}
+      </div>
+      <div class="col-12 font-weight-lighter "
+           [ngClass]="{
+             'dg-primary-hover pointer': !editModeGuardService.editMode,
+             'not-allowed dg-lightgray': editModeGuardService.editMode
+           }"
+           (click)="createMediaClassification()">
+        <small>
+          {{'FEATURE.LABEL_CONFIG.LIST.BUTTON.ADD_CLASSIFICATION' | translate | uppercase }}
+          <i class="ml-2 fas fa-plus" aria-hidden="true"></i>
+        </small>
+      </div>
+    </div>
+
+    <!-- classification items -->
+    <div class="row pt-4" *ngIf="!disableGlobalClassifications">
+      <div class="col col-12">
+        <app-entry-item
+          *ngFor="let entry of lcEntries | sortLabelConfig | labelTypeFilter: LabelType.CLASSIFICATION;let i = index;"
+          class="app-entry-item"
+          [ngClass]="{'isFirst': i === 0,'withChildren': entry.children.length > 0}"
+          [entry]="entry" [nestingLevel]="0" [lcEntries]="lcEntries"
+        ></app-entry-item>
+        <div class="no-app-entry-items dg-light">
+          <p>{{ 'FEATURE.LABEL_CONFIG.LIST.NO_ENTRY' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- import & export buttons -->
+<div class="row mt-4 mb-4" *ngIf="!editModeGuardService.editMode">
+
+  <!-- export -->
+  <div class="col-12 font-weight-bold mb-2">
+    {{'FEATURE.LABEL_CONFIG.LIST.TITLE.CONFIGURATION_ACTIONS' | translate}}
+  </div>
+  <div class="col-12 font-weight-lighter">
+    <small (click)="onExport()" [ngClass]="{
+      'dg-gray not-allowed': editModeGuardService.editMode || labelConfigService.dirty,
+      'dg-primary-hover pointer': !editModeGuardService.editMode && !labelConfigService.dirty
+    }">
+      {{'FEATURE.LABEL_CONFIG.LIST.BUTTON.EXPORT' | translate | uppercase }}
+      <i class="ml-2 fas fa-download" aria-hidden="true"></i>
+    </small>
+
+    <app-import-configuration
+      *ngIf="!disableImport"
+      class="ml-4"
+      [isEmpty]="lcEntries.length === 0"
+      [isDirty]="editModeGuardService.editMode || labelConfigService.dirty"
+      [configId]="id"
+      [title]="disableImport ? ('FEATURE.LABEL_CONFIG.LIST.LABEL.IMPORT' | translate) : ''"
+    ></app-import-configuration>
+  </div>
+  <div class="col-12 font-weight-lighter dg-light pt-4">
+    <p>{{ 'FEATURE.LABEL_CONFIG.LIST.LABEL.EXPORT' | translate }}</p>
+    <p *ngIf="!disableImport">{{ 'FEATURE.LABEL_CONFIG.LIST.LABEL.IMPORT' | translate }}</p>
+  </div>
+
+</div>
+
+<app-create-label-modal></app-create-label-modal>
+<app-move-tasks-modal></app-move-tasks-modal>

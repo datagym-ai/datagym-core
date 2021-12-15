@@ -1,0 +1,29 @@
+#searchBar {
+  height: 40px;
+  width: calc(100% - 2em);
+  border: none;
+  padding: 0;
+  outline: none;
+  font-size: 16px;
+  color: #17142B;
+}
+
+.search-bar {
+  height: 42px;
+  max-width: 485px;
+  border: 1px solid #000000;
+  opacity: 0.5;
+}
+
+.search-bar i {
+  text-align: center;
+  width: 2em;
+}
+
+label.hint {
+  margin-top: 5px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: #000000;
+  opacity: 0.5;
+}

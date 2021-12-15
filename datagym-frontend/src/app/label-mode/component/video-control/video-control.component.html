@@ -1,0 +1,102 @@
+<div class="d-flex h-100 vw-100" tabindex="0">
+  <div class="vw-100">
+
+    <div class="row gutter-box header-line">
+      <div class="col py-2 text-center frame-number"
+           *ngFor="let frameLabel of frameLabels"
+           [ngClass]="frameLabel.frameClasses">
+
+        <span (click)="videoController.seekFrame(frameLabel.frameNumberOffset)"
+          (mouseover)="hoveredNumberOffset = frameLabel.frameNumberOffset"
+          (mouseout)="hoveredNumberOffset = undefined">
+
+          {{ frameLabel.label }}
+        </span>
+      </div>
+    </div>
+
+    <div class="row gutter-box no-gutters frame-height">
+      <div class="bar-box col-12 min-h-100" #frameBox>
+        <div class="no-gutters w-100 h-100 d-flex position-relative">
+          <div class="frame h-100"
+               [ngClass]="{pointer: bar.hasPointer}"
+               *ngFor="let bar of frameBars"
+               (click)="videoController.seekFrame(bar.offset)">
+            <div class="frame-bar h-100" [ngClass]="bar.barClasses"></div>
+          </div>
+          <svg id="video-line-layer" #svgLineLayer class="h-100 w-100 position-absolute"></svg>
+        </div>
+      </div>
+      <app-context-menu></app-context-menu>
+    </div>
+
+    <div class="row gutter-box">
+
+      <div class="col video-controller">
+
+        <div class="row no-gutters">
+          <div class="col">
+            <app-action-icon class="action-icon" [icon]="fastBackward.icon"
+                             [active]="fastBackward.frameSkipPossible"
+                             (onClick)="videoController.seekFrame(fastBackward.offset)"></app-action-icon>
+          </div>
+          <div class="col">
+            <!-- backwards: -1 frame -->
+            <app-action-icon class="action-icon" [icon]="backward.icon"
+                             [active]="backward.frameSkipPossible"
+                             (onClick)="videoController.seekFrame(backward.offset)"></app-action-icon>
+          </div>
+          <div class="col play-pause">
+
+            <!-- play / pause -->
+            <i class="dg-primary-hover pointer fas fa-pause-circle" *ngIf="videoController.isPlaying"
+               (click)="videoController.isPlaying = false"></i>
+            <i class="dg-primary-hover pointer fas fa-play-circle" *ngIf="!videoController.isPlaying"
+               (click)="videoController.isPlaying = true"></i>
+
+          </div>
+          <div class="col">
+
+            <!-- forward: -1 frame -->
+            <app-action-icon class="action-icon" [icon]="forward.icon"
+                             [active]="forward.frameSkipPossible"
+                             (onClick)="videoController.seekFrame(forward.offset)"></app-action-icon>
+          </div>
+          <div class="col">
+
+            <!-- fast forward: 10 (videoController.skipFrameCounter) frames -->
+            <app-action-icon class="action-icon" [icon]="fastForward.icon"
+                             [active]="fastForward.frameSkipPossible"
+                             (onClick)="videoController.seekFrame(fastForward.offset)"></app-action-icon>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col mx-2 video-slider">
+        <app-dg-slider
+          class="filter-slider"
+          [max]="videoController.totalFrames"
+          [(value)]="videoController.currentFrameNumber"
+          [title]=""
+          [label]=""
+          [hasResetButton]="false"
+        ></app-dg-slider>
+      </div>
+
+      <div class="col col-10em text-right video-meta">
+
+        <app-video-setting-modal></app-video-setting-modal>
+
+        <i class="ml-2 fas fa-clock"></i>
+
+        <span class="ml-2">
+          {{ videoController.currentTime | seconds2time }}
+          /
+          {{ videoController.duration | seconds2time }}
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>

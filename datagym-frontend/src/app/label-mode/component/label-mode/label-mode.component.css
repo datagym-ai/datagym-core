@@ -1,0 +1,188 @@
+
+.workspace-row {
+  height: calc(100% - 57px);
+}
+
+.panel {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar{
+  padding: 0 0 0 0;
+  height: 57px;
+}
+
+/* the icons on the right side */
+.toolbar-icons {
+  vertical-align: center;
+}
+
+.workbench {
+  width: calc(100vw - 300px);
+  max-width: calc(100vw - 300px);
+}
+.classification-panel + .workbench {
+  width: calc(100vw - 600px);
+  max-width: calc(100vw - 600px);
+}
+
+.label-mode-container {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.lists-panel-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.lists-panel {
+  display: flex;
+  flex: 1 1 0;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  user-select: text;
+  flex-direction: column;
+}
+
+.control-panel {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.active-control {
+  height: 36px;
+  min-height: 36px;
+}
+
+.list1 {
+  flex: 0 0 auto;
+  position: relative;
+  height: 50%;
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.list2 {
+  display: flex;
+  flex: 0 0 auto;
+  max-height: 50%;
+  flex-direction: column;
+}
+
+.block-list,
+.scrollable-list {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  /*overflow: auto;*/
+  width: 100%;
+}
+.scrollable-list {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.row>.scrollable-list {
+  margin-left: 0;
+  margin-right: 0;
+}
+.scrollable-list.scroll-y {
+  overflow-y: visible;
+}
+
+.scroll-y {
+  overflow-y: scroll;
+}
+
+.home-link {
+  cursor: pointer;
+  outline: none;
+  margin-left: 0.9em
+}
+
+.classification-button {
+  padding: .5rem 0;
+}
+
+.global-classifications {
+  border: 1px solid #C0C0C0;
+  padding: .5em 1em;
+  border-radius: 2px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+.global-classifications:hover {
+  background-color: #fbfbfb;
+}
+
+.global-classifications-error {
+  border-color: #C70F46;
+}
+
+.no-global-classifications {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loadingAnimation {
+  background-color: #fbfbfb;
+  z-index: 10;
+}
+
+.loadingMedia {
+  max-width: 25%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guide-entry {
+  background-color: rgba(0, 0, 0, .45);
+  z-index: 5;
+}
+.guide-box {
+  background: white;
+  position: relative;
+  width: 450px;
+  padding-right:15px;
+  padding-left:15px;
+  margin: 0 auto;
+  border-radius: 15px;
+
+}
+.guide-content h3 {
+  font-weight: bold;
+}
+.guide-image {
+  max-width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 15px;
+}
+
+.close-guide {
+  color: #666666;
+}
+.close-guide:hover {
+  color: lightgray;
+}
+.value-list .navigation-header {
+  margin-bottom: .5em;
+}

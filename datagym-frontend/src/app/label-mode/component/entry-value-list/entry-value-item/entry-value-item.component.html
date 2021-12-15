@@ -1,0 +1,35 @@
+
+<div class="row align-items-center pointer" [ngClass]="colorClass">
+
+  <div class="ml-4" *ngIf="!isRoot">
+    <!-- Whitespace for nested geometries. -->
+  </div>
+
+  <div class="ml-3 pointer entry-value-name wrap-words list-entry"
+       [ngClass]="{'col-4': isRoot, 'col-3': !isRoot}" [title]="name" (click)="onClick()">{{name}}</div>
+
+  <div *ngIf="!hasComment" class="col-1"></div>
+
+  <i class="col-1 pointer" [ngClass]="{'dg-warning-color fas fa-exclamation-triangle' : isInvalidFlag}" aria-hidden="true"></i>
+
+  <i *ngIf="hasComment" title="{{value.comment}}" class="col-1 pointer list-entry" [ngClass]="{'dg-warning-color fas fa-comment-alt' : hasComment}"
+     (click)="onEditComment($event)"
+     aria-hidden="true"></i>
+
+  <i class="col-1 fas fa-trash pointer dg-primary-hover list-entry" aria-hidden="true"
+     title="{{'FEATURE.LABEL_MODE.HTML_TITLES.DELETE_VALUE' | translate}}" (click)="onDeleteValue()"></i>
+
+  <i class="fas col-1 pointer dg-primary-hover list-entry" [ngClass]="isHidden ? 'fa-eye-slash' : 'fa-eye'" aria-hidden="true"
+     title="{{ (isHidden ? 'FEATURE.LABEL_MODE.HTML_TITLES.SHOW' : 'FEATURE.LABEL_MODE.HTML_TITLES.HIDE') | translate }}"
+     (click)="toggleHideEntry()"></i>
+
+  <app-dg-expand-collapse class="col-1"
+    [show]="isRoot && hasNestedGeometries"
+    [(open)]="showNestedGeometries"></app-dg-expand-collapse>
+
+</div>
+
+<div *ngIf="showNestedGeometries">
+  <app-entry-value-item *ngFor="let child of children" [value]="child"></app-entry-value-item>
+</div>
+

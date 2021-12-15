@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-11">
+    <form [formGroup]="createAPITokenForm" (ngSubmit)="onSubmit()">
+      <div class="row p-3">
+        <div class="col-12">
+          <h2>{{'FEATURE.API_TOKEN.CREATE.TITLE' | translate}}</h2>
+        </div>
+      </div>
+      <div class="row p-3">
+        <div class="col-12 col-lg-12">
+          <label class="text-label">
+            <h3>{{'FEATURE.API_TOKEN.CREATE.LABEL.OWNER' | translate}}
+              <span class="required-field">*</span>
+              <i class="fas fa-edit edit-icon" aria-hidden="true"></i>
+            </h3>
+          </label>
+        </div>
+        <div class="col-lg-6">
+          <app-dg-select-owner controlName="apiTokenOwner"
+                               hint="FEATURE.API_TOKEN.CREATE.HINT.OWNER"></app-dg-select-owner>
+        </div>
+      </div>
+      <div class="row p-3">
+        <div class="col-lg-6">
+          <app-textfield #apiTokenNameField
+            formControlName="apiTokenName"
+            label="FEATURE.API_TOKEN.CREATE.LABEL.NAME"
+            required="true" editable="true"
+            hint="FEATURE.API_TOKEN.CREATE.HINT.NAME"></app-textfield>
+        </div>
+      </div>
+      <hr>
+      <div class="row p-3">
+        <div class="col-lg-10">
+          <app-button class="mr-3" type="submit" [disabled]="!createAPITokenForm.valid"
+                      label="FEATURE.API_TOKEN.CREATE.BUTTON.CREATE"></app-button>
+          <app-button label="GLOBAL.CANCEL"
+                      styling="warn"
+                      (onClick)="onCancel()"></app-button>
+        </div>
+        <div class="col-lg-2">
+          <p class="required-hint"><span class="required-field">*</span>{{'GEN.REQUIRED_FIELD' | translate}}</p>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-1"></div>
+</div>

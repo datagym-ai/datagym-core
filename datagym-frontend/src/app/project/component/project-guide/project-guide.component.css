@@ -1,0 +1,23 @@
+.guide-completed {
+  color: #6300ED;
+}
+
+.guide-pending {
+  color: #CC185A;
+}
+
+.guide-entry {
+  padding-right: 8px;
+}
+
+.guide-entry i {
+  padding-right: 8px;
+}
+
+.guide-entry app-help {
+  padding-right: 8px;
+}
+
+.guide-unavailable {
+  color: #707070;
+}

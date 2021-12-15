@@ -1,0 +1,15 @@
+<label class="text-label">
+  <span *ngIf="labelText" [ngClass]="{small: small}">{{labelText | translate}}<span class="required-field" *ngIf="requiredField">*</span>
+  <i class="fas fa-edit edit-icon" *ngIf="editable" aria-hidden="true"></i><br></span>
+  <input #input class="text-field" [type]="type" [placeholder]="placeholderText | translate"
+         [title]="titleText | translate"
+         [ngClass]="{invalid: this.hasErrors,touched: this.ngControl.touched,'not-allowed': !this.editable}"
+         [min]="min" [max]="max"
+         [(ngModel)]="internalModel" [autofocus]="autofocus" (input)="onChange($event.target.value);"
+         (blur)="onTouched()" autocomplete="{{ autocomplete ? 'on' : 'off' }}" [disabled]="!editable">
+</label>
+<app-dg-input-errors
+  [show]="ngControl.dirty && ngControl.invalid"
+  [errors]="errors"
+  [errorHandlers]="errorHandlers"></app-dg-input-errors>
+<p *ngIf="hintText" class="hint">{{hintText | translate}}</p>

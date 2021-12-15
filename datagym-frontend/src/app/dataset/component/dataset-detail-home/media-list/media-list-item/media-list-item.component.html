@@ -1,0 +1,48 @@
+<div class="col-xs text-center"
+     style="width:50px" *ngIf="invalidMediaCount>0">
+  <em class="fas fa-exclamation-triangle pointer invalid-media-triangle"
+      (click)="onDelete.emit()"
+      *ngIf="!media.valid"
+      [title]="mediaService.getMediaInvalidMessage(media.reason) | translate"
+      [ngClass]="{'dg-warn-color': !media.valid}"></em>
+</div>
+<div class="col-xs text-center" style="width:50px">
+  <label for="checked"></label>
+  <input #checkbox id="checked" type="checkbox" [value]="checked" (change)="onSelected.emit()">
+</div><!--
+<div class="col-1" [ngClass]="{'dg-lightgray': !media.valid}">
+  {{ index + 1 }}
+</div>-->
+<div class="col"
+     [ngClass]="{'dg-lightgray': !media.valid}"
+     [title]="media.mediaName">
+  {{ media.mediaName | lengthFilter: 50 }}
+</div>
+
+<div *ngIf="media.mediaSourceType === MediaType.AWS_S3 && isVideo" class="col col-7em d-none d-xxl-block">
+  {{ video.duration | number: '1.0-1'}} s
+</div>
+
+<div class="col col-12em" [ngClass]="{'dg-lightgray': !media.valid}">
+  <i class="{{ MediaType.toIcon(this.media.mediaSourceType) }} dg-primary-color"
+     [ngClass]="{'dg-lightgray': !media.valid}"></i>
+  {{ MediaType.toName(this.media.mediaSourceType) }}
+</div>
+
+<div class="col col-7em d-none d-xxl-block">{{ connectedProjects }}</div>
+
+<div class="col col-10em col-xxl-12em" [ngClass]="{'dg-lightgray': !media.valid}">
+  {{ media.timestamp | date:('FEATURE.DATASET.MEDIA_LIST.DATE_FORMAT' | translate) }}
+</div>
+<div class="col col-10em col-xxl-12em">
+  <!--  Actions stay here-->
+  <i class="button-padding-easier-click fas fa-share mr-3"
+     (click)=" media.valid ? onShowMedia() : null"
+     [ngClass]="{'dg-lightgray': !media.valid, 'dg-primary-hover pointer': media.valid}"
+     title="{{ 'FEATURE.DATASET.MEDIA_LIST.TITLE.OPEN_IMAGE' | translate }}" aria-hidden="true"></i>
+  <i *ngIf="isAdmin" class="fas fa-trash button-padding-easier-click"
+     [ngClass]="{'dg-primary-hover pointer': !dummy, 'dg-lightgray not-allowed': dummy}"
+     title="{{ (dummy ? 'FEATURE.DATASET.DUMMY' : 'FEATURE.DATASET.MEDIA_LIST.TITLE.DELETE_IMAGE') | translate }}"
+     (click)="onDelete.emit()"
+     aria-hidden="true"></i>
+</div>

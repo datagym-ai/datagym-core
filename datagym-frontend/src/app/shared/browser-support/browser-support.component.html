@@ -1,0 +1,9 @@
+<div #alert class="row">
+  <div *ngIf="displayAlert" class="alert alert-warning browser-support alert-dismissible">
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <i class="fas fa-exclamation-triangle"></i> &nbsp;
+    <span [innerHTML]="'GLOBAL.BROWSER_SUPPORT' | translate: {browser: browserName}"></span>
+  </div>
+</div>

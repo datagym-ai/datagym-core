@@ -1,0 +1,1 @@
+alter table lc_entry_value add column label_source ENUM('AI_PRE_LABEL','API_UPLOAD','USER') default 'USER' not null;

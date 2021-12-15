@@ -1,0 +1,24 @@
+
+<div class="row">
+  <div class="col-12">
+    <h1>{{'FEATURE.SYSTEM.TITLE' | translate}}</h1>
+  </div>
+</div>
+<div class="row dg-table-entry dg-table-entry-unclickable">
+  <div class="col-3">{{'FEATURE.SYSTEM.APP' | translate}}</div>
+  <div class="col-9">
+    {{ systemInfo.app?.name }} - {{ systemInfo.app?.version }} - {{ systemInfo.app?.date }}
+  </div>
+</div>
+<div class="row dg-table-entry dg-table-entry-unclickable">
+  <div class="col-3">{{'FEATURE.SYSTEM.SERVER' | translate}}</div>
+  <div class="col-9">
+    {{systemInfo.server?.os}}<br/>Java {{systemInfo.server?.java}}<br/>{{systemInfo.server?.env}}
+  </div>
+</div>
+<div class="row dg-table-entry dg-table-entry-unclickable">
+  <div class="col-3">{{'FEATURE.SYSTEM.TIME_DATE' | translate}}</div>
+  <div class="col-9">
+    Local: {{systemInfo.server?.timeLocal}}<br/>UTC: {{systemInfo.server?.timeUtc}}
+  </div>
+</div>

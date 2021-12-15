@@ -1,0 +1,55 @@
+.nav-bar-headline {
+  text-transform: uppercase;
+  font-size: 0.9em;
+  display: block;
+  border-bottom: 1px solid white;
+  margin: 20px 20px 0;
+  text-align: left;
+}
+
+/* Add some whitespace before each nav-group */
+.nav-group {
+  margin-top: 3em;
+}
+/* Expect the first one */
+.nav-group:first-of-type {
+  margin-top: 20px;
+}
+
+.nav-item {
+  cursor: pointer;
+  width: 240px;
+}
+
+.nav-item > .row{
+  outline: none;
+}
+
+.nav-item-folded{
+  width: 70px;
+}
+
+.fold-icon {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+i {
+  font-size: 1.2em;
+}
+
+.nav-icon {
+  padding-left: 9px;
+  vertical-align: sub;
+}
+
+.nav-item-active {
+  background-color: #946BCE;
+}
+
+#datagym-logo{
+  transition: height 1s;
+  margin: 0 auto;
+  padding-right: 2em;
+  display: block;
+}

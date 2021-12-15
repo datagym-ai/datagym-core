@@ -1,0 +1,770 @@
+@import 'assets/css/bootstrap/bootstrap.min.css';
+@import '~ngx-smart-modal/ngx-smart-modal.css';
+@import '../node_modules/svg.select.js/dist/svg.select.min.css';
+/* Import custom created icons */
+@import 'assets/fonts/style.css';
+/* Import style for ng-select library */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+/**
+Global settings
+ */
+html, body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 1.7em;
+  color: #6300ED;
+}
+
+h1 span{
+  color: black;
+}
+
+h2 {
+  font-size: 1.3em;
+}
+
+h3 {
+  font-size: 1em;
+}
+.title {
+  font: 20px Roboto M, sans-serif;
+}
+.min-h-100 {
+  min-height: 100%;
+}
+.h100p {
+  height: 100%;
+}
+/**
+  Global colors
+ */
+.dg-primary-color {
+  color: #6300ED;
+}
+.dg-warn-color {
+  color: #C70F46;
+}
+
+.dg-primary-hover {
+  color: #6300ED;
+}
+.dg-primary-hover:hover {
+  color: #BB86FC;
+}
+
+.dg-light {
+  color: #C0C0C0;
+}
+.dg-lightgray {
+  color: lightgray;
+}
+.dg-gray {
+  color: #555555;
+}
+.gray {
+  color: #666666;
+}
+
+/**
+  Global helpers
+ */
+.pointer {
+  cursor: pointer;
+}
+.not-allowed {
+  cursor: not-allowed;
+}
+strong {
+  font-weight: bold;
+}
+/* bootstrap uses 15px margin or padding on some elements */
+.invert-row-margin {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+/**
+ * Some bootstrap columns with fixed width. Use only in combination
+ * with the .col class and at least on column with only .col class
+ * to fit the space.
+ */
+.col-7em {
+  -ms-flex: 0 0 7em;
+  flex: 0 0 7em;
+  max-width: 7em;
+}
+
+.col-10em {
+  -ms-flex: 0 0 10em;
+  flex: 0 0 10em;
+  max-width: 10em;
+}
+
+.col-11em {
+  -ms-flex: 0 0 11em;
+  flex: 0 0 11em;
+  max-width: 11em;
+}
+
+.col-12em {
+  -ms-flex: 0 0 12em;
+  flex: 0 0 12em;
+  max-width: 12em;
+}
+
+/** bootstrap xl **/
+@media (min-width: 1200px) {
+  .col-xl-7em {
+    -ms-flex: 0 0 7em;
+    flex: 0 0 7em;
+    max-width: 7em;
+  }
+
+  .col-xl-10em {
+    -ms-flex: 0 0 10em;
+    flex: 0 0 10em;
+    max-width: 10em;
+  }
+
+  .col-xl-12em {
+    -ms-flex: 0 0 12em;
+    flex: 0 0 12em;
+    max-width: 12em;
+  }
+}
+
+/** data gym xxl **/
+@media (min-width: 1520px) {
+  .col-xxl-7em {
+    -ms-flex: 0 0 7em;
+    flex: 0 0 7em;
+    max-width: 7em;
+  }
+
+  .col-xxl-10em {
+    -ms-flex: 0 0 10em;
+    flex: 0 0 10em;
+    max-width: 10em;
+  }
+
+  .col-xxl-12em {
+    -ms-flex: 0 0 12em;
+    flex: 0 0 12em;
+    max-width: 12em;
+  }
+
+  .d-xxl-block{
+    display:block!important;
+  }
+}
+
+.right-border {
+  border-right: 1px solid #E4E4E4;
+}
+.bottom-border {
+  border-bottom: 1px solid #C0C0C0;
+}
+.top-border {
+  border-top: 1px solid #C0C0C0;
+}
+
+/**
+ * center this child vertically
+ */
+.dg-center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/**
+ * Make the tabs layout in the full application available
+ */
+.tab-item {
+  outline: none;
+  cursor: pointer;
+}
+.tab-active {
+  border-bottom: 4px solid #6300ED;
+  color: #6300ED;
+}
+.tab-item:hover {
+  border-bottom: 4px solid #6300ED;
+}
+
+
+.button-padding-easier-click{
+  padding: 5px 5px 5px 5px;
+}
+
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.word-break {
+  word-break: break-word;
+}
+
+.dg-table-entry div,
+.wrap-words {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.page-title-wrapper {
+  min-height: calc(15vh - 30px);
+  padding-bottom: 1rem;
+}
+
+.small-icon {
+  font-size: 15px;
+}
+
+hr.divider {
+  margin: 0 1em;
+}
+
+/**
+  Global table
+*/
+.dg-table-header {
+  /* don't change the font size for columns with fixed width */
+  /*font-size: smaller;*/
+  font-weight: lighter;
+  padding: 5px 0;
+  border-bottom: 2px solid #C0C0C0;
+  /* vertical align for multi row headers */
+  -ms-flex-align: center !important;
+  align-items: center !important;
+}
+
+.dg-table-entry {
+  cursor: pointer;
+  border-bottom: 1px solid #C0C0C0;
+  padding: 15px 0;
+  outline: none;
+}
+
+.dg-table-entry:hover {
+  background-color: lightgrey;
+}
+.dg-table-entry:hover .dg-lightgray {
+  color: white;
+}
+
+.dg-table-entry-unclickable {
+  cursor: default;
+}
+
+.dg-table-entry-unclickable:hover {
+  background-color: unset;
+}
+.dg-table-entry-unclickable:hover .dg-lightgray {
+  color: lightgray;
+}
+/* Add a hidden row to indicate the table is empty */
+.dg-table-empty-result {
+  display: none;
+}
+/* and display it only if nothing is between .dg-table-header & .dg-table-empty */
+.dg-table-header + .dg-table-empty-result {
+  display: flex;
+}
+
+/* Override styles for ng-select */
+.ng-select .ng-select-container {
+  border-radius: 0;
+  max-width: 485px;
+}
+
+.ng-dropdown-panel {
+  max-width: 485px;
+}
+
+.ng-select.ng-select-single .ng-select-container {
+  height: 40px;
+}
+
+.ng-option-label i {
+  margin-right: 1em;
+}
+
+.ng-value-label i {
+  margin-right: 1em;
+}
+
+ng-select.ng-invalid.ng-touched .ng-select-container {
+  border-color: #C70F46;
+}
+
+/**
+ * Fix button-component of type submit in firefox.
+ */
+[type="button"], [type="reset"], [type="submit"], button {
+  appearance: none;
+}
+
+p.hint {
+  margin-top: 5px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: #000000;
+  opacity: 0.5;
+}
+
+p.hintWarning {
+  margin-top: 5px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: #C70F46;
+}
+p.required-hint {
+  margin-top: 5px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: #000000;
+  display: inline-block;
+}
+
+span.required-field {
+  color: #6300ED;
+  font-size: 20px;
+}
+
+label.button-label {
+  font-size: 20px;
+  color: #17142B;
+  display: block;
+}
+
+textarea {
+  max-width: 100%;
+}
+textarea.full-desc {
+  width: 100%;
+  max-width: 485px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  padding: 8px;
+  outline-color: #000000;
+  white-space: pre-wrap;
+}
+
+i.edit-icon {
+  color: #6300ED;
+  padding-left: 23px;
+}
+
+.search-filter {
+  width: 100%;
+  height: 40px;
+  border-radius: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #ddd;
+}
+.search-filter:focus {
+  outline: none;
+}
+.search-filter.ng-dirty.ng-invalid {
+  border-color: #C70F46;
+}
+
+.error-text,
+.filter-reset{
+  color: #C70F46;
+}
+.error-messages{
+  position: relative;
+}
+.error-message{
+  top: 0.2rem;
+  left: 0;
+  width: 100%;
+  max-width: 485px;
+  color: white;
+  background-color: #C70F46;
+  outline-color: #C70F46;
+  border: 1px solid #C70F46;
+  font-size: 16px;
+  padding: 8px;
+  z-index: 150;
+}
+
+/**
+ * Project & Dataset list
+ */
+.action-icon {
+  color: #6300ED;
+  font-size: 20px;
+}
+
+.action-row {
+  outline: none;
+  /*margin-left: -30px;*/
+  margin-right: -30px;
+}
+
+/**
+ * Settings pages
+ */
+/*.edit-form {*/
+/*  border: 1px solid #C0C0C0;*/
+/*}*/
+/*.danger-zone {*/
+/*  border: 1px solid #C0C0C0;*/
+/*}*/
+/*.danger-zone span {*/
+/*  margin-right: 1em;*/
+/*}*/
+.danger-zone .dg-warn-color {
+  color: #C70F46;
+}
+
+/* ======================================= */
+/* = Loading animation for upload modals = */
+/* ======================================= */
+.loading-spinner {
+  font-size: 4em;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============ */
+/* = Checkbox = */
+/* ============ */
+
+td .control {
+  padding: 4px 0 0 50px;
+}
+
+td .control input {
+  position: inherit;
+}
+
+.control-outer {
+  display: flex;
+  height: 35px;
+}
+
+.control {
+  position: relative;
+  padding: 4px 30px 0 35px;
+  cursor: pointer;
+}
+
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.control__indicator {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #666666;
+  background: transparent;
+}
+
+.expansion-panel-checkbox .control__indicator {
+  top: -10px;
+}
+
+/* Hover and focus states */
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+  border-color: #6300ED;
+}
+
+/* Checked state */
+.control input:checked ~ .control__indicator {
+  border-color: #6300ED;
+  color: #6300ED;
+}
+
+/* Hover state whilst checked */
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+  border-color: #6300ED;
+  color: #6300ED;
+}
+
+/* Disabled state */
+.control input:disabled ~ .control__indicator {
+  pointer-events: none;
+  opacity: .6;
+  background: #e6e6e6;
+}
+
+/* Check mark */
+.control__indicator:after {
+  position: absolute;
+  display: none;
+  content: '';
+}
+
+/* Show check mark */
+.control input:checked ~ .control__indicator:after {
+  display: block;
+}
+
+/* Checkbox tick */
+.control--checkbox .control__indicator:after {
+  top: 1px;
+  left: 5px;
+  width: 6px;
+  height: 12px;
+  transform: rotate(45deg);
+  border: solid #6300ED;
+  border-width: 0 3px 3px 0;
+}
+
+/* Disabled tick colour */
+.control--checkbox input:disabled ~ .control__indicator:after {
+  border-color: #7b7b7b;
+}
+
+/* ================ */
+/* = Radio button = */
+/* ================ */
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label:before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  padding: 3px;
+  margin-right: 5px;
+  border: 1px solid grey;
+
+  border-radius: 50%;
+}
+
+input[type="radio"]:checked + label:before {
+  background-clip: content-box;
+  background-color: #6300ED;
+  border: 1px solid #6300ED;
+}
+
+/* appearance of checked radiobutton */
+input[type="radio"]:disabled:checked + label:before {
+  background-clip: content-box;
+  background-color: darkgrey;
+  border: 1px solid darkgrey;
+  cursor: not-allowed;
+}
+
+/* Radio button inner circle */
+.control--radio .control__indicator:after {
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #6300ED;
+}
+
+/* Disabled circle colour */
+.control--radio input:disabled ~ .control__indicator:after {
+  background: #7b7b7b;
+}
+
+.control--radio .control__indicator {
+  border-radius: 50%;
+}
+
+/* ============== */
+/* = Select box = */
+/* ============== */
+.select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select select {
+  line-height: initial;
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px 10px 16px;
+  cursor: pointer;
+  color: inherit;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  outline: 0;
+  background: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select select::-ms-expand {
+  display: none;
+}
+
+.select select:hover,
+.select select:focus {
+  background: #fff;
+}
+
+.select select:disabled {
+  pointer-events: none;
+  opacity: .5;
+}
+
+.select__arrow {
+  position: absolute;
+  top: 16px;
+  right: 12px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-width: 8px 5px 0 5px;
+  border-style: solid;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+
+.select select:hover ~ .select__arrow,
+.select select:focus ~ .select__arrow {
+  border-top-color: #000;
+}
+
+.select select:disabled ~ .select__arrow {
+  border-top-color: #ccc;
+}
+
+/* ================== */
+/* = Shortcut       = */
+/* = label in label = */
+/* = configuration  = */
+/* ================== */
+
+.shortcut-selector {
+  border-radius: 1px;
+  border: 1px solid black;
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/** display notification over modal */
+.simple-notification-wrapper {
+  z-index: 1500!important;
+}
+
+/** set the max width of info modal in label mode to 650px **/
+.nsm-dialog-width650px {
+  max-width: 650px;
+}
+
+
+/* ===================== */
+/* =    ColorPicker    = */
+/* = within label mode = */
+/* ===================== */
+.color-picker .ng-value,
+.color-picker .ng-select-container .ng-value-container {
+  display: block;
+  width: 100%;
+}
+
+.color-picker .ng-value {
+  padding-right: .75em;
+}
+
+/* Override style of pagination */
+.ngx-pagination .current {
+  background: #6300ED !important;
+}
+
+/**
+ * Context menu used within the svg.workspace component
+ * and the video value lines.
+ */
+.contextmenu {
+  position: absolute;
+  background: white;
+  width: 250px;
+  height: auto;
+  z-index: 100;
+  cursor: default;
+}
+.contextmenu .divider {
+  border-bottom: 1px solid #C0C0C0;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.contextmenu .row.section {
+  font-weight: bold;
+  background: white!important;
+  pointer-events: none;
+}
+.contextmenu .row.menu-entry-header,
+.contextmenu .row.menu-entry-header:hover {
+  font-size: 1.1em;
+  font-weight: bold;
+  padding-left: .65em;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background: white!important;
+}
+
+.contextmenu .section .icon,
+.contextmenu .menu-entry-header span,
+.contextmenu .menu-entry-header .close-menu {
+  color: #666666;
+}
+.contextmenu .menu-entry-header .close-menu:hover {
+  color: lightgray;
+}
+
+.contextmenu .contextmenu .col-,
+.contextmenu .contextmenu .col {
+  padding: 4px 5px;
+}
+
+.contextmenu .col-.icon,
+.contextmenu .col-.placeholder {
+  width: 2.5em;
+  text-align: center;
+}
+
+.contextmenu .menu-entry-header .col-.icon,
+.contextmenu .menu-entry-header .col-.placeholder {
+  width: 2.25em;
+}
+
+.contextmenu .row.entry-disabled {
+  opacity: 0.7;
+  outline: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.contextmenu .row:hover {
+  background-color: #dfdfdf;
+}

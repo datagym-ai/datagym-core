@@ -1,0 +1,109 @@
+
+<!--Don't show anything on LabelTaskState.REVIEWED -->
+<ng-container *ngIf="state === LabelTaskState.BACKLOG" [ngTemplateOutlet]="taskControl"></ng-container>
+<ng-container *ngIf="state === LabelTaskState.WAITING" [ngTemplateOutlet]="taskControl"></ng-container>
+<ng-container *ngIf="state === LabelTaskState.WAITING_CHANGED" [ngTemplateOutlet]="taskControl"></ng-container>
+<ng-container *ngIf="state === LabelTaskState.IN_PROGRESS" [ngTemplateOutlet]="taskControl"></ng-container>
+<ng-container *ngIf="state === LabelTaskState.COMPLETED" [ngTemplateOutlet]="reviewControl"></ng-container>
+<ng-container *ngIf="state === LabelTaskState.SKIPPED" [ngTemplateOutlet]="reviewControl"></ng-container>
+<ng-container *ngIf="state === LabelTaskState.PREVIEW" [ngTemplateOutlet]="previewControl"></ng-container>
+<ng-container *ngIf="state === LabelTaskState.ADMIN_VIEW" [ngTemplateOutlet]="adminViewControl"></ng-container>
+
+<ng-template #taskControl>
+  <div class="control-panel">
+    <div class="row pb-1 w-100 no-gutters justify-content-center task-control-container">
+      <div class="col-9 word-break" *ngIf="message">
+        <p class="review-comment-headline" (click)="toggleMessage = !toggleMessage">
+          {{ 'FEATURE.LABEL_MODE.HTML_TITLES.REVIEW_COMMENT' | translate }}
+          <i class="fas" aria-hidden="true"
+             title="{{ toggleMessage ?
+               ('FEATURE.LABEL_MODE.HTML_TITLES.EXPAND' | translate) :
+               ('FEATURE.LABEL_MODE.HTML_TITLES.COLLAPSE' | translate)}}"
+             [ngClass]="toggleMessage ? 'fa-angle-down' : 'fa-angle-up'"
+          ></i>
+        </p>
+        <p class="review-comment" *ngIf="toggleMessage">{{ message }}</p>
+      </div>
+      <div class="col-12"><!-- just as line break --></div>
+      <div class="col-5 text-center task-control-no-border" title="{{'FEATURE.LABEL_MODE.HTML_TITLES.SKIP' | translate}}"
+           [ngClass]="{'task-control-disabled': !enableTaskControl}">
+        <app-button
+          [disabled]="!enableTaskControl"
+          title="{{'FEATURE.LABEL_MODE.HTML_TITLES.SKIP' | translate}}"
+          label="{{'FEATURE.LABEL_MODE.TASK_CONTROLS.BUTTONS.SKIP' | translate}}"
+          styling="button-full"
+          [css]="{'font-size': '14px', 'text-align': 'center'}"
+          (onClick)="enableTaskControl ? onSkipTask() : $event.stopPropagation();">
+        </app-button>
+      </div>
+      <div class="col-1" style="width: 5%; flex: 0 0 5%; max-width: 5%;"></div>
+      <div class="col-5 text-center task-control-no-border" title="{{'FEATURE.LABEL_MODE.HTML_TITLES.SUBMIT_NEXT' | translate}}"
+           [ngClass]="{'task-control-disabled': !taskValid || !enableTaskControl}">
+        <app-button
+          [disabled]="!taskValid || !enableTaskControl"
+          title="{{'FEATURE.LABEL_MODE.HTML_TITLES.SUBMIT_NEXT' | translate}}"
+          label="{{'FEATURE.LABEL_MODE.TASK_CONTROLS.BUTTONS.SUBMIT' | translate}}"
+          styling="secondary-full"
+          [css]="{'font-size': '14px', 'text-align': 'center'}"
+          (onClick)="taskValid && enableTaskControl ? onSubmitAndNextTask() : $event.stopPropagation()">
+        </app-button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #reviewControl>
+  <div class="control-panel">
+    <div class="row pb-1 w-100 no-gutters justify-content-center review-control-container">
+      <div class="col-9" [formGroup]="reviewForm">
+        <div *ngIf="stateIsSkipped()" class="border border-warning rounded dg-warn-color">{{'FEATURE.LABEL_MODE.HTML_TITLES.SKIPPED_REVIEW_BOX' | translate}} </div>
+        <app-textfield
+          formControlName="comment"
+          editable="true"
+          label="FEATURE.LABEL_MODE.HTML_TITLES.COMMENT_REVIEW"
+        ></app-textfield>
+      </div>
+      <div class="w-100"><!-- Force next columns to break to new line --></div>
+      <div class="col-3 text-center task-control"
+           title="{{'FEATURE.LABEL_MODE.HTML_TITLES.REVIEW_STOP' | translate}}"
+           (click)="onGoHome();">
+        <i class="fas fa-hand-paper" aria-hidden="true"></i>
+      </div>
+      <div class="col-3 text-center task-control"
+           title="{{'FEATURE.LABEL_MODE.HTML_TITLES.REVIEW_DENY' | translate}}"
+           (click)="onDenyReview();">
+        <i class="fas fa-thumbs-down" aria-hidden="true"></i>
+      </div>
+      <div class="col-3 text-center task-control"
+           title="{{'FEATURE.LABEL_MODE.HTML_TITLES.REVIEW_ACCEPT' | translate}}"
+           (click)="onAcceptReview();">
+        <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #previewControl>
+  <div class="control-panel">
+    <div class="row pb-1 w-100 no-gutters justify-content-center task-control-container">
+      <div class="col-9 text-center task-control"
+           title="{{'FEATURE.LABEL_MODE.HTML_TITLES.LEAVE_PREVIEW' | translate}}"
+           (click)="onGoHome()">
+        {{'FEATURE.LABEL_MODE.HTML_TITLES.LEAVE_PREVIEW' | translate}}
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #adminViewControl>
+  <div class="control-panel">
+    <div class="row pb-1 w-100 no-gutters justify-content-center task-control-container">
+      <div class="col-9 word-break">
+        <p class="review-comment pt-2">{{ 'FEATURE.LABEL_MODE.HTML_TITLES.IN_ADMIN_MODE' | translate }}</p>
+      </div>
+      <div class="col-12"><!-- just as line break --></div>
+      <div class="col-9 text-center task-control"
+           title="{{'FEATURE.LABEL_MODE.HTML_TITLES.LEAVE_PREVIEW' | translate}}"
+           (click)="onGoHome()">
+        {{'FEATURE.LABEL_MODE.HTML_TITLES.LEAVE_PREVIEW' | translate}}
+      </div>
+    </div>
+  </div>
+</ng-template>

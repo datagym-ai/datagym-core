@@ -1,0 +1,3 @@
+<div class="error-messages" *ngIf="show && hasErrors">
+  <p class="error-message" *ngFor="let error of errors">{{ error.message | translate: error.param }}</p>
+</div>

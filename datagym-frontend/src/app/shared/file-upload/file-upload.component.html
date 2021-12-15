@@ -1,0 +1,18 @@
+<div *ngIf="!errorWhileUploading" class="upload-container">
+  <div class="drop-zone" (click)="onZoneClick()" (drop)="onDrop($event)"
+       (dragover)="preventAndStopEventPropagation($event)">
+    <div *ngIf="!isLoading else loading">
+      <i class="fas fa-plus dg-primary-color opacity3" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="original">
+    <input #fileInput type="file" id="file" (change)="handleInputForm($event.target.files)" [accept]="acceptedTypes"
+           [multiple]="multiple">
+  </div>
+</div>
+<!--<pre *ngIf="errorWhileUploading" style="color: red; text-align: left; font-size: x-small">{{schemaErrors.errorMessages}}</pre>-->
+<textarea *ngIf="errorWhileUploading" readonly class="error-Messages-Box">{{schemaErrors.errorMessages}}</textarea>
+<ng-template #loading>
+  <i class="fas fa-spinner loading-spinner dg-primary-color opacity3" aria-hidden="true"></i>
+  <p class="pt-3">{{uploadCount + errorCount}} / {{fileCount}}</p>
+</ng-template>

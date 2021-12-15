@@ -1,0 +1,18 @@
+<div class="sidebar" [ngClass]="{'sidebar-hidden': navIsFolded}" *ngIf="!isWorkBench">
+  <app-nav-bar></app-nav-bar>
+</div>
+<div [ngClass]="isWorkBench? '' :
+{'main-without-nav': navIsFolded, 'main': !navIsFolded, 'main-transition': !inLabelMode}">
+  <div [ngClass]="{'container-fluid': !isWorkBench}">
+    <div class="row" *ngIf="!isWorkBench">
+      <div class="col-12">
+        <app-loader [isLoading]="isLoading"></app-loader>
+      </div>
+    </div>
+    <div [ngClass]="{'main-margins': !isWorkBench}">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<simple-notifications [options]="notificationOptions"></simple-notifications>
+<app-dialogue-modal></app-dialogue-modal>

@@ -1,0 +1,8 @@
+<div class="mh-100">
+  <form [formGroup]="entryValueForm">
+    <div *ngFor="let value of valuesToShow | sortClassifications" class="p-1 mb-1">
+      <app-classification-item [group]="getFormGroupByName(value.lcEntry.entryKey)" [value]="value" [nestingLevel]="0"
+                               [classification]="getClassificationByValue(value)"></app-classification-item>
+    </div>
+  </form>
+</div>

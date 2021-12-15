@@ -1,0 +1,25 @@
+<div class="container-fluid h-100 w-100">
+  <div class="row h-100">
+    <div [ngClass]="!disableDemoMode ? 'col-10' : 'col-12'">
+      <div #drawBox class="box" [ngClass]="{'no-border-radius': edgeUserAgent}"
+           [style.cursor]="workspace.isUserDrawing ? 'crosshair' : 'default'"
+           *ngIf="workspace.currentImageUrl" tabindex="0" (keydown)="handleKeyDownEvent($event)">
+
+        <app-image-media *ngIf="workspace.mediaType == LabelModeType.IMAGE"
+                         [config]="panZoomConfig"
+                         (onClick)="handleClick($event)"
+                         (onImageLoadError)="onMediaLoadError($event)"
+                         (afterImageLoaded)="workspace.afterMediaLoaded($event.target, drawBox.offsetWidth, drawBox.offsetHeight)"
+        ></app-image-media>
+
+        <app-video-media *ngIf="workspace.mediaType == LabelModeType.VIDEO"
+                         [config]="panZoomConfig"
+                         (onClick)="handleClick($event)"
+                         (onVideoLoadError)="onMediaLoadError($event)"
+                         (afterVideoLoaded)="workspace.afterMediaLoaded($event.target, drawBox.offsetWidth, drawBox.offsetHeight)"
+        ></app-video-media>
+
+      </div>
+    </div>
+  </div>
+</div>

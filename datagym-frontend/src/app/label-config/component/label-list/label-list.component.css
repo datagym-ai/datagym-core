@@ -1,0 +1,20 @@
+
+.validation-error-list {
+  line-height: 1.5rem;
+}
+.validation-error-list li {
+  line-height: 1rem;
+}
+.validation-error-list li span {
+  max-width: 100%;
+}
+
+/** css trick: if a .app-entry-item element is placed in the dom
+ directly in front of the .no-app-entry-items element hide it. */
+.app-entry-item + .no-app-entry-items {
+  display: none;
+}
+
+.fixed-buttons {
+  height: 100px;
+}

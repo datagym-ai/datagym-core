@@ -1,0 +1,35 @@
+
+textarea {
+  width: 100%;
+  padding: 1em;
+  white-space: pre;
+  border: 1px solid #ddd;
+}
+
+textarea.ng-dirty.ng-invalid {
+  border: 1px solid #C70F46;
+}
+
+.app-button + textarea {
+  border-top: none;
+}
+
+a.error-report-button {
+  height: 36px;
+  font-size: 16px;
+  display: block;
+  cursor: pointer;
+  outline: none;
+  padding: 10px 25px;
+  line-height: 1;
+  border: 1px solid #C70F46;
+  color: white;
+  background-color: #C70F46;
+  text-align: center;
+}
+a.error-report-button:hover {
+  text-decoration: none;
+  color: white;
+  background-color: #BB86FC;
+  border: 1px solid #BB86FC;
+}

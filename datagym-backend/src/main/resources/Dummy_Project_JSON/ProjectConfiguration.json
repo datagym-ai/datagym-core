@@ -1,0 +1,198 @@
+{
+  "id": "d9dd3305-409b-466a-b4c2-7a6098a6aec1",
+  "projectId": "38fa44e3-dec7-48ef-b6a1-a8cd0e1ac76e",
+  "entries": [
+    {
+      "id": "3d8178e2-63a0-4010-89f7-3a945ec50cb1",
+      "lcEntryParentId": null,
+      "entryKey": "bus",
+      "entryValue": "Bus",
+      "type": "POLYGON",
+      "color": "#9A00CD",
+      "shortcut": "2",
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [],
+      "options": {},
+      "required": false
+    },
+    {
+      "id": "3e3c57a2-fe16-4bf8-998e-94fb2444fe67",
+      "lcEntryParentId": null,
+      "entryKey": "marking",
+      "entryValue": "Road Marking",
+      "type": "LINE",
+      "color": "#F141FA",
+      "shortcut": "6",
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [
+        {
+          "id": "34a49aa8-868b-4b86-ba0c-7c11ea3208c6",
+          "lcEntryParentId": "3e3c57a2-fe16-4bf8-998e-94fb2444fe67",
+          "entryKey": "type_of_line",
+          "entryValue": "Type of line",
+          "type": "SELECT",
+          "color": null,
+          "shortcut": null,
+          "timestamp": 1583249845918,
+          "maxLength": null,
+          "children": [],
+          "options": {
+            "single": "Single",
+            "double": "Double",
+            "dotted": "Dotted"
+          },
+          "required": false
+        },
+        {
+          "id": "df9c9a82-1274-4698-ba0e-7973c66fa5f9",
+          "lcEntryParentId": "3e3c57a2-fe16-4bf8-998e-94fb2444fe67",
+          "entryKey": "line_color",
+          "entryValue": "Color of line",
+          "type": "SELECT",
+          "color": null,
+          "shortcut": null,
+          "timestamp": 1583249845918,
+          "maxLength": null,
+          "children": [],
+          "options": {
+            "red": "red",
+            "white": "white",
+            "yellow": "yellow"
+          },
+          "required": false
+        }
+      ],
+      "options": {},
+      "required": false
+    },
+    {
+      "id": "52881222-b429-42e6-88ab-67d69c6decdd",
+      "lcEntryParentId": null,
+      "entryKey": "ped_cross",
+      "entryValue": "Pedestrian crossing",
+      "type": "POLYGON",
+      "color": "#66FF33",
+      "shortcut": "7",
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [],
+      "options": {},
+      "required": false
+    },
+    {
+      "id": "782ad922-60cb-4011-bb18-a155e307c7fa",
+      "lcEntryParentId": null,
+      "entryKey": "pedestrian",
+      "entryValue": "Pedestrian",
+      "type": "RECTANGLE",
+      "color": "#FAF45C",
+      "shortcut": "3",
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [],
+      "options": {},
+      "required": false
+    },
+    {
+      "id": "9122d476-4516-40c8-83ef-2cb066eabb96",
+      "lcEntryParentId": null,
+      "entryKey": "cyclist",
+      "entryValue": "Cyclist",
+      "type": "RECTANGLE",
+      "color": "#41FAD8",
+      "shortcut": "5",
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [],
+      "options": {},
+      "required": false
+    },
+    {
+      "id": "b12c9335-2d2d-4cb7-a736-f7e5bb9e4d3b",
+      "lcEntryParentId": null,
+      "entryKey": "tod",
+      "entryValue": "Time of day",
+      "type": "SELECT",
+      "color": null,
+      "shortcut": null,
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [],
+      "options": {
+        "no_info_tod": "Not enough information about time of day",
+        "night": "Night",
+        "day": "Day"
+      },
+      "required": true
+    },
+    {
+      "id": "dc845448-9861-4b51-8639-fa21c33d5dc3",
+      "lcEntryParentId": null,
+      "entryKey": "car",
+      "entryValue": "Car",
+      "type": "POLYGON",
+      "color": "#FB110D",
+      "shortcut": "1",
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [
+        {
+          "id": "f347114b-ae34-4f23-9e39-ba50268ab3d8",
+          "lcEntryParentId": "dc845448-9861-4b51-8639-fa21c33d5dc3",
+          "entryKey": "car_type",
+          "entryValue": "Type of car",
+          "type": "SELECT",
+          "color": null,
+          "shortcut": null,
+          "timestamp": 1583249845918,
+          "maxLength": null,
+          "children": [],
+          "options": {
+            "none_of_the_above": "None of the above",
+            "suv": "SUV",
+            "convertible": "Convertible",
+            "pickup": "Pickup",
+            "sedan": "Sedan"
+          },
+          "required": true
+        }
+      ],
+      "options": {},
+      "required": false
+    },
+    {
+      "id": "de3ee7f9-282e-4e88-9ad8-641f6d235c33",
+      "lcEntryParentId": null,
+      "entryKey": "truck",
+      "entryValue": "Truck",
+      "type": "POLYGON",
+      "color": "#6300ED",
+      "shortcut": "4",
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [],
+      "options": {},
+      "required": false
+    },
+    {
+      "id": "f65b0772-b3f9-4ebf-b2aa-fd8e76fa02c3",
+      "lcEntryParentId": null,
+      "entryKey": "weather",
+      "entryValue": "Weather condition",
+      "type": "SELECT",
+      "color": null,
+      "shortcut": null,
+      "timestamp": 1583249845918,
+      "maxLength": null,
+      "children": [],
+      "options": {
+        "rainy": "Rainy",
+        "fair": "Fair",
+        "no_info_weather": "Not enough information about weather condition"
+      },
+      "required": false
+    }
+  ]
+}

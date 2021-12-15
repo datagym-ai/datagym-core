@@ -1,0 +1,10 @@
+<div *ngIf="entries" class="h-100">
+  <div class="row h-100">
+    <div class="col-12 col-xl-6 mb-4 label-list">
+      <app-label-list [entries]="entries" [id]="labelConfigurationID"></app-label-list>
+    </div>
+    <div class="col-12 col-xl-6 label-list-edit">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

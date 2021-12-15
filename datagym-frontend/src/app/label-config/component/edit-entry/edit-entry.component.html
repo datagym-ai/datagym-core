@@ -1,0 +1,181 @@
+<div class="edit-entry-component h-100" *ngIf="entry && editForm" id="editEntryPage">
+
+  <form class="col-12" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <!-- edit box for optional parameter -->
+    <div #editBox class="row pt-3 pr-3 overflow-auto">
+
+      <div class="row" formGroupName="name">
+
+        <!-- name -->
+        <div class="col-12 mb-2">
+          {{ ( isGeo ? 'FEATURE.LABEL_CONFIG.EDIT.GEOMETRY' : 'FEATURE.LABEL_CONFIG.EDIT.CLASSIFICATION') | translate }}
+          {{ 'FEATURE.LABEL_CONFIG.EDIT.NAME' | translate | lowercase }}
+          <span class="required-field">*</span>
+        </div>
+        <div class="col-12 mb-3">
+          <app-textfield #entryValueField editable="true" required="true" formControlName="entryValue"
+                         [errorHandlers]="errorHandlers"></app-textfield>
+        </div>
+
+        <!-- Geometry type -->
+        <div class="col-12 mb-2">
+          {{ ( isGeo ? 'FEATURE.LABEL_CONFIG.EDIT.GEOMETRY' : 'FEATURE.LABEL_CONFIG.EDIT.CLASSIFICATION') | translate }}
+          {{ 'FEATURE.LABEL_CONFIG.EDIT.TYPE' | translate | lowercase }}
+          <span class="required-field">*</span>
+        </div>
+        <div class="col-12 mb-3">
+          <ng-select formControlName="entryType" [clearable]="false">
+            <ng-option *ngFor="let type of entryTypes" [value]="type">
+              <i *ngIf="LcEntryType.getIcon(type)" class="aiseg-icon" [ngClass]="LcEntryType.getIcon(type)"></i>
+              {{ LcEntryType.getName(type) | translate }}
+            </ng-option>
+          </ng-select>
+
+        </div>
+
+        <!-- Export key -->
+        <div class="col-12 mb-2">
+          {{ 'FEATURE.LABEL_CONFIG.EDIT.LABEL.EXPORT' | translate }}
+          <span class="required-field">*</span>
+        </div>
+        <div class="col-12 mb-3">
+          <app-textfield editable="true" required="true" formControlName="entryKey" [errorHandlers]="errorHandlers"
+                         (input)="toLowercase($event, 'name', 'entryKey')"
+          ></app-textfield>
+        </div>
+      </div>
+
+      <ng-container *ngIf="isGeo" [ngTemplateOutlet]="geometry"></ng-container>
+      <ng-container *ngIf="!isGeo" [ngTemplateOutlet]="classification"></ng-container>
+
+      <ng-template #geometry>
+
+        <div class="row no-gutters w-100" formGroupName="entryProperties">
+
+          <!-- color picker -->
+          <div class="col-12 mb-2">
+            {{'FEATURE.LABEL_CONFIG.EDIT.META.COLOR' | translate}}
+          </div>
+          <div class="col-12 mb-3 color-picker">
+            <ng-select formControlName="color" dropdownPosition="top">
+              <ng-template ng-label-tmp let-item="item">
+                <div class="selected-color" [style.background-color]="item"></div>
+              </ng-template>
+              <ng-option *ngFor="let color of geometryColors" [value]="color">
+                <div class="select-color" [style.background-color]="color"></div>
+              </ng-option>
+            </ng-select>
+          </div>
+
+          <!-- shortcut picker -->
+          <div class="col-12 mb-2" *ngIf="!entry.lcEntryParentId">
+            {{'FEATURE.LABEL_CONFIG.EDIT.META.SHORTCUT' | translate}}
+          </div>
+          <div class="col-12 mb-3" *ngIf="!entry.lcEntryParentId">
+            <div class="shortcut-selector" *ngFor="let i of possibleShortcuts"
+                 [ngClass]="{
+                            selected: i == getControlsByGroupAndName('entryProperties', 'shortcut').value,
+                            notAvailable: !isShortcutAvailable(i)
+                            }"
+                 (click)="isShortcutAvailable(i) ? onShortcutChanged(i) : $event.stopPropagation();">{{i}}</div>
+            <i class="ml-2 fas fa-minus-circle pointer dg-primary-hover" aria-hidden="true"
+               [title]="'FEATURE.LABEL_CONFIG.EDIT.META.REMOVE_SHORTCUT' | translate"
+               (click)="onRemoveShortcut()"></i>
+          </div>
+        </div>
+
+      </ng-template>
+      <ng-template #classification>
+
+        <div class="row no-gutters w-100" formGroupName="entryProperties">
+
+          <!-- required flag // not supported on video labeling -->
+          <div class="col-1 mb-3" *ngIf="!isVideo">
+            <label class="control control--checkbox">
+              <input id="reqCheck" type="checkbox" formControlName="required">
+              <span class="control__indicator"></span>
+            </label>
+          </div>
+          <div class="col-11 mb-3" *ngIf="!isVideo">
+            <label for="reqCheck">{{'FEATURE.LABEL_CONFIG.EDIT.META.REQUIRED' | translate}}</label>
+          </div>
+
+          <ng-container *ngIf="isText" [ngTemplateOutlet]="text"></ng-container>
+
+          <ng-template #text>
+            <!-- max length for text boxes -->
+            <div class="col-12 mb-2">
+              <label for="maxLengthCheck">
+                {{'FEATURE.LABEL_CONFIG.EDIT.META.MAX_LENGTH' | translate}}
+                <span class="required-field">*</span>
+              </label>
+            </div>
+            <div class="col-12 mb-3">
+              <app-textfield id="maxLengthCheck" label="" editable="true" type="number" min="1" max="255"
+                             formControlName="maxLength"></app-textfield>
+            </div>
+          </ng-template>
+          <div *ngIf="!isText" class="row no-gutters w-100" formArrayName="answers">
+            <div class="row no-gutters w-100" *ngFor="let answer of answers.controls; let answerIndex = index"
+                 [formGroup]="asFormGroup(answer)">
+
+              <div class="col-12 mb-2">
+                {{'FEATURE.LABEL_CONFIG.EDIT.OPTIONS.LABEL' | translate: {number: 1 + answerIndex} }}
+                <span class="required-field">*</span>
+              </div>
+
+              <div class="col col-app-textfield mb-2">
+                <app-textfield [errorHandlers]="errorHandlers" editable="true" required="true"
+                               formControlName="value"></app-textfield>
+
+              </div>
+              <div class="col-1" *ngIf="entry.type === LcEntryType.CHECKLIST && answers.length > 1 || answers.length > 2">
+                <i class="fas fa-trash pointer dg-primary-hover ml-2 pt-2" aria-hidden="true"
+                   (click)="removeAnswer(answerIndex)"></i>
+              </div>
+
+              <div class="col-12 mb-2">
+                {{'FEATURE.LABEL_CONFIG.EDIT.OPTIONS.EXPORT' | translate: {number: 1 + answerIndex} }}
+                <span class="required-field">*</span>
+              </div>
+
+              <div class="col-12 mb-2">
+                <app-textfield [errorHandlers]="errorHandlers" editable="true" required="true"
+                               (input)="toLowercase($event, answerIndex, 'key')"
+                               formControlName="key"></app-textfield>
+              </div>
+
+
+              <!-- just some whitespace -->
+              <div class="mb-2"></div>
+            </div>
+
+            <div class="col-12 mb-3 text-right pointer dg-primary-hover" (click)="addAnswer()">
+              {{ 'FEATURE.LABEL_CONFIG.EDIT.OPTIONS.ADD' | translate}}
+            </div>
+
+          </div>
+
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- Save / Cancel / Delete button -->
+    <div class="row">
+      <div class="col-12 mb-4 pl-0 pr-0">
+        <app-button class="mr-2" label="FEATURE.LABEL_CONFIG.EDIT.BUTTON.CANCEL"
+                    [disabled]="!editForm.valid || !editModeGuard.editMode || !entry.entryKey || !entry.entryValue"
+                    (onClick)="onCancel()"></app-button>
+
+        <app-button class="mr-2" label="FEATURE.LABEL_CONFIG.EDIT.BUTTON.SAVE" styling="secondary" type="submit"
+                    [disabled]="!editForm.valid || !editModeGuard.editMode"></app-button>
+
+        <span class="mr-2 dg-primary-hover pointer" (click)="onDelete()">
+          {{ ( isGeo ? 'FEATURE.LABEL_CONFIG.EDIT.BUTTON.DELETE_GEOMETRY' :
+          'FEATURE.LABEL_CONFIG.EDIT.BUTTON.DELETE_CLASSIFICATION') | translate }}
+        </span>
+      </div>
+    </div>
+  </form>
+</div>

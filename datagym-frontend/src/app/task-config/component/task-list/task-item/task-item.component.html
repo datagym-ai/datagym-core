@@ -1,0 +1,85 @@
+<div class="col-3 wrap-words" title="{{ task.labeler }}">
+  {{ task.labeler || '-' }}
+  <i
+    *ngIf="task.labeler && isState(LabelTaskState.IN_PROGRESS, LabelTaskState.WAITING_CHANGED, LabelTaskState.COMPLETED)"
+    class="ml-2 fas fa-user-times pointer reset-labeler"
+    title="{{'FEATURE.TASK_CONFIG.TITLE.RESET_LABELER'|translate}}"
+    (click)="resetLabeler()"></i>
+</div>
+<div class="col wrap-words" title="{{ task.mediaName }}">
+  <span (click)="onShowMedia()" class="pointer">{{ task.mediaName }}</span>
+</div>
+<!-- state -->
+<div class="col-2">
+  <i class="{{ icon }}" aria-hidden="true"></i>
+  {{ stateName }}
+</div>
+
+<!-- State actions -->
+<div class="col col-11em">
+
+  <!-- Left to change into BACKLOG or WAITING_CHANGED -->
+  <i class="fas fas fa-arrow-left dg-lightgray not-allowed" aria-hidden="true"
+     title="{{ 'FEATURE.TASK_CONFIG.LEGEND.ACTIONS.TO_BACKLOG' | translate }}"
+     *ngIf="isState(LabelTaskState.BACKLOG)"></i>
+
+  <i class="fas fas fa-arrow-left dg-primary-hover pointer" aria-hidden="true"
+     title="{{ 'FEATURE.TASK_CONFIG.LEGEND.ACTIONS.TO_BACKLOG' | translate }}"
+     *ngIf="isState(LabelTaskState.WAITING, LabelTaskState.WAITING_CHANGED)"
+     (click)="moveToBacklog()"></i>
+
+  <i class="fas fas fa-arrow-left dg-primary-hover pointer" aria-hidden="true"
+     title="{{ 'FEATURE.TASK_CONFIG.LEGEND.ACTIONS.TO_WAITING_CHANGED' | translate }}"
+     *ngIf="!isState(LabelTaskState.BACKLOG, LabelTaskState.WAITING, LabelTaskState.WAITING_CHANGED)"
+     (click)="moveToWC()"></i>
+
+  <span class="ml-3"><!-- some space --></span>
+
+  <!-- Right to change into WAITING -->
+  <i class="fas fas fa-arrow-right dg-lightgray not-allowed" aria-hidden="true"
+     title="{{ 'FEATURE.TASK_CONFIG.LEGEND.ACTIONS.TO_WAITING' | translate }}"
+     *ngIf="!isState(LabelTaskState.BACKLOG)"></i>
+
+  <i class="fas fas fa-arrow-right dg-primary-hover pointer" aria-hidden="true"
+     title="{{ 'FEATURE.TASK_CONFIG.LEGEND.ACTIONS.TO_WAITING' | translate }}"
+     *ngIf="isState(LabelTaskState.BACKLOG)"
+     (click)="moveToWaiting()"></i>
+
+  <span class="ml-3"><!-- some space --></span>
+
+  <!-- Benchmark // hidden until fully implemented -->
+  <i hidden
+     (click)="triggerBenchmark()"
+     [class]=" task.benchmark ? 'dg-primary-color pointer fas fa-star' : 'dg-primary-color pointer far fa-star'"
+     title="{{ 'FEATURE.LABEL_MODE.MODE.BENCHMARK.BUTTON_TITLE' | translate }}" aria-hidden="true"></i>
+
+  <i (click)="onShowMedia()" class="dg-primary-hover pointer fas fa-eye"
+     title="{{ 'FEATURE.TASK_CONFIG.TITLE.OPEN_IMAGE' | translate }}" aria-hidden="true"></i>
+
+  <!-- do not use the absolute path /label-mode/task' because this template may be used within the -->
+  <!-- admin mode & there it should route to /admin/label-mode/task' -->
+  <i [routerLink]="['../../../../../label-mode/task', id]"
+     [queryParams]="task.benchmark ? { mode: benchmarkMode } : {}"
+     title="{{ 'FEATURE.TASK_CONFIG.TITLE.OPEN_LABEL_MODE' | translate }}"
+     class="dg-primary-hover pointer fas fa-magic ml-3" aria-hidden="true"></i>
+
+  <i (click)="onExportTask(task.taskId)" *ngIf="isState(LabelTaskState.COMPLETED, LabelTaskState.REVIEWED, LabelTaskState.REVIEWED_SKIP) &&
+    task.mediaName.endsWith('.mp4')"
+     aria-hidden="true"
+     class="dg-primary-hover fas fa-file-export ml-3"
+     title="{{ 'FEATURE.TASK_CONFIG.TITLE.EXPORT_VIDEO_JSON' | translate }}"></i>
+</div>
+
+<div class="col col-7em">
+    <i title="{{ 'FEATURE.TASK_CONFIG.TITLE.PRE_LABELED' | translate }}"
+       [ngClass]="isFinished ? '' : 'dg-lightgray'"
+       class="icon fas fa-clipboard-check"></i>
+
+    <i title="{{ 'FEATURE.TASK_CONFIG.TITLE.PRE_LABELING_FAILED' | translate }}"
+       [ngClass]="isFailed ? '' : 'dg-lightgray'"
+       class="icon fas fa-slash"></i>
+
+    <i title="{{ 'FEATURE.TASK_CONFIG.TITLE.HAS_JSON_UPLOAD' | translate }}"
+       [ngClass]="hasJsonUpload ? '' : 'dg-lightgray'"
+       class="icon fas fa-file-import"></i>
+</div>

@@ -1,0 +1,1 @@
+alter table project add column reviewActivated BOOLEAN DEFAULT FALSE not null;

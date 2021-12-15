@@ -1,0 +1,40 @@
+
+
+.not-found {
+  min-height: 93vh;
+  min-width: 15em;
+  background: url('/assets/image/datagym-404.png');
+  /*background-color if the media is not loaded*/
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.go-back-container {
+  padding-top: 15vh;
+  text-align: center;
+}
+.go-back h1 {
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+}
+.go-back {
+  color: white;
+  font-size: 3em;
+}
+
+.button-404 > button.app-button {
+  color: white;
+  border-color: white;
+  background-color: transparent;
+}
+.button-404 > button.app-button:hover {
+  color: #BB86FC!important;
+  background-color: transparent!important;
+}

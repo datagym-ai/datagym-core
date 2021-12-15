@@ -1,0 +1,113 @@
+<div class="row pb-3">
+  <div *ngIf="!!configEditForm" class="col-12 d-flex justify-content-end">
+    <div *ngIf="inputError" class="pr-3 my-auto error-text small">
+      <span class="my-auto">
+        {{'FEATURE.AI_ASSISTANT.MAPPING.INVALID_INPUT' | translate}}
+      </span>
+    </div>
+    <app-button class="pl-1"
+                [label]="'FEATURE.AI_ASSISTANT.MAPPING.SAVE' | translate"
+                styling="secondary"
+                (click)="onSubmit()" [disabled]="!configEditForm.dirty"></app-button>
+  </div>
+</div>
+
+<div [ngClass]="{'disabled-mapping': (!!preLabelConfig && preLabelConfig.activePreLabeling) || !!!preLabelConfig}">
+  <div class="row dg-table-header" [ngClass]="{'inactive-table': !!!preLabelConfig}">
+    <div class="col-4">
+      {{'FEATURE.AI_ASSISTANT.MAPPING.CLASS_COL' | translate}}
+    </div>
+    <div class="col-4">
+      {{'FEATURE.AI_ASSISTANT.MAPPING.ENTRY_COL' | translate}}
+    </div>
+    <div class="col-2">
+      {{'FEATURE.AI_ASSISTANT.MAPPING.TYPE_COL' | translate}}
+    </div>
+    <div class="col-2">
+      {{'FEATURE.AI_ASSISTANT.MAPPING.ACTIONS_COL' | translate}}
+    </div>
+  </div>
+
+  <form *ngIf="!!configEditForm" [formGroup]="configEditForm" (ngSubmit)="onSubmit()">
+    <div formArrayName="mappingControls" *ngIf="!!preLabelConfig && !!remainingNetworkClasses">
+      <div *ngFor="let mappingGroup of getControls(); let i = index">
+        <div [formGroup]="mappingGroup" class="row dg-table-entry dg-table-entry-unclickable">
+
+          <div class="col-4" >
+            <ng-select id="classControl" bindLabel="preLabelModel"
+                       (change)="updateAvailableClasses()" (open)="updateAvailableClasses()"
+                       class="ng-select class-selection"
+                       [items]="remainingNetworkClasses"
+                       formControlName="labelClassControl"
+                       appendTo="body">
+            </ng-select>
+          </div>
+          <div class="col-4">
+            <ng-select (change)="updateLcEntrySelection(i)"
+                       (open)="updateAvailableLcEntries(i)"
+                       id="lcEntryControl"
+                       class="ng-select class-selection"
+                       [items]="availableGeometries"
+                       formControlName="lcEntryControl"
+                       appendTo="body">
+              <ng-template ng-label-tmp let-item="item">
+                <span>{{item.entryValue}}</span>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item">
+                <div *ngIf="!!!item.id" class="row">
+                  <div class="col d-flex justify-content-start small dg-primary-color" style="">
+                    <span class="my-auto">create a new geometry</span>
+                  </div>
+                  <div class="col-1 d-flex justify-content-end small dg-primary-color" style="opacity: 0.6">
+                    <em class="fa fa-plus pr-2 my-auto"></em>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-start">
+                    <em *ngIf="!!item.id" [class]="LcEntryType.getIcon(item.type) + ' dg-primary-color my-auto pr-1 my-auto'"></em>
+
+                    <span class="my-auto" [ngClass]="{' pl-2 ': !!!item.id}"> {{item.entryValue}}</span>
+                  </div>
+                </div>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="col-2 my-auto">
+            <ng-select [readonly]="!!!mappingGroup.get('lcEntryControl').value || !!mappingGroup.get('lcEntryControl').value.id"
+                       (change)="updateLcEntryTypeSelection(i)"
+                       id="lcEntryTypeControl"
+                       class="ng-select class-selection"
+                       [items]="availableEntryTypes"
+                       formControlName="lcEntryTypeControl"
+                       appendTo="body">
+              <ng-template ng-label-tmp let-item="item">
+                <div class="d-flex">
+                  <em [class]="LcEntryType.getIcon(item) + ' dg-primary-color my-auto pr-2 my-auto'"></em>
+                  <span class="small my-auto">{{LcEntryType.toString(item) | translate | uppercase}}</span>
+                </div>
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item">
+                <div class="d-flex">
+                  <em [class]="LcEntryType.getIcon(item) + ' dg-primary-color my-auto pr-2 my-auto'"></em>
+                  <span class="small my-auto">{{LcEntryType.toString(item) | translate | uppercase}}</span>
+                </div>
+              </ng-template>
+
+            </ng-select>
+            </div>
+          <div class="col-2 my-auto">
+            <em class="fas fa-trash dg-primary-hover pointer button-padding-easier-click"
+                title="{{'FEATURE.LABEL_CONFIG.TITLES.DELETE' | translate}}" (click)="deleteMapping(i)"></em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="!!configEditForm && getControls().length < availableNetworkClasses.length" class="row add-entry-row dg-primary-hover" (click)="addMapping()">
+    <div class="col-12 d-flex justify-content-center">
+      <em class="fas fa-plus dg-primary-color my-auto"></em>
+      <span class="pl-2 my-auto dg-primary-color">{{'FEATURE.AI_ASSISTANT.MAPPING.ADD' | translate}}</span>
+    </div>
+  </div>
+</div>

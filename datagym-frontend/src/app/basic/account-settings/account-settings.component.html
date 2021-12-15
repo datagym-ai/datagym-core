@@ -1,0 +1,75 @@
+<div *ngIf="userService.userDetails">
+  <div class="row">
+    <div class="col">
+      <h1>{{'FEATURE.ACCOUNT_SETTINGS.ACCOUNT_SETTINGS'|translate}}: <span
+        style="color: black;">{{userService.name}}</span></h1>
+    </div>
+    <div class="col-3 text-right">
+      <app-button [label]="'Logout'" [icon]="'fas fa-sign-out-alt'" (onClick)="userService.logout()"></app-button>
+    </div>
+  </div>
+
+  <h2 class="mt-5">{{'FEATURE.ACCOUNT_SETTINGS.PERSONAL_DATA'|translate}}</h2>
+  <hr>
+  <div class="row" [formGroup]="userForm">
+    <div class="col-6">
+      <app-textfield [label]="'OIDC_USER_INFO.NAME'|translate" [editable]="false"
+                     formControlName="name"></app-textfield>
+    </div>
+    <div class="col-6">
+      <app-textfield [label]="'OIDC_USER_INFO.EMAIL'|translate" [editable]="false"
+                     formControlName="email"></app-textfield>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-button
+        label="FEATURE.ACCOUNT_SETTINGS.ACCOUNT_MANAGEMENT"
+        styling="secondary"
+        [icon]="'fas fa-cogs'"
+        (onClick)="redirectToAccountSettings()"
+      ></app-button>
+      <app-button class="ml-3"
+                  label="FEATURE.ACCOUNT_SETTINGS.CREATE_DUMMY"
+                  (onClick)="createDummy()"
+      ></app-button>
+    </div>
+  </div>
+
+  <div *ngIf="userService.userDetails.orgs.length < 2">
+    <h2 class="mt-5">Upgrade</h2>
+    <hr>
+    <span>In order to <b>upgrade your current plan</b> please use our <a href="/api/accountSettings"
+                                                                         target="_blank">{{'FEATURE.ACCOUNT_SETTINGS.ACCOUNT_MANAGEMENT'|translate}}</a> to create your own organisation first.</span>
+  </div>
+  <h2 class="mt-5">{{'FEATURE.ACCOUNT_SETTINGS.ORGANISATIONS'|translate}}</h2>
+  <hr>
+  <div class="row">
+    <div class="col-12">
+      <div class="row dg-table-header">
+        <div class="col-4">{{'OIDC_USER_INFO.OWNER'|translate}}</div>
+        <div class="col-4">{{'OIDC_USER_INFO.ROLE'|translate}}</div>
+        <div class="col-4"></div>
+      </div>
+      <div *ngFor="let org of userService.userDetails.orgs" class="row dg-table-entry dg-table-entry-unclickable"
+           [ngClass]="{'personal-company': org.personal}">
+        <div class="col-4">
+          <app-dg-owner-label [organisation]="org.sub"></app-dg-owner-label>
+        </div>
+        <div class="col-4"><i class="fas mr-3"
+                              [ngClass]="{'fa-user-tie': org.role === 'ADMIN', 'fa-user': org.role !== 'ADMIN'}"></i> {{org.role}}
+        </div>
+        <div class="col-4">
+          <div>
+            <app-limit-modal [org]="org.sub"></app-limit-modal>
+            <a *ngIf="org.role === 'ADMIN' && !org.personal" class="pl-3"
+               title="{{'FEATURE.ACCOUNT_SETTINGS.MANAGE_ORGANISATION'|translate}}"
+               (click)="redirectToAccountSettingsOrganisation(org.sub)"><i
+              class="fas fa-money-bill dg-primary-color"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

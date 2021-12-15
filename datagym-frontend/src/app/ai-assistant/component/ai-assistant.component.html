@@ -1,0 +1,115 @@
+
+<ng-container *ngIf="preLabelConfig" [ngTemplateOutlet]="AiAssistant"></ng-container>
+<ng-container *ngIf="!preLabelConfig" [ngTemplateOutlet]="NotSupported"></ng-container>
+
+<ng-template #NotSupported>
+  <app-dg-not-supported></app-dg-not-supported>
+</ng-template>
+
+<ng-template #AiAssistant>
+  <div class="row d-flex mb-4 px-3">
+    <div class="col- pr-3">
+      <label for="shortDesc" class="dg-primary-color font-weight-bold">
+        {{'FEATURE.AI_ASSISTANT.PRE_LABELING.TITLE' | translate}}
+      </label>
+      <app-help class="ml-3" link="ai-assistant"></app-help>
+      <div id="shortDesc" class="pb-3">
+        {{'FEATURE.AI_ASSISTANT.PRE_LABELING.SHORT_DESC' | translate}}
+      </div>
+    </div>
+    <div class="col- pr-2 my-auto" *ngIf="!!preLabelConfig">
+      <app-button [disabled]="!!!preLabelConfig || preLabelConfig.activePreLabeling
+                            || preLabelConfig.preLabelMappings.length == 0 || preLabelConfig.countReadyTasks == 0
+                            || preLabelConfig.aiSegRemaining === 0"
+                  class="p-1 ai-assistant-control-btn" label="Start" icon="fas fa-play"
+                  (onClick)="startPreLabeling()">
+      </app-button>
+      <app-button [disabled]="!!!preLabelConfig || !preLabelConfig.activePreLabeling"
+                  class="p-1 ai-assistant-control-btn" label="Stop" icon="fas fa-stop"
+                  (onClick)="stopPreLabeling()">
+      </app-button>
+    </div>
+    <div class="col-8" *ngIf="!!preLabelConfig">
+      <div class="row">
+        <div class="col-xs ml-3 my-auto">
+          <em class="fas fa-spinner fa-pulse fa-lg align-middle " *ngIf="preLabelConfig.activePreLabeling"></em>
+          <em class="fas fa-check fa-lg align-middle " *ngIf="!preLabelConfig.activePreLabeling"></em>
+        </div>
+        <div class="col">
+          <div class="row pb-1">
+            <div class="col">
+            <span class="dg-lightgray small" *ngIf="!preLabelConfig.activePreLabeling">
+              {{'FEATURE.AI_ASSISTANT.PRE_LABELING.PROGRESS.TITLE' | translate}}
+            </span>
+              <span class="dg-lightgray small" *ngIf="preLabelConfig.activePreLabeling">
+              {{'FEATURE.AI_ASSISTANT.PRE_LABELING.PROGRESS.PROCESSING' | translate}}
+            </span>
+            </div>
+          </div>
+          <div class="row pb-1">
+            <div class="col">
+            <span class="pr-1" *ngIf="preLabelConfig.activePreLabeling">
+              {{'FEATURE.AI_ASSISTANT.PRE_LABELING.PROGRESS.IMAGES'
+              | translate: { finished:preLabelConfig.countFinishedTasks,
+              total: (preLabelConfig.countWaitingTasks + preLabelConfig.countFinishedTasks) }
+              }}
+            </span>
+              <span class="pr-1" *ngIf="!preLabelConfig.activePreLabeling && preLabelConfig.countFailedTasks===0">
+              {{'FEATURE.AI_ASSISTANT.PRE_LABELING.PROGRESS.COMPLETED'
+                | translate: { finished:preLabelConfig.countFinishedTasks,
+                total: preLabelConfig.countReadyTasks } }}
+            </span>
+              <span class="pr-1" *ngIf="!preLabelConfig.activePreLabeling && preLabelConfig.countFailedTasks>0">
+              {{'FEATURE.AI_ASSISTANT.PRE_LABELING.PROGRESS.COMPLETED_WITH_ERRORS'
+                | translate: { finished: preLabelConfig.countFinishedTasks,
+                total: preLabelConfig.countReadyTasks,
+                failed: preLabelConfig.countFailedTasks} }}
+            </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="progress" style="width:300px; height:8px">
+                <div *ngIf="preLabelConfig.activePreLabeling"
+                     [ngStyle]="{width: this.progressPercentage + '%'}"
+                     class="progress-bar progress-bar-striped progress-bar-animated dg-progress-bar"
+                     role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                <div *ngIf="!preLabelConfig.activePreLabeling"
+                     [ngStyle]="{width: this.progressPercentage + '%'}" class="progress-bar dg-progress-bar"
+                     role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pb-2 px-3">
+    <div class="col-12 py-2 px-0 " style="color: darkgrey">
+      <span *ngIf="!!preLabelConfig">
+              {{'FEATURE.AI_ASSISTANT.DESCRIPTION' | translate: {tasks: preLabelConfig.countReadyTasks} }}
+      </span>
+    </div>
+
+    <div class="col-12 p-4" *ngIf="!!!preLabelConfig" [ngClass]="{'border border-warning': !!!preLabelConfig}">
+      <span *ngIf="!!!preLabelConfig">
+              {{'FEATURE.AI_ASSISTANT.INVALID_SUB' | translate}}
+      </span>
+      <app-help *ngIf="!!!preLabelConfig" class="ml-1" link="ai-assistant"></app-help>
+    </div>
+
+    <div class="col-12 p-4" *ngIf="preLabelConfig.aiSegRemaining === 0" [ngClass]="{'border border-danger': preLabelConfig.aiSegRemaining === 0}">
+      <span *ngIf="preLabelConfig.aiSegRemaining === 0" class="dg-warn-color">
+              {{'FEATURE.AI_ASSISTANT.AI_ASSISTANCE_LIMIT_WARNING' | translate}}
+      </span>
+      <app-help *ngIf="preLabelConfig.aiSegRemaining === 0" class="ml-1" link="ai-assistant"></app-help>
+    </div>
+  </div>
+
+  <div class="row pb-3 px-3"    >
+    <div class="col-12">
+      <app-label-mapping (updateMapping)="setPreLabelConfig($event)" [preLabelConfig]="preLabelConfig"></app-label-mapping>
+    </div>
+  </div>
+</ng-template>

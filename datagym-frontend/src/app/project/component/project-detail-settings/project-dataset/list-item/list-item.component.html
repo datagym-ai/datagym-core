@@ -1,0 +1,14 @@
+<div class="col-5 col-lg-4 col-xl-3">{{ dataset.name }}</div>
+<div class="col-2 text-center">{{ dataset.mediaCount || 0 }}</div>
+<div class="col"><!-- some whitespace --></div>
+<div class="col-2 text-center">
+  <i *ngIf="isDummy"
+     class="mr-3 fas fa-trash button-padding-easier-click dg-lightgray not-allowed"
+     [title]="'FEATURE.PROJECT.DUMMY' | translate"
+     (click)="$event.stopPropagation()"
+     aria-hidden="true"></i>
+  <i *ngIf="!isDummy"
+     class="mr-3 fas fa-trash button-padding-easier-click dg-primary-color pointer dg-primary-hover"
+     [title]="'FEATURE.LABEL_CONFIG.TITLES.DELETE' | translate"
+     aria-hidden="true" (click)="onDeleteEvent.emit(dataset.id); $event.stopPropagation()"></i>
+</div>

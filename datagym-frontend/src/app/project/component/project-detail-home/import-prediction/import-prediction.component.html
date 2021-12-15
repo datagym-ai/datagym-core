@@ -1,0 +1,28 @@
+<ngx-smart-modal #UploadPredictionModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()"
+                 [dismissable]="isCloseable" [escapable]="isCloseable" [closable]="isCloseable">
+
+  <div class="container-fluid" *ngIf="hasConfiguration">
+    <div class="row mb-4">
+      <div class="col-12 font-weight-bold dg-primary-color text-center">
+        {{ 'FEATURE.PROJECT.DETAIL.HOME.IMPORT_TITLE' | translate }}
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-12">
+        <app-file-upload
+          style="margin: 0 auto"
+          class="d-inline-block"
+          [multiple]="false"
+          [uploadUrl]="uploadUrl"
+          [acceptedTypes]="['application/json']"
+          [invalidFileTypesMessage]="'FEATURE.DATASET.DETAILS.IMAGES.EX_JSON_TYPE'"
+          [isOpen]="isOpen"
+
+          (onUploadStarted)="isCloseable=false"
+          (onUploadCompleted)="isCloseable=true"
+        ></app-file-upload>
+      </div>
+    </div>
+  </div>
+
+</ngx-smart-modal>

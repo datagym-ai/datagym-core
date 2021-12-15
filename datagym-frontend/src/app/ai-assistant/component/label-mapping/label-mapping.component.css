@@ -1,0 +1,43 @@
+.class-selection {
+  max-width:220px!important;
+}
+
+ng-select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.inactive-table {
+  opacity:0.5;
+}
+
+.add-entry-row {
+  cursor: pointer;
+  border-bottom: 1px solid #C0C0C0;
+  padding: 15px 0;
+  outline: none;
+}
+
+.add-entry-row div > em {
+  font-size: 20px;
+}
+
+.add-entry-row div > span {
+  color: #6300ED;
+}
+
+.add-entry-row:hover {
+  background-color: #BB86FC;
+}
+
+.add-entry-row:hover div > em {
+  color: white;
+}
+
+.add-entry-row:hover div > span {
+  color: white;
+}
+
+.disabled-mapping {
+  opacity: 0.5;
+  pointer-events: none;
+}

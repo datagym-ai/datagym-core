@@ -1,0 +1,1 @@
+ALTER TABLE lc_entry_value_change MODIFY points LONGTEXT;

@@ -1,0 +1,27 @@
+<hr class="divider" *ngIf="!!isEraser">
+<div class="row align-items-center geo-item" (body:keydown)="keyListener($event)">
+  <div class="col-1 pb-1">
+    <app-activated-dot [active]="activated"></app-activated-dot>
+  </div>
+  <div class="ml-4" *ngIf="!isRoot">
+    <!-- Whitespace for nested geometries. -->
+  </div>
+  <div class="col-1 px-0 pointer" title="{{'FEATURE.LABEL_MODE.HTML_TITLES.SHORTCUT' | translate}}"
+       (click)="onClick()">
+    <div class="shortcut-selector" *ngIf="item.shortcut && item.shortcut.length > 0">{{item.shortcut}}</div>
+  </div>
+  <div class="col-1" [ngClass]="typeIcon" [title]="typeTitle | translate" [ngStyle]="{color: color}"></div>
+  <div class="entry-value wrap-words pointer"
+       [ngClass]="{'col-4': isRoot, 'col-3': !isRoot, 'disabled': !isRoot && !available}" [title]="item.entryValue"
+       (click)="onClick()">{{item.entryValue | translate | lengthFilter: 20}}</div>
+  <div class="col-2" *ngIf="isEraser"></div>
+  <div class="col-1 text-right" *ngIf="!isEraser" title="{{'FEATURE.LABEL_MODE.HTML_TITLES.COUNT' | translate}}">{{ valueCount }}</div>
+  <i class="fas col-1 pointer dg-primary-hover" *ngIf="!isEraser" [ngClass]="isHidden? 'fa-eye-slash' : 'fa-eye'" aria-hidden="true"
+     title="{{ isHidden?
+     ('FEATURE.LABEL_MODE.HTML_TITLES.SHOW' | translate) : ('FEATURE.LABEL_MODE.HTML_TITLES.HIDE' | translate) }}"
+     (click)="toggleHideEntry()"></i>
+
+  <app-dg-expand-collapse class="col-1" [(open)]="showNestedGeometries" [show]="!isEraser && hasNestedGeometry"></app-dg-expand-collapse>
+</div>
+<app-geometry-item *ngFor="let nestedGeometry of nestedGeometries | sortGeometryItems"
+                   [item]="nestedGeometry"></app-geometry-item>

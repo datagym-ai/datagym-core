@@ -1,0 +1,70 @@
+<div class="row mb-3 edit-menu-placeholder" [hidden]="selectedMediaIds.length>0">
+  <div class="col-12"></div>
+</div>
+<div class="row mb-3 py-1 pr-3 edit-menu" [hidden]="selectedMediaIds.length===0">
+  <div class="col d-flex justify-content-start">
+    <span *ngIf="selectedMediaIds.length === 1"
+          [innerHTML]="'FEATURE.DATASET.MEDIA_LIST.EDIT.SINGLE_ITEM' | translate: {p0: selectedMediaIds.length}">
+    </span>
+    <span *ngIf="selectedMediaIds.length > 1"
+          [innerHTML]="'FEATURE.DATASET.MEDIA_LIST.EDIT.MULTIPLE_ITEMS' | translate: {p0: selectedMediaIds.length}">
+    </span>
+  </div>
+  <div class="col d-flex justify-content-end">
+    <div class="dg-primary-hover pointer"  (click)="onDeleteMultipleConfirmation()">
+      <span class="pr-1">{{'FEATURE.DATASET.MEDIA_LIST.BUTTONS.DELETE' | translate}}</span>
+      <em class="fas fa-trash pl-2"></em>
+    </div>
+    <div class="px-4">
+      <span>&#124;</span>
+    </div>
+    <div class="dg-primary-hover pointer" (click)="deselectAll()">
+      <span>{{'FEATURE.DATASET.MEDIA_LIST.BUTTONS.CANCEL' | translate}}</span>
+    </div>
+  </div>
+</div>
+<app-dynamic-filter (dynamicFilterChangeEvent)="dynamicFilterChanged($event)"
+                    [filterConfiguration]="filterConfiguration"
+                    class="px-0 mb-3 row filter-bar"></app-dynamic-filter>
+<div class="row dg-table-header">
+  <div class="col-xs text-center checkbox-column" style="width:50px"
+       *ngIf="invalidMediaCount > 0">
+  </div>
+  <div class="col-xs text-center checkbox-column">
+    <label for="checked"></label>
+    <input class="text-center" #checkbox id="checked" (click)="changeSelectAll($event)" type="checkbox">
+  </div>
+  <div class="col"><strong>{{ 'FEATURE.DATASET.MEDIA_LIST.NAME' | translate }}</strong></div>
+  <div class="col col-7em d-none d-xxl-block" *ngIf="isVideo"><strong>{{ 'FEATURE.DATASET.MEDIA_LIST.DURATION' | translate }}</strong></div>
+  <div class="col col-12em"><strong>{{ 'FEATURE.DATASET.MEDIA_LIST.TYPE' | translate }}</strong></div>
+  <div class="col col-7em d-none d-xxl-block"><strong>{{ 'FEATURE.DATASET.MEDIA_LIST.ATTACHED_PROJECT' | translate }}</strong></div>
+  <div class="col col-10em col-xxl-12em"><strong>{{ 'FEATURE.DATASET.MEDIA_LIST.DATE' | translate }}</strong></div>
+  <div class="col col-10em col-xxl-12em"><strong>{{ 'FEATURE.DATASET.MEDIA_LIST.ACTIONS' | translate }}</strong></div>
+</div>
+
+<div
+  *ngFor="let media of medias | paginate: { id: 'server', itemsPerPage: currentLimit, currentPage: page, totalItems: totalItems}; let i = index">
+  <app-media-list-item
+    #mediaListItems
+    [media]="media" [index]="i"
+    [isVideo]="isVideo"
+    [connectedProjects]="connectedProjects"
+    [invalidMediaCount]="invalidMediaCount"
+    [dummy]="dummy"
+    [isAdmin]="isAdmin"
+    (onDelete)="onDeleteConfirmation(media.id)"
+    (onShowMediaError)="getPage(page)"
+    (onSelected)="onSelected(media.id)"
+    class="row dg-table-entry dg-table-entry-unclickable"
+    [ngClass]="{'invalid-image-row': !media.valid}"></app-media-list-item>
+</div>
+<div *ngIf="medias.length === 0" class="row dg-table-entry dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'FEATURE.DATASET.MEDIA_LIST.NOTHING_TO_SHOW' | translate }}</div>
+</div>
+<div class="row dg-table-entry dg-table-empty-result dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'GLOBAL.NO_SEARCH_RESULTS' | translate }}</div>
+</div>
+<div class="row justify-content-center">
+  <div [ngClass]="{ 'hidden': !loading }" class="spinner"></div>
+  <pagination-controls class="mt-3" (pageChange)="getPage($event)" id="server"></pagination-controls>
+</div>

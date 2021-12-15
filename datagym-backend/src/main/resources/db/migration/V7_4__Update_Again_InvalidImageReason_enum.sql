@@ -1,0 +1,1 @@
+alter table image modify column invalid_image_reason ENUM('INVALID_MIME_TYPE', 'INVALID_URL', 'AWS_ERROR', 'UNSUPPORTED_AWS_S3_STORAGE_CLASS');

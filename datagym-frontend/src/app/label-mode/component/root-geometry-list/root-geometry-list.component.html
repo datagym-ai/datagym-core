@@ -1,0 +1,6 @@
+<div class="my-2">
+  <div class="col-12" *ngIf="!rootGeometries || rootGeometries.length === 0">
+    {{ 'FEATURE.LABEL_MODE.NO_GEOMETRIES_TO_SHOW' | translate }}
+  </div>
+  <app-geometry-item *ngFor="let rootGeometry of rootGeometries | sortGeometryItems" [item]="rootGeometry"></app-geometry-item>
+</div>

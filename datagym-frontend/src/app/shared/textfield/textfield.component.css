@@ -1,0 +1,22 @@
+label.text-label {
+  color: #17142B;
+  display: block;
+}
+span.required-field {
+  color: #6300ED;
+  padding: 3px;
+}
+input.text-field {
+  width: 100%;
+  max-width: 485px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  padding: 8px;
+  outline-color: #000000;
+}
+input.invalid.touched,
+input.invalid.ng-dirty,
+input.ng-invalid.ng-dirty {
+  border-color: #C70F46;
+}

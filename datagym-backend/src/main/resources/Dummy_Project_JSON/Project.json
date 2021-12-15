@@ -1,0 +1,27 @@
+{
+  "id": "38fa44e3-dec7-48ef-b6a1-a8cd0e1ac76e",
+  "name": "Dummy_Project",
+  "shortDescription": "A project that helps to track cars from an arial drone",
+  "description": null,
+  "pinned": false,
+  "timestamp": 1583249845802,
+  "deleteTime": null,
+  "datasets": [
+    {
+      "id": "b04d1f75-b949-429f-af3b-b00c02deecf2",
+      "name": "Dummy_Dataset_One",
+      "shortDescription": null,
+      "timestamp": 1583249846073,
+      "deleted": false,
+      "deleteTime": null,
+      "owner": "1801d7a4-cdb8-4667-bbda-6af6f86b29d6",
+      "mediaCount": 10,
+      "projectCount": 1
+    }
+  ],
+  "labelConfigurationId": "d9dd3305-409b-466a-b4c2-7a6098a6aec1",
+  "labelIterationId": "bcd7c59a-084c-4a96-b086-3e72cba8acaf",
+  "owner": "1801d7a4-cdb8-4667-bbda-6af6f86b29d6",
+  "exportable": true,
+  "deleted": false
+}

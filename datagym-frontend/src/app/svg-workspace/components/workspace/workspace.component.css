@@ -1,0 +1,38 @@
+.box {
+  width: 100%;
+  height: calc(100% - 40px);
+  margin: 20px 0 0;
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: auto;
+  position: relative;
+  outline: none;
+}
+
+.box.no-border-radius{
+  border-radius: 0;
+}
+
+::ng-deep .svg_select_points {
+  stroke: orange;
+}
+
+::ng-deep .svg_select_points.helpingpoint {
+  cursor: copy;
+  stroke: yellow;
+}
+
+::ng-deep .svg_select_boundingRect {
+  stroke-width: 1;
+}
+
+/**
+This class gets applied if an Geometry of type "POINT" gets selected
+ */
+::ng-deep .svg_select_point_rect {
+  stroke-width: 1;
+  stroke: orange;
+  stroke-opacity: .8;
+  fill-opacity: .1;
+  pointer-events: none
+}

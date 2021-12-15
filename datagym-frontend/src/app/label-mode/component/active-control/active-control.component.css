@@ -1,0 +1,35 @@
+
+.control {
+  height: 36px;
+  min-height: 36px;
+  font-size: 16px;
+  display: inline-block;
+  outline: none;
+  padding: 10px 25px;
+  line-height: 1;
+  width:100%;
+}
+
+.active-control {
+  cursor: pointer;
+  border: 1px solid #6300ED;
+  color: #6300ED;
+  background-color: white;
+}
+
+.inactive-control {
+  cursor: default;
+  color: #C0C0C0;
+  border: 1px solid #C0C0C0;
+}
+
+.active-control:hover:not(:disabled){
+  color: white;
+  background-color: #BB86FC;
+  border: 1px solid #BB86FC;
+}
+
+.active-control i {
+  width:18px;
+  height: 18px;
+}

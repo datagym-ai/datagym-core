@@ -1,0 +1,82 @@
+
+@media (min-width: 1200px) {
+  .edit-entry-component {
+    border: none;
+    border-left: 1px solid #C0C0C0;
+    border-radius: 0;
+    padding-left: 2em;
+  }
+}
+
+label[for="reqCheck"] {
+  padding-top: .5em;
+}
+
+.col-app-textfield {
+  max-width: 485px;
+}
+
+.entry {
+  border: 1px solid #C0C0C0;
+  border-radius: 2px;
+}
+.entry + .entry,
+.entry + div .entry{
+  border-top: none;
+}
+
+.entry-header > div:nth-child(1){
+  font-weight: bold;
+}
+.entry-header > div:nth-child(n+2) {
+  color: #6300ED;
+}
+.answer-title{
+  font-weight: bold;
+}
+
+.context-menu-overlay{
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  padding: 5px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+}
+
+.select-color {
+  height: 26px;
+  width: 100%;
+}
+.selected-color {
+  height: 22px;
+  width: 100%;
+  font-size: 0;
+}
+
+
+.shortcut-selector:hover{
+  background-color: #BB86FC;
+  border-color: #BB86FC;
+  color: white;
+  opacity: 0.8;
+}
+.shortcut-selector.notAvailable {
+  cursor: not-allowed;
+  color: lightgrey;
+  border-color: lightgrey;
+  opacity: 0.8;
+}
+
+.shortcut-selector.selected {
+  cursor: pointer;
+  color: #6300ED;
+  border-color: #6300ED;
+  opacity: 1;
+}
+.shortcut-selector.selected:hover{
+  background-color: #6300ED;
+  border-color: #6300ED;
+  color: white;
+  opacity: 0.8;
+}

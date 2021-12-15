@@ -1,0 +1,30 @@
+<div *ngIf="!readOnly">
+  <div>
+    <input (change)="onSelectorChange()" [checked]="isPrivateSelected" id="radio" name="scales"
+           style="margin: .4rem;" type="radio">
+    <label for="radio">{{'GLOBAL.OWNER_TYPE.PRIVATE'|translate}}</label>
+  </div>
+  <div>
+    <input (change)="onSelectorChange()" [checked]="!isPrivateSelected" id="radio2" name="scales"
+           style="margin: .4rem;" type="radio">
+    <label for="radio2">{{'GLOBAL.OWNER_TYPE.ORGANISATION'|translate}}</label>
+  </div>
+</div>
+<div [formGroup]="parentF.form">
+  <label *ngIf="readOnly" class="text-label">
+    <h3>{{labelText | translate}}</h3>
+  </label>
+  <ng-select [formControlName]="controlName" [readonly]="readOnly">
+    <ng-option *ngFor="let org of possibleOrgs" [value]="org.sub">
+      <app-dg-owner-label [organisation]="org"></app-dg-owner-label>
+    </ng-option>
+  </ng-select>
+  <p
+    [class]="!isPrivateSelected && noOrganisationFound ? 'hintWarning' : 'hint'">{{(noOrganisationFound && !isPrivateSelected ? 'FEATURE.PROJECT.CREATE.HINT.NO_ORGANIZATION' : hintText)|translate}}</p>
+  <h3 *ngIf="!isPrivateSelected && noOrganisationFound">
+    {{'FEATURE.PROJECT.CREATE.CREATION.CREATE_ORG' | translate}}
+    <span *ngIf="!readOnly" class="required-field">*</span>
+    <i (click)="redirectToAccountSettings()" *ngIf="!readOnly" aria-hidden="true"
+       class="fas fa-plus edit-icon pointer"></i>
+  </h3>
+</div>

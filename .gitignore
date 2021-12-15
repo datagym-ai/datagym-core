@@ -1,0 +1,10 @@
+# intellij-specific files
+**/.idea
+*.iml
+
+# maven target output´s
+target
+
+# System Files
+.DS_Store
+Thumbs.db

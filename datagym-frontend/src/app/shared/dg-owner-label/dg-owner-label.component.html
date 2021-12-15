@@ -1,0 +1,9 @@
+<div class="dg-owner">
+
+    <i *ngIf="!hideIcon && !!internalOwner" class="fas" [ngClass]="{
+      'fa-building': !internalOwner.personal,
+      'fa-user': internalOwner.personal
+    }" aria-hidden="true"></i>
+
+  <span [title]="name">{{ name }}</span>
+</div>

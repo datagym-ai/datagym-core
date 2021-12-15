@@ -1,0 +1,13 @@
+<div class="row no-gutters control d-flex" [class]="actionSelected()? 'active-control' : 'inactive-control'"
+     (click)="actionSelected()? cancelAction() : $event.stopPropagation()">
+  <div class="col d-flex justify-content-center">
+    <span *ngIf="labelModeUtilityService.userIsDrawing && !labelModeUtilityService.aiSegActive"
+          [innerHTML]="'FEATURE.LABEL_MODE.ACTIVE_CONTROL.CANCEL_DRAWING' | translate"></span>
+    <span *ngIf="labelModeUtilityService.aiSegActive"
+          [innerHTML]="'FEATURE.LABEL_MODE.ACTIVE_CONTROL.CANCEL_AI' | translate"></span>
+    <span *ngIf="!labelModeUtilityService.userIsDrawing && !labelModeUtilityService.aiSegActive"
+          [innerHTML]="'FEATURE.LABEL_MODE.ACTIVE_CONTROL.NO_ACTION' | translate"></span>
+    <em *ngIf="labelModeUtilityService.userIsDrawing || labelModeUtilityService.aiSegActive"
+        class="ml-2 fas fa-ban"></em>
+  </div>
+</div>

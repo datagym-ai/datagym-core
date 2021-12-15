@@ -1,0 +1,27 @@
+<div class="row page-title-wrapper">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12">
+        <app-go-back [link]="['/datasets']" [target]="'FEATURE.DATASET.DETAILS.BACK'"></app-go-back>
+        <h1 class="wrap-words" title="{{ dataset.name }}">
+          {{'FEATURE.DATASET.DETAILS.TITLE' | translate}}
+          <span class="dataset-name ">{{ dataset.name }}</span></h1>
+      </div>
+      <!-- Add to project function is only for project admins -->
+      <div *ngIf="isProjectAdmin" class="col-12 my-4">
+        <app-button
+          label="FEATURE.DATASET.DETAILS.ADD_TO_PROJECT"
+          styling="secondary"
+          [disabled]="isDummy"
+          [title]="isDummy ? 'FEATURE.DATASET.DUMMY': ''"
+          (onClick)="onAddToProject()"></app-button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-tab-group [vh]="73" [tabGroup]="tabs" [sub]="dataset.owner"></app-tab-group>
+<app-dg-select-modal
+  [title]="'FEATURE.DATASET.DETAILS.MODAL.SELECT_PROJECT_TO_CONNECT'"
+  [right.btn.label]="'FEATURE.DATASET.DETAILS.MODAL.CONNECT'"
+  (right.btn.click)="connectProject($event)"
+></app-dg-select-modal>

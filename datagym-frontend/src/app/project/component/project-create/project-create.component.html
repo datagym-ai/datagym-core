@@ -1,0 +1,91 @@
+<div class="row">
+  <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()" class="w-100">
+    <div class="row p-3">
+      <div class="col-12">
+        <h2>{{'FEATURE.PROJECT.CREATE.TITLE' | translate}}</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="col-12">
+          <label class="text-label">
+            <h3>{{'FEATURE.PROJECT.CREATE.LABEL.OWNER' | translate}}
+              <span class="required-field">*</span>
+              <i class="fas fa-edit edit-icon" aria-hidden="true"></i>
+            </h3>
+          </label>
+        </div>
+
+        <div class="col-12">
+          <app-dg-select-owner controlName="projectOwner"
+                               hint="FEATURE.PROJECT.CREATE.HINT.OWNER"></app-dg-select-owner>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="col-12">
+          <label class="text-label">
+            <h3>{{'FEATURE.PROJECT.CREATE.LABEL.MEDIA_TYPE' | translate}}
+              <span class="required-field">*</span>
+              <i aria-hidden="true" class="fas fa-edit edit-icon"></i>
+            </h3>
+          </label>
+        </div>
+        <div class="col-12">
+          <div>
+            <input [value]="MediaType.IMAGE" formControlName="mediaType" id="mediaTypeImage" style="margin: .4rem;"
+                   type="radio">
+            <label for="mediaTypeImage">{{'GLOBAL.MEDIA_TYPE.IMAGE'|translate}}</label>
+          </div>
+          <div>
+            <input [value]="MediaType.VIDEO" formControlName="mediaType" id="mediaTypeVideo" style="margin: .4rem;"
+                   type="radio">
+            <label for="mediaTypeVideo">{{'GLOBAL.MEDIA_TYPE.VIDEO'|translate}}</label>
+          </div>
+        </div>
+      </div>
+    </div><!-- row -->
+
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="col-12">
+          <app-textfield label="FEATURE.PROJECT.CREATE.LABEL.NAME" formControlName="projectName" required="true"
+                         editable="true" #projectNameField
+                         hint="FEATURE.PROJECT.CREATE.HINT.NAME"></app-textfield>
+          <app-textfield label="FEATURE.PROJECT.CREATE.LABEL.SHORT_DESC" formControlName="projectShortDescription"
+                         required="true" editable="true"
+                         hint="FEATURE.PROJECT.CREATE.HINT.SHORT_DESC"></app-textfield>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="col-12">
+          <label for="fullDesc"
+                 class="text-label">{{'FEATURE.PROJECT.CREATE.LABEL.FULL_DESC' | translate}}<i
+            class="fas fa-edit edit-icon" aria-hidden="true"></i></label><br>
+          <textarea id="fullDesc" class="full-desc" rows="5" formControlName="projectDescription"
+                    (input)="$event.stopPropagation();//thx edge"></textarea>
+          <app-dg-input-errors class="mt-2 d-block"
+                               [errors]="createProjectForm.controls['projectDescription'].errors"></app-dg-input-errors>
+          <p class="hint">{{'FEATURE.PROJECT.CREATE.HINT.FULL_DESC' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row p-3">
+    <div class="col-12">
+
+      <app-button class="mr-3" label="FEATURE.PROJECT.CREATE.BUTTON.CREATE"
+                  type="submit"
+                  (onClick)="onSubmit()"
+                  [disabled]="!createProjectForm.valid"></app-button>
+
+      <app-button label="GLOBAL.CANCEL" type="button" styling="warn"
+                  (onClick)="onCancel()"></app-button>
+
+    </div>
+    <div class="col-12">
+      <p class="required-hint"><span class="required-field">*</span>{{'GEN.REQUIRED_FIELD' | translate}}</p>
+    </div>
+  </div>
+</div>

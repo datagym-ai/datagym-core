@@ -1,0 +1,8 @@
+.go-back {
+  outline: none;
+  cursor: pointer;
+}
+.go-back i {
+  color: #6300ED;
+  letter-spacing: 0;
+}

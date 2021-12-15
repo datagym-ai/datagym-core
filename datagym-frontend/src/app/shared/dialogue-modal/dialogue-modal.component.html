@@ -1,0 +1,13 @@
+<ngx-smart-modal #dialogueModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()">
+  <div *ngIf="dialogueModal.hasData()">
+    <div class="text-center">
+      <h4 *ngIf="!inputs.titleParams else withTitleParams">{{ inputs.title | translate}}</h4>
+      <div class="pb-4 dialogue-content" [innerHTML]="inputs.content | translate:inputs?.contentParams"></div>
+      <app-button class="mr-3" [app-button-input]="inputs.buttonLeft" (onClick)="onAccept()"></app-button>
+      <app-button [app-button-input]="inputs.buttonRight" (onClick)="dialogueModal.close()"></app-button>
+    </div>
+  </div>
+</ngx-smart-modal>
+<ng-template #withTitleParams>
+  <div class="pb-4" *ngIf="!!inputs.titleParams">{{inputs.title | translate: inputs.titleParams }}</div>
+</ng-template>

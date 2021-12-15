@@ -1,0 +1,37 @@
+<div class="container">
+
+  <!-- Logo and brand name -->
+  <div class="row mb-3 mt-3">
+    <div class="col-12 text-left p-0 pl-2" style="height: 70px">
+      <img id="datagym-logo" class="pointer"
+           src="/assets/image/logo.svg"
+           alt="logo"
+           [routerLink]="'/'"
+           [style.height]="navIsFolded ? '35px' : '70px'">
+    </div>
+  </div>
+
+  <!-- Folding-/unfolding icon -->
+  <div class="row">
+    <div class="nav-item" [ngClass]="{'nav-item-folded': navIsFolded}">
+      <div class="row pl-3 pr-3" [ngClass]="navIsFolded ? 'flex-nowrap no-gutters' : 'justify-content-end'">
+        <div class="text-nowrap p-0" [ngClass]="navIsFolded ? 'col-12' : 'col-2'"
+             title="{{getNavbarCollapseString()|translate}}" (click)="onToggleFolded()">
+          <i [ngClass]="navIsFolded ? [navIcons.unfold, 'nav-icon'] : navIcons.fold" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation elements -->
+  <div class="row">
+    <nav>
+      <div class="nav-group" *ngFor="let navGroup of navigation">
+        <span class="nav-bar-headline" *ngIf="!navIsFolded">{{navGroup.i18nHeadline | translate}}</span>
+        <div *ngFor="let navItem of navGroup.navItems" class="nav-item" [ngClass]="{'nav-item-folded': navIsFolded}">
+          <app-navbar-item [navItem]="navItem" [isFolded]="navIsFolded"></app-navbar-item>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>

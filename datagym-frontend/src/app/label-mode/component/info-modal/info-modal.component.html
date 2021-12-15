@@ -1,0 +1,84 @@
+<em class="fas fa-info-circle pointer dg-primary-color dg-primary-hover"
+   [title]="'FEATURE.LABEL_MODE.LEGEND.OPEN' | translate"
+   (click)="openLegend()"></em>
+
+<ngx-smart-modal #LabelModeInfoModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()"
+                 [customClass]="'nsm-dialog-width650px'" [dismissable]="true" [escapable]="true" [closable]="true">
+
+  <div class="row mt-4">
+    <!-- some whitespace -->
+  </div>
+
+  <div class="mx-5 mb-3">
+    <div class="row flex-nowrap overflow-hidden tabs">
+      <div class="col-auto" *ngFor="let tab of tabs; let i = index">
+        <div class="tab-item" [ngClass]="{'tab-active': selectedTabIndex === i}" (click)="selectedTabIndex = i">
+          <h2>{{ tab | translate }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4 content">
+      <div class="row reset-wrap-words" *ngIf="hasConfiguration">
+        <ng-container *ngIf="selectedTabIndex === 0" [ngTemplateOutlet]="symbolsTab"></ng-container>
+        <ng-container *ngIf="selectedTabIndex === 1" [ngTemplateOutlet]="shortcutsTab"></ng-container>
+        <ng-container *ngIf="selectedTabIndex === 2" [ngTemplateOutlet]="mediaTab"></ng-container>
+      </div>
+    </div>
+
+  </div>
+
+</ngx-smart-modal>
+
+<ng-template #symbolsTab>
+  <div class="col-12" *ngFor="let entry of config">
+    <div class="row mb-2">
+      <div class="col-12 section-title" *ngIf="!entry.icon">
+        {{ entry.description | translate }}
+      </div>
+      <div class="col-2">
+        <i [ngClass]="entry.icon"></i>
+      </div>
+      <div class="col-" *ngIf="entry.key || entry.icon">
+        {{ entry.description | translate }}
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #shortcutsTab>
+  <div class="col-12" *ngFor="let entry of config">
+    <div class="row mb-2">
+      <div class="col-12 section-title" *ngIf="entry.title">
+        {{ entry.title | translate }}
+      </div>
+      <div class="col-4" *ngIf="entry.kbd">
+        <kbd>{{ entry.kbd }}</kbd>
+      </div>
+      <div class="col-4" *ngIf="entry.key">
+        <span dgkbd *ngIf="entry.key">{{ entry.key }}</span>
+      </div>
+      <div class="col-" *ngIf="entry.description">
+        {{ entry.description | translate }}
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+
+<ng-template #mediaTab>
+  <div class="col-12" *ngFor="let entry of config">
+    <div class="row mb-2">
+      <div class="col-4">
+        <strong>{{ entry.description | translate }}</strong>
+      </div>
+      <div class="col-" [ngClass]="{'pointer dg-primary-hover': !!entry.action}" (click)="callAction(entry)">
+        <i *ngIf="entry.icon" class="mr-1" [ngClass]="entry.icon"></i>
+        <span>{{ entry.key }}</span>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

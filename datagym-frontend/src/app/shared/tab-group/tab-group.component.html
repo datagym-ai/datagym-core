@@ -1,0 +1,10 @@
+<div class="row flex-nowrap overflow-hidden tabs">
+  <div class="col-auto" *ngFor="let tab of tabGroup.tabs">
+    <app-tab [tab]="tab"></app-tab>
+  </div>
+</div>
+<div class="row overflow-auto tabs-content" [style.height]="viewHeight">
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
+</div>

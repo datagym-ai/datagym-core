@@ -1,0 +1,3 @@
+
+<i class="dg-gray" [ngClass]="icon" *ngIf="!active"></i>
+<i class="dg-primary-hover pointer" [ngClass]="icon" *ngIf="active" (click)="onClick.emit($event)"></i>

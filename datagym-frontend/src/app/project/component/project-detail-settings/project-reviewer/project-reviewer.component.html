@@ -1,0 +1,64 @@
+<div class="row mt-5 mb-3">
+  <div class="col-auto">
+    <div class="d-inline title">
+      {{'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.REVIEW' | translate}}
+    </div>
+  </div>
+</div>
+<div class="row mb-3 no-gutters">
+  <div class="col-auto">
+    <div class="position-relative ml-3">
+      <div class="control-outer" [formGroup]="enableReviews">
+        <label class="control control--checkbox">
+          <input type="checkbox" id="enable_reviews" formControlName="enable">
+          <i class="control__indicator"></i>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="col ml-3">
+    <label for="enable_reviews">{{'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.TOGGLE' | translate}}</label>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col">
+    <div class="d-inline title">{{'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.TITLE' | translate}}</div>
+  </div>
+</div>
+<div class="pl-3">
+  <div class="row dg-table-header">
+    <div class="col-10">{{'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.TABLE_HEADER.NAME' | translate}}</div>
+    <div class="col-2 text-center">{{'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.TABLE_HEADER.ACTIONS' | translate}}</div>
+  </div>
+  <app-reviewer-list-item
+    class="row dg-table-entry"
+    *ngFor="let reviewer of reviewers"
+    [reviewer]="reviewer"
+    (onDeleteEvent)="onDelete($event)"
+  ></app-reviewer-list-item>
+  <div *ngIf="reviewers.length === 0" class="row dg-table-entry dg-table-entry-unclickable align-content-center">
+    <div class="col-12 text-center">{{ 'GLOBAL.EMPTY_TABLE' | translate }}</div>
+  </div>
+  <div class="row dg-table-entry dg-table-empty-result dg-table-entry-unclickable align-content-center">
+    <div class="col-12 text-center">{{ 'GLOBAL.NO_SEARCH_RESULTS' | translate }}</div>
+  </div>
+</div>
+<div class="row mt-4">
+  <div class="col-12">
+    <small [ngClass]="{
+            'dg-primary-hover pointer': enabled,
+            'not-allowed dg-lightgray': !enabled
+          }"
+           (click)="onInitReviewerAdding()">
+      {{ ( 'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.' + (hasReviewer ? 'CONNECT_NEW_REVIEWER' : 'CONNECT_FIRST_REVIEWER') ) | translate | uppercase }}
+      <i class="ml-2 fas fa-link" aria-hidden="true"></i>
+    </small>
+  </div>
+</div>
+<app-dg-select-modal
+  [id]="reviewerModalId"
+  [title]="'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.LIST_MODAL.TITLE'"
+  [label]="'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.LIST_MODAL.CONTENT'"
+  [right.btn.label]="'FEATURE.PROJECT.DETAIL.SETTINGS.REVIEW.LIST_MODAL.CONNECT'"
+  (right.btn.click)="addReviewer($event)"
+></app-dg-select-modal>

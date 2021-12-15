@@ -1,0 +1,1 @@
+alter table lc_entry_value add column comment varchar(255);

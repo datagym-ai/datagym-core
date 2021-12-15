@@ -1,0 +1,70 @@
+<ngx-smart-modal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()">
+  <div class="container-fluid p-3">
+    <ng-container *ngIf="parentId === null" [ngTemplateOutlet]="createRoot"></ng-container>
+    <ng-container *ngIf="parentId !== null" [ngTemplateOutlet]="createChild"></ng-container>
+
+    <ng-container *ngIf="!choiceMade" [ngTemplateOutlet]="chooseType"></ng-container>
+    <ng-container *ngIf="choiceMade" [ngTemplateOutlet]="specify"></ng-container>
+  </div>
+</ngx-smart-modal>
+
+<ng-template #createRoot>
+  <div class="row">
+    <div class="col dg-primary-color">
+      <h2>{{'FEATURE.LABEL_CONFIG.CREATE.TITLE.PARENT' | translate }}</h2>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #createChild>
+  <div class="row">
+    <div class="col dg-primary-color">
+      <h2>{{'FEATURE.LABEL_CONFIG.CREATE.TITLE.CHILD' | translate }}</h2>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #chooseType>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col py-3">
+          {{'FEATURE.LABEL_CONFIG.CREATE.CONTENT.TYPE' | translate }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <app-button
+            label="{{ 'FEATURE.LABEL_CONFIG.CREATE.BUTTON.ADD_NEW_GEOMETRY' | translate }}"
+            styling="full"
+            (onClick)="onGeo()"></app-button>
+        </div>
+        <div class="col-6">
+          <app-button
+            label="{{ 'FEATURE.LABEL_CONFIG.CREATE.BUTTON.ADD_NEW_CLASSIFICATION' | translate }}"
+            styling="secondary-full"
+            (onClick)="onClassification()"></app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #specify>
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        <div class="col p-3">
+          {{'FEATURE.LABEL_CONFIG.CREATE.CONTENT.SPECIFY' | translate }}
+        </div>
+      </div>
+      <div *ngFor="let type of types">
+        <div class="row select-type-option" (click)="createEntry(type)">
+          <div class="col-10">{{ LcEntryType.toString(type) | translate | uppercase }}</div>
+          <div class="col-2 dg-primary-color"><i [ngClass]="LcEntryType.getIcon(type)"
+                                                 aria-hidden="true"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

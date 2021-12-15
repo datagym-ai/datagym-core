@@ -1,0 +1,192 @@
+<ng-container [ngTemplateOutlet]="loadingMedia"></ng-container>
+<ng-container *ngIf="previewGuide.display" [ngTemplateOutlet]="previewModeGuide"></ng-container>
+
+<div class="label-mode-container" (click)="onLabelModeContainerClicked()">
+  <div class="d-flex" [style.height]="mediaControl.labelModeHeight" [ngClass]="{'border-bottom': mediaControl.showVideoPanel}">
+    <section class="panel main-panel right-border">
+
+      <div class="lists-panel-container">
+        <div class="lists-panel">
+          <div class="list1" [ngClass]="{'h-100 mh-100': mediaControl.showVideoPanel}">
+            <!-- Home Button -->
+            <div class="row no-gutters d-block">
+              <div class="row  p-3 px-4">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="home-link wrap-words" (click)="onHomeClicked()">
+                        <i class="home-icon fas fa-home mr-3 dg-primary-hover" aria-hidden="true"></i>
+                        <span *ngIf="projectName.length < 15">{{ 'FEATURE.LABEL_MODE.PROJECT' | translate }}</span>
+                        {{ projectName }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Active/Cancel - Area -->
+            <div class="row active-control block-list no-gutters">
+              <div class="col-12">
+                <app-active-control class="d-block"></app-active-control>
+              </div>
+            </div>
+
+            <!-- Entry-List -->
+            <div class="row block-list no-gutters">
+              <div class="row scrollable-list">
+                <div class="col-12">
+                  <app-root-geometry-list></app-root-geometry-list>
+                </div>
+              </div>
+            </div>
+            <hr class="divider">
+          </div>
+
+          <div class="list2" *ngIf="mediaControl.showValueList">
+            <!-- Global-Classification-Button -->
+            <div class="classification-button row px-4"
+                 (click)="mediaControl.hasGlobalClassifications? onGlobalClicked() : $event.stopPropagation()">
+              <div *ngIf="mediaControl.hasGlobalClassifications else noGlobal" class="d-block w-100">
+
+                <div class="col-12 text-center global-classifications"
+                     [ngClass]="{'global-classifications-error': !globalClassificationsValid}">
+                  {{ 'FEATURE.LABEL_MODE.SHOW_GLOBAL_CLASSIFICATIONS' | translate }}
+                  <span class="mr-1" *ngIf="mediaControl.hasRequiredGlobalClassifications && globalClassificationsValid">*</span>
+                  <i class="fas fa-exclamation-triangle mr-1 dg-warn-color" aria-hidden="true"
+                     *ngIf="!globalClassificationsValid"></i>
+                  <i class="fas fa-angle-right" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="row value-list block-list no-gutters" [ngClass]="{'pb-2': !hideControlPanel}">
+              <div class="row scrollable-list scroll-y">
+                <div class="navigation-header col-12">
+                  <div class="d-block">
+                    <div class="mx-2">
+                      <div class="col-12">
+                        <div class="row align-items-center">
+                          <div class="col-8">
+                            {{ 'FEATURE.LABEL_MODE.NAVIGATION' | translate }}
+                          </div>
+                          <i class="ml-3 col-1 navigation-arrow pointer dg-primary-hover fas fa-arrow-left"
+                             (click)="iterateSelectedValues(false);"
+                             title="{{ 'FEATURE.LABEL_MODE.NAVIGATE_SELECTED_VALUE' | translate }}"></i>
+                          <i class="col-1 navigation-arrow pointer fas dg-primary-hover fa-arrow-right"
+                             (click)="iterateSelectedValues(true);"
+                             title="{{ 'FEATURE.LABEL_MODE.NAVIGATE_SELECTED_VALUE' | translate }}"></i>
+                        </div>
+                        <div class="row align-items-center">
+                          <div class="col-12 mb-1">
+                            <small dgkbd>{{ 'FEATURE.LABEL_MODE.NAVIGATION_DESCRIPTION' | translate }}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="divider">
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <app-entry-value-list class="d-block"></app-entry-value-list>
+                </div>
+              </div>
+            </div>
+            <hr class="divider" *ngIf="!hideControlPanel">
+          </div>
+        </div>
+
+      </div>
+
+      <app-task-control
+        *ngIf="!hideControlPanel"
+        class="control-panel"
+        [taskValid]="taskValid()"
+      ></app-task-control>
+
+    </section>
+
+    <section class="panel classification-panel right-border" *ngIf="valuesSelected && mediaControl.allowClassificationBar">
+      <div class="row no-gutters p-3">
+        <div class="col-12 word-break">
+          {{ selectedMediaClassifications ? ('FEATURE.LABEL_MODE.IMAGE_CLASSIFICATIONS' | translate) : rootEntryName }}
+        </div>
+      </div>
+      <hr class="divider">
+      <app-classification-list class="w-100 mw-100 h-100 mh-100 scrollable-list"></app-classification-list>
+    </section>
+
+    <main class="workbench d-flex">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 toolbar border-bottom">
+            <app-tool-bar [isClassificationBarOpen]="valuesSelected" class="d-block"></app-tool-bar>
+          </div>
+        </div>
+        <div class="row workspace-row">
+          <div class="col-12">
+            <app-workspace class="d-block h-100" *ngIf="isTaskLoaded" [disableDemoMode]="disableDemoMode"></app-workspace>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <app-video-control *ngIf="mediaControl.showVideoPanel" class="d-block w-100" [style.height]="mediaControl.videoPanelHeight"></app-video-control>
+</div>
+
+<!-- Template for empty Global-Classifications -->
+<ng-template #noGlobal>
+  <div class="d-block w-100">
+    <div class="row px-3">
+      <div class="col-12 global-classifications no-global-classifications text-center">
+        {{ 'FEATURE.LABEL_MODE.NO_GLOBAL_CLASSIFICATIONS_TO_SHOW' | translate }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Generate Warning banner if other Browser than Chrome is used -->
+<app-browser-support *ngIf="isProd"></app-browser-support>
+
+<!-- Adds overlay for workspace if browser window resolution is too low -->
+<app-resolution-limit *ngIf="isProd"></app-resolution-limit>
+
+<!-- Absolute positioned overlay for loading message/animation -->
+<ng-template #loadingMedia>
+  <div class="label-mode-container position-absolute align-items-center loadingAnimation"
+       *ngIf="!valuesLoaded">
+    <div class="col-12">
+      <img alt="Loading..." class="loadingMedia" src="/assets/image/workspace-loading.gif">
+    </div>
+  </div>
+</ng-template>
+
+<!-- Absolute positioned overlay for preview mode guide -->
+<ng-template #previewModeGuide>
+  <div class="label-mode-container guide-entry position-absolute align-items-center" (click)="previewGuide.onClose()">
+    <div class="col-12">
+      <div class="row">
+        <div class="text-center guide-box" (click)="$event.stopPropagation();">
+          <div class="text-right pt-2">
+            <i class="fas fa-times close-guide" (click)="previewGuide.onClose()"></i>
+          </div>
+          <div class="guide-content m-3">
+            <h3>{{ previewGuide.step }}. {{ previewGuide.title | translate }}</h3>
+            <p>{{ previewGuide.description | translate }}</p>
+            <img class="guide-image mb-3" [src]="previewGuide.imageUrl" alt="Loading...">
+            <app-button
+              label="All Right!"
+              (onClick)="previewGuide.onNext()"
+            ></app-button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</ng-template>

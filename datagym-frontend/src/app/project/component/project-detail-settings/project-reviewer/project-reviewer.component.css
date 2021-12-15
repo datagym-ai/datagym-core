@@ -1,0 +1,13 @@
+
+.control {
+  padding-left: 0;
+  padding-right: 0;
+  top: -4px;
+  left: -1em;
+}
+
+.control input:disabled ~ .control__indicator {
+  /* reactivate title property & show disabled cursor */
+  pointer-events: auto;
+  cursor: not-allowed;
+}

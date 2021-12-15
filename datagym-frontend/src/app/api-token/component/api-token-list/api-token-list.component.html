@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col">
+    <h1>{{'FEATURE.API_TOKEN.LIST.TITLE' | translate}}</h1>
+  </div>
+</div>
+<div class="row flex-nowrap action-row">
+  <div class="col flex-nowrap">
+    <app-search-field
+      [label]="'FEATURE.API_TOKEN.LIST.FILTER.HINT'"
+      [placeholder]="'FEATURE.API_TOKEN.LIST.FILTER.PLACEHOLDER'"
+      [(ngModel)]="filterText"></app-search-field>
+  </div>
+  <div class="col-4 text-right">
+    <app-button routerLink="create"
+                label="FEATURE.API_TOKEN.LIST.BUTTON_CREATE"
+                styling="secondary"></app-button>
+  </div>
+</div>
+<div class="row dg-table-header">
+  <div class="col-3 col-xl-2">{{'GLOBAL.OWNER' | translate}}</div>
+  <div class="col-3 col-xl-2">{{ 'FEATURE.API_TOKEN.LIST.TABLE_HEADER.NAME' | translate }}</div>
+  <div class="col">{{ 'FEATURE.API_TOKEN.LIST.TABLE_HEADER.TOKEN' | translate }}</div>
+  <div class="col-2 d-none d-xl-block">
+    {{ 'FEATURE.API_TOKEN.LIST.TABLE_HEADER.CREATED_AT' | translate }} /
+    {{ 'FEATURE.API_TOKEN.LIST.TABLE_HEADER.LAST_USED' | translate }}
+  </div>
+  <div class="col-1"></div>
+</div>
+<app-api-token
+  class="row dg-table-entry dg-table-entry-unclickable align-content-center d-flex"
+  *ngFor="let token of tokens | ApiTokenNameFilter: filterText"
+  (onDelete)="onDelete(token)"
+  [token]="token"></app-api-token>
+<div *ngIf="tokens.length === 0" class="row dg-table-entry dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'GLOBAL.EMPTY_TABLE' | translate }}</div>
+</div>
+<div class="row dg-table-entry dg-table-empty-result dg-table-entry-unclickable align-content-center">
+  <div class="col-12 text-center">{{ 'GLOBAL.NO_SEARCH_RESULTS' | translate }}</div>
+</div>
+<div class="d-none" id="prevent-password-save-dialogue">
+  <input name="pw1" id="pw1" value="pw1" title="password" class="d-none" type="password"/>
+  <input name="pw2" id="pw2" value="pw2" title="password" class="d-none" type="password"/>
+  <input name="pw3" id="pw3" value="pw3" title="password" class="d-none" type="password"/>
+</div>

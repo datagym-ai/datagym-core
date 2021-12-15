@@ -1,0 +1,79 @@
+<form class="edit-form" [formGroup]="editDatasetForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <app-dg-select-owner controlName="datasetOwner" label="FEATURE.DATASET.CREATE.LABEL.OWNER"
+                           hint="FEATURE.DATASET.CREATE.HINT.OWNER" [readOnly]="true"></app-dg-select-owner>
+    </div>
+    <div class="col-12 col-lg-6">
+      <label class="text-label">
+        <h3>{{'FEATURE.PROJECT.CREATE.LABEL.MEDIA_TYPE' | translate}}
+          <span class="required-field">*</span>
+        </h3>
+      </label>
+      <div>
+        <input [value]="MediaType.IMAGE" formControlName="mediaType" id="mediaTypeImage"
+               style="margin: .4rem;"
+               type="radio">
+        <label for="mediaTypeImage">{{'GLOBAL.MEDIA_TYPE.IMAGE'|translate}}</label>
+      </div>
+      <div>
+        <input [value]="MediaType.VIDEO" formControlName="mediaType" id="mediaTypeVideo"
+               style="margin: .4rem;"
+               type="radio">
+        <label for="mediaTypeVideo">{{'GLOBAL.MEDIA_TYPE.VIDEO'|translate}}</label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <app-textfield label="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.LABEL.NAME"
+                     [editable]="!isDummy" [title]="isDummy ? 'FEATURE.DATASET.DUMMY_SETTING': ''"
+                     hint="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.HINT.NAME" required="true" editable="true"
+                     formControlName="datasetName"></app-textfield>
+    </div>
+    <div class="col-12 col-lg-6">
+      <app-textfield label="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.LABEL.SHORT_DESC"
+                     [editable]="!isDummy" [title]="isDummy ? 'FEATURE.DATASET.DUMMY_SETTING': ''"
+                     hint="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.HINT.SHORT_DESC" editable="true"
+                     formControlName="datasetShortDescription"></app-textfield>
+    </div>
+  </div>
+</form>
+
+<div class="row mt-5">
+  <div class="col-auto">
+    <small *ngIf="isDummy" class="not-allowed dg-lightgray">
+      {{'FEATURE.DATASET.DETAILS.SETTINGS.DANGER_ZONE.BUTTON.DELETE' | translate | uppercase}}
+    </small>
+
+    <small *ngIf="!isDummy" class="dg-primary-hover pointer" (click)="onDelete()">
+      {{'FEATURE.DATASET.DETAILS.SETTINGS.DANGER_ZONE.BUTTON.DELETE' | translate | uppercase}}
+    </small>
+
+    <app-button *ngIf="isDummy"
+                class="ml-3" label="GLOBAL.CANCEL" type="button"
+                [title]="'FEATURE.PROJECT.DUMMY'"
+                [disabled]="true"></app-button>
+
+    <app-button *ngIf="!isDummy"
+                class="ml-3" label="GLOBAL.CANCEL" type="button"
+                [disabled]="false"
+                (onClick)="onReset()"></app-button>
+
+    <app-button *ngIf="!editDatasetForm.valid || editDatasetForm.pristine || isDummy"
+                class="ml-3" label="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.BUTTON.SAVE" type="submit"
+                styling="secondary" [title]="isDummy ? 'FEATURE.DATASET.DUMMY': ''"
+                [disabled]="true"></app-button>
+
+    <app-button *ngIf="!(!editDatasetForm.valid || editDatasetForm.pristine || isDummy)"
+                class="ml-3" label="FEATURE.DATASET.DETAILS.SETTINGS.EDIT.BUTTON.SAVE" type="submit"
+                styling="secondary" [title]="isDummy ? 'FEATURE.DATASET.DUMMY': ''"
+                (onClick)="onSubmit()"
+                [disabled]="false"></app-button>
+  </div>
+</div>
+<div class="row mb-4">
+  <div class="col-12">
+    <p class="required-hint"><span class="required-field">*</span>{{'GEN.REQUIRED_FIELD' | translate}}</p>
+  </div>
+</div>

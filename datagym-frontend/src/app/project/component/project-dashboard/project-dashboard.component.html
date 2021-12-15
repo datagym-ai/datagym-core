@@ -1,0 +1,221 @@
+<!-- Invalid Images advanced-pie-chart. Only show if invalid images exist -->
+<div class="row pb-3 d-flex" *ngIf="projectDashboard.countInvalidImages > 0">
+  <div class="col-sm py-2 mx-3 border border-danger">
+    <div class="row">
+      <div class="col small">
+        <em class="fa fa-exclamation-triangle dg-warn-color pr-2" aria-hidden="true"></em>
+        <span class="dg-warn-color warn-text-hover pointer" (click)="selectedDataSetImageError = null">Invalid Images</span>
+        <em class="fas fa-angle-right px-2"></em>
+        <span *ngIf="!!selectedDataSetImageError">{{selectedDataSetImageError.datasetName}}</span>
+        <span *ngIf="!!!selectedDataSetImageError">{{'FEATURE.PROJECT.DASHBOARD.CHARTS.IMAGE_ERRORS.PLACEHOLDER' | translate}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" #datasetChart>
+        <ngx-charts-advanced-pie-chart [view]="datasetChartView" (select)="selectDataSet($event)"
+                                       [label]="'FEATURE.PROJECT.DASHBOARD.CHARTS.IMAGE_ERRORS.LABEL' | translate"
+                                       [scheme]="colorScheme"
+                                       [activeEntries]="activeEntries"
+                                       *ngIf="!!projectDashboard.datasets.length"
+                                       [results]="datasetImageStatusChartResults"></ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm py-2 mx-3 border border-danger">
+    <div class="row">
+      <div class="col small">
+        <em class="fas fa-angle-right px-2"></em>
+        <span *ngIf="!!selectedDataSetImageError">{{selectedDataSetImageError.datasetName}} </span>
+        <app-help class="pl-2" *ngIf="!!selectedDataSetImageError"
+                  [link]="'dataset/manage-images/add-public-links'"></app-help>
+        <span *ngIf="!!!selectedDataSetImageError"> {{'FEATURE.PROJECT.DASHBOARD.CHARTS.IMAGE_ERRORS.PLACEHOLDER' | translate}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col pl-4">
+        <ngx-charts-bar-horizontal [view]="[400,200]"
+                                   [xAxis]="true"
+                                   [yAxis]="true"
+                                   [showXAxisLabel]="true"
+                                   [showYAxisLabel]="true"
+                                   xAxisLabel="Number of invalid Images "
+                                   yAxisLabel="Error Source"
+                                   [scheme]="colorScheme"
+                                   *ngIf="!!selectedDataSetImageError"
+                                   [results]="selectedDatasetImageStatusChartResults"></ngx-charts-bar-horizontal>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Labels counted by day - line-chart. Only show if at least one label was created -->
+<div class="row pb-3" *ngIf="!!labelCountByDayData && labelCountByDayData.labelCountTotal > 0">
+  <div class="col-sm pt-2 mx-3 border">
+    <div class="row">
+      <div class="py-3 pl-4 dashboard-info-box">
+        <span class="dashboard-title">
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.LABEL_COUNT_BY_DAY.TITLE' | translate}}
+        </span><br/>
+        <span >
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.LABEL_COUNT_BY_DAY.INFO' | translate: {count: labelCountByDayData.labelCountTotal} }}
+        </span> <br />
+        <span class="small">
+          &gt; {{'FEATURE.PROJECT.DASHBOARD.CHARTS.LABEL_COUNT_BY_DAY.TIME_FRAME' | translate}}
+        </span>
+      </div>
+      <div class="col pt-5 mt-3" #labelsByDayChart>
+        <ngx-charts-bar-vertical
+          [view]="labelsByDayChartView"
+          [scheme]="colorScheme"
+          [gradient]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showDataLabel]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [showGridLines]="true"
+          [xAxisLabel]="'FEATURE.PROJECT.DASHBOARD.CHARTS.LABEL_COUNT_BY_DAY.X_AXIS' | translate"
+          [yAxisLabel]="'FEATURE.PROJECT.DASHBOARD.CHARTS.LABEL_COUNT_BY_DAY.Y_AXIS' | translate"
+          [results]="labelCountsByDayChartResults"
+        >
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Geometry Counts - advanced-pie-chart. Only show if at least one geometry was created -->
+<div class="row pb-3" *ngIf="!!geometryCountData && geometryCountData.geometryCountTotal > 0">
+  <div class="col-sm py-2 mx-3 border">
+    <div class="row">
+      <div class="py-3 pl-4 dashboard-info-box">
+        <span class="dashboard-title">
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.GEO_COUNT.TITLE' | translate}}
+        </span><br/>
+        <span >
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.GEO_COUNT.INFO' | translate: {count: geometryCountData.geometryCountTotal} }}
+        </span>
+      </div>
+      <div class="col">
+        <ngx-charts-advanced-pie-chart [view]="taskChartView"
+                                       [label]="'FEATURE.PROJECT.DASHBOARD.CHARTS.GEO_COUNT.LABEL' | translate"
+                                       [scheme]="colorScheme"
+                                       [results]="geometryCountsChartResults"></ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row pb-3">
+  <div class="col-5 ml-3 border">
+    <div class="row h-100">
+      <div class="col- py-3 pl-4">
+        <span class="dashboard-title">
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.REVIEWS.TITLE' | translate}}
+        </span><br/>
+        <span>
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.REVIEWS.INFO' | translate: {count: reviewCount} }}
+        </span>
+      </div>
+      <div class="col d-flex justify-content-center align-content-center my-auto">
+        <ngx-charts-pie-grid label="Total"
+                             *ngIf="!!reviewCount"
+                             [scheme]="colorScheme"
+                             [view]="[250,200]"
+                             [designatedTotal]="reviewCount"
+                             [results]="reviewChartResults"></ngx-charts-pie-grid>
+
+          <span *ngIf="reviewCount === 0 && mediaCount > 0" class="d-flex my-auto dashboard-no-reviews">0</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col mx-3 border">
+    <div class="row">
+      <div class="col- py-3 pl-4">
+        <span class="dashboard-title">
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.MEDIA.' +
+        (projectDashboard.mediaType === MediaType.IMAGE ? 'TITLE_IMAGES' : 'TITLE_VIDEOS')| translate}}
+        </span><br/>
+        <span>
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.MEDIA.INFO' | translate: {count: mediaCount} }}
+        </span>
+      </div>
+      <div class="col d-flex justify-content-center">
+        <ngx-charts-pie-grid [scheme]="colorScheme"
+                             *ngIf="!!mediaCount"
+                             [view]="[500,300]"
+                             [designatedTotal]="mediaCount"
+                             [results]="mediaSourceTypeChartResults"></ngx-charts-pie-grid>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dataset Image Counts - advanced-pie-chart. -->
+<div class="row pb-3">
+  <div class="col-sm py-2 mx-3 border">
+    <div class="row">
+      <div class="py-3 pl-4 dashboard-info-box">
+        <span class="dashboard-title">
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.DATASETS.TITLE' | translate}}
+        </span><br/>
+        <span>
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.DATASETS.INFO' | translate: {count: projectDashboard.countDatasets} }}
+        </span>
+      </div>
+      <div class="col">
+        <ngx-charts-advanced-pie-chart [view]="datasetChartView"
+                                       [label]="'FEATURE.PROJECT.DASHBOARD.CHARTS.DATASETS.' +
+                                        (projectDashboard.mediaType === MediaType.IMAGE ? 'LABEL_IMAGE' : 'LABEL_VIDEO')| translate"
+                                       [scheme]="colorScheme"
+                                       *ngIf="!!projectDashboard.datasets.length"
+                                       [results]="datasetChartResults"></ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Task State Counts - advanced-pie-chart -->
+<div class="row pb-3">
+  <div class="col-sm py-2 mx-3 border">
+    <div class="row">
+      <div class="py-3 pl-4 dashboard-info-box">
+        <span class="dashboard-title">
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.TASKS.TITLE' | translate}}
+        </span><br/>
+        <span >
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.TASKS.INFO' | translate: {count: projectDashboard.countTasks} }}
+        </span>
+      </div>
+      <div class="col" #taskChart>
+        <ngx-charts-advanced-pie-chart [view]="taskChartView"
+                                       [label]="'FEATURE.PROJECT.DASHBOARD.CHARTS.TASKS.LABEL' | translate"
+                                       *ngIf="!!projectDashboard.countTasks"
+                                       [scheme]="colorScheme"
+                                       [results]="taskChartResults"></ngx-charts-advanced-pie-chart>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- the not is just hidden, no code changes -->
+<div class="row pb-3 d-none">
+  <div class="col-sm py-2 mx-3 border">
+    <div class="row">
+      <div class="py-3 pl-4 dashboard-info-box">
+        <span class="dashboard-title">
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.BENCHMARK.TITLE' | translate}}
+        </span><br/>
+        <span >
+          {{'FEATURE.PROJECT.DASHBOARD.CHARTS.BENCHMARK.INFO' | translate }}
+        </span>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+</div>
+

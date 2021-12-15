@@ -1,0 +1,95 @@
+
+.video-controller {
+  box-sizing: border-box;
+  height: 60px;
+  padding-top: .15em;
+  background-color: white;
+  width: 300px;
+  max-width: 300px;
+}
+
+.video-controller .col{
+  text-align: center;
+  font-size: 1.2em;
+  vertical-align: center;
+  padding-top: .75em;
+}
+.video-controller .col.play-pause {
+  font-size: 2.4em;
+  padding-top: 0;
+}
+
+.video-meta,
+.video-slider {
+    margin-top: 1.25em;
+}
+
+.frame-height {
+  height: calc(100% - 55px - 3em);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.gutter-box {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 1.85em;
+  padding-right: 1.85em;
+}
+.gutter-box > .col,
+.gutter-box > [class*=col-]{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.frame-number.pointer span:hover {
+  /* the same as .dg-primary-hover:hover */
+  color: #BB86FC;
+}
+
+.frame {
+  box-sizing: border-box;
+  padding-right: 0;
+  padding-left: 0;
+  flex-basis: 0;
+  flex-grow: 1;
+  min-width: 3px;
+  max-width: 100%;
+}
+.frame > .frame-bar {
+  min-width: 2px;
+  width: 50%;
+  margin-left: 25%;
+}
+.frame-bar.past,
+.frame-bar.future.hovered,
+.frame.pointer:hover .frame-bar.future {
+  background-color: #946BCE80;
+}
+.frame-bar.active {
+  background-color: #6300ED;
+}
+.frame-bar.future,
+.frame-bar.past.hovered,
+.frame.pointer:hover .frame-bar.past {
+  background-color: #C0C0C0;
+}
+
+#video-line-layer {
+  /* make the svg layer click-through-able */
+  pointer-events: none;
+}
+
+/**
+ * The frame actions & background-rectangle are within the svg layer
+ */
+::ng-deep rect.frame-action {
+  cursor: pointer;
+  pointer-events: visiblepainted;
+}
+::ng-deep rect.frame-action:hover {
+  opacity: 0.8;
+}
+::ng-deep rect.background-rectangle {
+  pointer-events: auto;
+}

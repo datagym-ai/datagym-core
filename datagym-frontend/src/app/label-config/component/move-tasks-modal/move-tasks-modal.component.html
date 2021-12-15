@@ -1,0 +1,10 @@
+<ngx-smart-modal #MoveTasksModal [identifier]="modalId" (onAnyCloseEventFinished)="onClose()">
+  <div *ngIf="MoveTasksModal.hasData()">
+    <div class="text-center">
+      <h4>{{ 'FEATURE.LABEL_CONFIG.DIALOGUE.MOVE2WAITING_CHANGED.TITLE' | translate}}</h4>
+      <div class="pb-4">{{ 'FEATURE.LABEL_CONFIG.DIALOGUE.MOVE2WAITING_CHANGED.CONTENT' | translate:{number: this.affectedTasksCounter} }}</div>
+      <app-button class="mr-3" styling="primary" [label]="'FEATURE.LABEL_CONFIG.DIALOGUE.MOVE2WAITING_CHANGED.MOVE_NOT'" (onClick)="onMoveNot()"></app-button>
+      <app-button styling="secondary" [label]="'FEATURE.LABEL_CONFIG.DIALOGUE.MOVE2WAITING_CHANGED.MOVE'" (onClick)="onMove()"></app-button>
+    </div>
+  </div>
+</ngx-smart-modal>

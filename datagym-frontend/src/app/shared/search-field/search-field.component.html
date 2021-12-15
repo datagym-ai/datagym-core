@@ -1,0 +1,6 @@
+<div class="search-bar">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input type="text" id="searchBar" [(ngModel)]="value"
+         [placeholder]="placeholder | translate">
+</div>
+<label *ngIf="label" for="searchBar" class="hint">{{ label | translate}}</label>

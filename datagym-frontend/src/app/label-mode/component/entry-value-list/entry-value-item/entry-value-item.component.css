@@ -1,0 +1,13 @@
+.value-hidden {
+  opacity: 0.3;
+}
+.entry-value-name {
+  font-size: 14px;
+}
+
+.list-entry{
+
+}
+.list-entry:hover {
+  color: #BB86FC;
+}

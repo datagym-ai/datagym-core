@@ -1,0 +1,18 @@
+<div class="col-3 col-xl-2"><app-dg-owner-label [organisation]="token.owner"></app-dg-owner-label></div>
+<div class="col-3 col-xl-2" [title]="token.name">{{ token.name | lengthFilter: 40 }}</div>
+<div class="col">
+  <i class="mr-3 dg-primary-hover fa fa-copy"
+     [title]="'FEATURE.API_TOKEN.LIST.COPY_TITLE' | translate"
+     (click)="copy2clipboard()"></i>
+  <span readonly="readonly"
+        (mouseenter)="state='clear'"
+        (mouseleave)="state='stars'"
+  >{{ key }}</span>
+</div>
+<div class="col-2 d-none d-xl-block">
+  {{ (token.createdAt | date:('FEATURE.API_TOKEN.LIST.DATE_FORMAT' | translate)) || '-' }} /
+  {{ (token.lastUsed | date:('FEATURE.API_TOKEN.LIST.DATE_FORMAT' | translate)) || '-' }}</div>
+<div class="col-1 text-right">
+  <i class="fas fa-trash pointer dg-primary-hover button-padding-easier-click"
+     title="{{'FEATURE.LABEL_CONFIG.TITLES.DELETE' | translate}}" aria-hidden="true" (click)="onDelete.emit()"></i>
+</div>

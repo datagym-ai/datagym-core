@@ -1,0 +1,106 @@
+<div class="row no-gutters p-2" [ngStyle]="{'margin-left.px': 18 * nestingLevel}" [formGroup]="formGroup">
+  <div class="col">
+    <!-- switch on type -->
+    <div [ngSwitch]="classification.type">
+      <!-- FREE_TEXT -->
+      <div *ngSwitchCase="LcEntryType.FREE_TEXT">
+        <label [htmlFor]="classification.entryKey" class="d-block"><span class="row"><span
+          class="col-10" [ngClass]="{'dg-warn-color': !value.valid}">{{classification.entryValue }}
+          <span class="required-field pl-2" *ngIf="classification.required">*</span></span><span
+          class="col-2 justify-content-end align-content-center">
+            <i class="fas" aria-hidden="true"
+               title="{{isCollapsed?
+               ('FEATURE.LABEL_MODE.HTML_TITLES.EXPAND' | translate) :
+               ('FEATURE.LABEL_MODE.HTML_TITLES.COLLAPSE' | translate)}}"
+               [ngClass]="isCollapsed ? 'fa-angle-down' : 'fa-angle-up'"
+               *ngIf="nestingLevel===0 && children.length > 0" (click)="toggleFold()"></i>
+            </span>
+          </span>
+          <textarea [id]="classification.entryKey" cols="30" [rows]="textAreaRows"
+                    [formControlName]="classification.entryKey"
+                    [ngClass]="{'max-reached': reachedMaxLength(classification.entryKey)}"
+                    (change)="updateTextValue(); $event.stopPropagation()"
+                    (input)="$event.stopPropagation();//thx edge"
+                    [maxLength]="maxLength"></textarea></label>
+        <p *ngIf="maxLength">
+          <small *ngIf="!reachedMaxLength(classification.entryKey)">
+            {{ 'FEATURE.LABEL_MODE.CHAR_COUNTER' | translate: {
+            length: getValueLength(classification.entryKey),
+            maxLength: maxLength
+          } }}
+          </small>
+          <small *ngIf="reachedMaxLength(classification.entryKey)" class="error-text">
+            {{ 'FEATURE.LABEL_MODE.ERROR.MAX_LENGTH' | translate: {maxLength: maxLength} }}
+          </small>
+        </p>
+      </div>
+      <!-- CHECKLIST -->
+      <div *ngSwitchCase="LcEntryType.CHECKLIST">
+        <div class="row"><span
+          class="col-10" [ngClass]="{'dg-warn-color': !value.valid}">{{classification.entryValue }}<span
+          class="required-field pl-2"
+          *ngIf="classification.required">*</span></span><span class="col-2 justify-content-end align-content-center">
+            <i class="fas" aria-hidden="true"
+               title="{{ isCollapsed? ('FEATURE.LABEL_MODE.HTML_TITLES.EXPAND' | translate) :
+               ('FEATURE.LABEL_MODE.HTML_TITLES.COLLAPSE' | translate) }}"
+               [ngClass]="isCollapsed ? 'fa-angle-down' : 'fa-angle-up'"
+               *ngIf="nestingLevel===0 && children.length > 0" (click)="toggleFold()"></i>
+            </span>
+        </div>
+        <div class="control-outer" *ngFor="let option of answers.value | keyvalue">
+          <label class="control control--checkbox" formGroupName="answers">
+            <input type="checkbox" [id]="option.key" [formControlName]="option.key" [value]="option.value">
+            <div class="control__indicator"></div>
+            {{ classificationOptions.options[option.key] }}
+          </label>
+        </div>
+      </div>
+      <!-- SELECT -->
+      <div *ngSwitchCase="LcEntryType.SELECT">
+        <label [htmlFor]="classification.entryKey" class="row"><span
+          class="col-10" [ngClass]="{'dg-warn-color': !value.valid}">{{ classificationOptions.entryValue }}<span
+          class="required-field pl-2" *ngIf="classification.required">*</span>
+        </span><span class="col-2 justify-content-end align-content-center">
+            <i class="fas" aria-hidden="true"
+               title="{{ isCollapsed? ('FEATURE.LABEL_MODE.HTML_TITLES.EXPAND' | translate) :
+               ('FEATURE.LABEL_MODE.HTML_TITLES.COLLAPSE' | translate) }}"
+               [ngClass]="isCollapsed ? 'fa-angle-down' : 'fa-angle-up'"
+               *ngIf="nestingLevel===0 && children.length > 0" (click)="toggleFold()"></i>
+        </span></label>
+
+        <!-- On up to 3 options show radio buttons else switch to select input fields. -->
+        <ng-container *ngIf="classificationOptionsSize <= 3" [ngTemplateOutlet]="radioView"></ng-container>
+        <ng-container *ngIf="classificationOptionsSize > 3" [ngTemplateOutlet]="selectView"></ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- these ng-templates must stay within the outer div to access the [formGroup]="formGroup" property -->
+  <ng-template #radioView>
+    <label class="control control--radio d-block"
+           *ngFor="let option of classificationOptions.options | keyvalue">
+      <input type="radio" [id]="option.key" [value]="option.key" formControlName="answers">
+      <span class="control__indicator"></span>
+      {{ option.value }}
+    </label>
+  </ng-template>
+  <ng-template #selectView>
+    <div class="select">
+      <ng-select [clearable]="false" [id]="classification.entryKey" formControlName="answers" class="dg-ng-select"
+                 [searchable]="false">
+        <ng-option class="dg-ng-option" *ngFor="let option of classificationOptions.options | keyvalue"
+                   [value]="option.key">{{ option.value }}</ng-option>
+      </ng-select>
+    </div>
+  </ng-template>
+
+</div>
+<hr class="divider">
+<!-- Children -->
+<div *ngIf="!isCollapsed && children.length > 0">
+  <div *ngFor="let child of children; let childIndex = index">
+    <app-classification-item [group]="getChildrenFormGroupByIndexAndName(childIndex, child.lcEntry.entryKey)"
+                             [value]="child" [classification]="getClassificationByValue(child)"
+                             [nestingLevel]="nestingLevel+1"></app-classification-item>
+  </div>
+</div>

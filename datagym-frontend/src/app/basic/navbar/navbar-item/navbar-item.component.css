@@ -1,0 +1,17 @@
+div {
+  outline: none;
+}
+
+i {
+  font-size: 1.2em;
+}
+
+.nav-item-active {
+  background-color: #946BCE;
+  transition: all 1s;
+}
+
+.nav-icon {
+  padding-left: 9px;
+  vertical-align: sub;
+}

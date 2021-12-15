@@ -1,0 +1,1 @@
+alter table label_task add column is_benchmark BOOLEAN DEFAULT FALSE not null;

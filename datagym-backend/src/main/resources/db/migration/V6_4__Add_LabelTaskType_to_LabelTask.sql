@@ -1,0 +1,1 @@
+alter table label_task add column label_task_type ENUM('DEFAULT','BENCHMARK_MASTER', 'BENCHMARK_SLAVE') default 'DEFAULT' not null;

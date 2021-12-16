@@ -214,5 +214,54 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>dkr</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Build and push docker image -->
+                        <!-- Docs: https://dmp.fabric8.io/#introduction -->
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.38.0</version>
+                        <executions>
+                            <execution>
+                                <id>docker-build</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>docker-push</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>push</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <external>
+                                        <type>properties</type>
+                                        <prefix>docker</prefix>
+                                        <mode>override</mode>
+                                    </external>
+                                    <alias>dockerfile</alias>
+                                    <build>
+                                        <dockerFileDir>${project.basedir}</dockerFileDir>
+                                        <tags>
+                                            <tag>latest</tag>
+                                            <tag>${project.version}</tag>
+                                        </tags>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

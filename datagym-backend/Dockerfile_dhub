@@ -1,0 +1,15 @@
+FROM openjdk:17-slim as builder
+WORKDIR app
+COPY target/datagym.jar datagym.jar
+RUN java -Djarmode=layertools -jar datagym.jar extract
+
+FROM openjdk:17-slim
+MAINTAINER datagymai
+WORKDIR app
+# ffmpeg/ffprobe for video labelling
+RUN apt-get update && apt-get -y install ffmpeg
+COPY --from=builder app/dependencies/ ./
+COPY --from=builder app/spring-boot-loader/ ./
+COPY --from=builder app/snapshot-dependencies/ ./
+COPY --from=builder app/application/ ./
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]

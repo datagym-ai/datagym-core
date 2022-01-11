@@ -54,10 +54,13 @@ With DataGym.ai´s API and Python SDK you can integrate it into your toolchain.
 ### Running with docker-compose
 The simplest way to run DataGym.ai locally is by using docker-compose.
 
-Launch container:
-```sh
-... comming soon
-```
+1. Download the `docker-compose.yml` from the projects root-directory
+   - <https://raw.githubusercontent.com/datagym-ai/datagym-core/master/docker-compose.yml>
+   - `wget https://raw.githubusercontent.com/datagym-ai/datagym-core/master/docker-compose.yml`
+2. Launch container using `docker-compose up -d`
+3. Wait until the initialization is done
+4. Navigate to `localhost:8080`
+
 
 ### Local development, build manually
 Build the whole project:

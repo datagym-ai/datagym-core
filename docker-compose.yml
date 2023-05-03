@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  datagym:
+    image: datagymai/datagym-core:latest
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:mariadb://db:3306/datagymdb'
+      SPRING_DATASOURCE_USERNAME: 'root'
+      SPRING_DATASOURCE_PASSWORD: 'myrootpassword447799'
+      IMAGES_DATASOURCE_URL: 'jdbc:mariadb://db:3306/datagymdb'
+      IMAGES_DATASOURCE_USERNAME: 'root'
+      IMAGES_DATASOURCE_PASSWORD: 'myrootpassword447799'
+      DATAGYM_DEACTIVATE-DBCHECKBLOCKER: false
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+  db:
+    image: mariadb:10.5
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 'datagymdb'
+      MYSQL_ROOT_PASSWORD: 'myrootpassword447799'
+    ports:
+      - '3306'
+    volumes:
+      - datagym-db:/var/lib/mysql
+volumes:
+  datagym-db:

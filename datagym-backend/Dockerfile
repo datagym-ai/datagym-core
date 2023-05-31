@@ -11,4 +11,4 @@ EXPOSE 8080
 
 WORKDIR /app
 
-ENTRYPOINT ["java", "-Xmx512m", "-jar",  "/app/datagym.jar"]
+ENTRYPOINT ["java", "-Xmx4096m", "-jar",  "/app/datagym.jar"]

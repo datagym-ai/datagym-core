@@ -4,7 +4,7 @@
 
     <groupId>ai.datagym.application</groupId>
     <artifactId>datagym-root</artifactId>
-    <version>0.27-SNAPSHOT</version>
+    <version>0.27</version>
     <packaging>pom</packaging>
     <name>DataGym.ai :: Root</name>
 
@@ -216,7 +216,7 @@
         <url>https://github.com/datagym-ai/datagym-core</url>
         <connection>scm:git:git@github.com:datagym-ai/datagym-core.git</connection>
         <developerConnection>scm:git:git@github.com:datagym-ai/datagym-core.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>0.27</tag>
     </scm>
 
 

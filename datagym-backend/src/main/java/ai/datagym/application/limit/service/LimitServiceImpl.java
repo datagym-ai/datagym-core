@@ -418,7 +418,7 @@ public class LimitServiceImpl implements LimitService {
                 // Check if the field is present (only, when the security-mock module is applied)
                 OidcUserInfo.class.getDeclaredField("isOpenCoreEnvironment");
                 limit.setDataGymPlan(DataGymPlan.TEAM_PRO);
-                limit.setProjectLimit(20);
+                limit.setProjectLimit(100);
                 limit.setLabelLimit(50000);
                 limit.setLabelRemaining(50000);
                 limit.setStorageLimit(52428800);

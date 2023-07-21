@@ -4,7 +4,7 @@
 
     <groupId>ai.datagym.application</groupId>
     <artifactId>datagym-root</artifactId>
-    <version>0.27-SNAPSHOT</version>
+    <version>0.29-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>DataGym.ai :: Root</name>
 
